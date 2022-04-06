@@ -13,6 +13,7 @@ function App(): JSX.Element {
             </p>
             <p>Isaac Lewis</p>
             <p>Alexander Trunzo</p>
+            <p>Yuchen Zhang</p>
         </div>
     );
 }
