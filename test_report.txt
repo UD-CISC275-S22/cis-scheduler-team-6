@@ -28,7 +28,7 @@
       at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19470:17)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (103 ms)
+  ✕ renders the course name somewhere (125 ms)
 
   ● renders the course name somewhere
 
@@ -57,6 +57,76 @@ FAIL src/App.test.tsx
           [36m<p>[39m
             [0mYuchen Zhang[0m
           [36m</p>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0mAdd a Course[0m
+            [36m</h3>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mfor[39m=[32m"choiceDropdown"[39m
+              [36m>[39m
+                [0mChoose a department[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"form-select"[39m
+                [33mid[39m=[32m"choiceDropdown"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BISC"[39m
+                [36m>[39m
+                  [0mBISC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CISC"[39m
+                [36m>[39m
+                  [0mCISC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MATH"[39m
+                [36m>[39m
+                  [0mMATH[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mfor[39m=[32m"choiceDropdown2"[39m
+              [36m>[39m
+                [0mChoose a course[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"form-select"[39m
+                [33mid[39m=[32m"choiceDropdown2"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"101"[39m
+                [36m>[39m
+                  [0m101[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"202"[39m
+                [36m>[39m
+                  [0m202[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"303"[39m
+                [36m>[39m
+                  [0m303[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [0mBISC101[0m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mAdd Course[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
           [36m<div>[39m
             [36m<hr />[39m
             [36m<div>[39m
@@ -133,18 +203,19 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
--------------|---------|----------|---------|---------|-------------------
-File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
--------------|---------|----------|---------|---------|-------------------
-All files    |   43.75 |      100 |   33.33 |   43.75 |                   
- App.tsx     |     100 |      100 |     100 |     100 |                   
- course.ts   |       0 |        0 |       0 |       0 |                   
- plan.tsx    |      40 |      100 |      20 |      40 | 31-44,55-58       
- planI.ts    |       0 |        0 |       0 |       0 |                   
- semester.ts |       0 |        0 |       0 |       0 |                   
--------------|---------|----------|---------|---------|-------------------
+--------------------|---------|----------|---------|---------|-------------------
+File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------|---------|----------|---------|---------|-------------------
+All files           |   55.55 |      100 |   41.66 |   55.55 |                   
+ App.tsx            |     100 |      100 |     100 |     100 |                   
+ course.ts          |       0 |        0 |       0 |       0 |                   
+ courseDropdown.tsx |   72.72 |      100 |      50 |   72.72 | 20,24,51          
+ plan.tsx           |      40 |      100 |      20 |      40 | 31-44,55-58       
+ planI.ts           |       0 |        0 |       0 |       0 |                   
+ semester.ts        |       0 |        0 |       0 |       0 |                   
+--------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        1.932 s
+Time:        2.192 s
 Ran all test suites.
