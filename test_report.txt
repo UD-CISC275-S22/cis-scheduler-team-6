@@ -2,21 +2,149 @@
 > react-typescript-starter@0.1.0 test
 > react-scripts test "--coverage"
 
-PASS src/App.test.tsx
-  ✓ renders the course name somewhere (33 ms)
+  console.log
+    new plans
+
+      at PlanF (src/plan.tsx:21:13)
+
+  console.error
+    Warning: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
+        at input
+        at /home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/node_modules/react-bootstrap/cjs/FormControl.js:27:3
+        at div
+        at /home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/node_modules/react-bootstrap/cjs/FormGroup.js:19:3
+        at div
+        at PlanF (/home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/src/plan.tsx:28:23)
+        at div
+        at div
+        at App
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
+      at checkControlledValueProps (node_modules/react-dom/cjs/react-dom.development.js:1323:7)
+      at initWrapperState (node_modules/react-dom/cjs/react-dom.development.js:1495:5)
+      at setInitialProperties (node_modules/react-dom/cjs/react-dom.development.js:9099:7)
+      at finalizeInitialChildren (node_modules/react-dom/cjs/react-dom.development.js:10201:3)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19470:17)
+
+FAIL src/App.test.tsx
+  ✕ renders the course name somewhere (135 ms)
+
+  ● renders the course name somewhere
+
+    TestingLibraryElementError: Unable to find an element with the text: /CISC275/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"App-header"[39m
+          [36m>[39m
+            [0mUD CISC Degree Planner[0m
+          [36m</header>[39m
+          [36m<p>[39m
+            [0mThis application is for creating potential course outlines for UD CISC Degrees.[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mIsaac Lewis[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mAlexander Trunzo[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mYuchen Zhang[0m
+          [36m</p>[39m
+          [36m<div>[39m
+            [36m<hr />[39m
+            [36m<div>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mAdd Plan[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mClear Plans[0m
+              [36m</button>[39m
+              [36m<div>[39m
+                [0mPlan ID: [0m
+                [0m0[0m
+                [0m Semesters: [0m
+                [0m Complete?[0m
+                [0m [0m
+              [36m</div>[39m
+              [0mSelect Plan[0m
+              [36m<select[39m
+                [33mid[39m=[32m"selectList"[39m
+                [33mname[39m=[32m"selectList"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"option 1"[39m
+                [36m>[39m
+                  [0mPlan 1[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"option 2"[39m
+                [36m>[39m
+                  [0mPlan 2[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<div>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"form-label"[39m
+                  [33mfor[39m=[32m"checkAnswer"[39m
+                [36m>[39m
+                  [0mPlan To Remove: (enter id)[0m
+                [36m</label>[39m
+                [36m<input[39m
+                  [33mclass[39m=[32m"form-control"[39m
+                  [33mid[39m=[32m"checkAnswer"[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m/>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<hr />[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+       5 | test("renders the course name somewhere", () => {
+       6 |     render(<App />);
+    >  7 |     const linkElement = screen.getByText(/CISC275/i);
+         |                                ^
+       8 |     expect(linkElement).toBeInTheDocument();
+       9 | });
+      10 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByText (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/App.test.tsx:7:32)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 -------------|---------|----------|---------|---------|-------------------
 File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -------------|---------|----------|---------|---------|-------------------
-All files    |     100 |      100 |     100 |     100 |                   
+All files    |   43.75 |      100 |   33.33 |   43.75 |                   
  App.tsx     |     100 |      100 |     100 |     100 |                   
  course.ts   |       0 |        0 |       0 |       0 |                   
- plan.ts     |       0 |        0 |       0 |       0 |                   
- plan.tsx    |       0 |        0 |       0 |       0 |                   
+ plan.tsx    |      40 |      100 |      20 |      40 | 31-44,55-58       
+ planI.ts    |       0 |        0 |       0 |       0 |                   
  semester.ts |       0 |        0 |       0 |       0 |                   
 -------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        1.472 s
+Time:        2.666 s
 Ran all test suites.
