@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { CoursesSelect } from "./courseDropdown";
 
 function App(): JSX.Element {
     return (
@@ -14,6 +15,10 @@ function App(): JSX.Element {
             <p>Isaac Lewis</p>
             <p>Alexander Trunzo</p>
             <p>Yuchen Zhang</p>
+            <CoursesSelect
+                options={["BISC", "CISC", "MATH"]}
+                options2={["101", "202", "303"]}
+            ></CoursesSelect>
         </div>
     );
 }
