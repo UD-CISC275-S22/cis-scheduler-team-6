@@ -1,6 +1,7 @@
 import React from "react";
 //import { Button } from "react-bootstrap";
 import "./App.css";
+import { CoursesSelect } from "./courseDropdown";
 import "./plan";
 import { PlanF } from "../src/plan";
 
@@ -17,6 +18,12 @@ function App(): JSX.Element {
             <p>Isaac Lewis</p>
             <p>Alexander Trunzo</p>
             <p>Yuchen Zhang</p>
+            <hr></hr>
+            <CoursesSelect
+                options={["BISC", "CISC", "MATH"]}
+                options2={["101", "202", "303"]}
+            ></CoursesSelect>
+            <hr></hr>
             <div>
                 <hr></hr>
                 <PlanF></PlanF>
