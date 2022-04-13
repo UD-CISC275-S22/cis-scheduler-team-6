@@ -1,7 +1,7 @@
 .App {
     text-align: center;
 }
-/* test */
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -15,7 +15,7 @@
 
 .App-header {
     width: 100%;
-    background-color: #282c34;
+    background-color: #1f51ff;
     min-height: 40vh;
     display: flex;
     flex-direction: column;
