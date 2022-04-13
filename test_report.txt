@@ -28,7 +28,7 @@
       at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19470:17)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (135 ms)
+  ✕ renders the course name somewhere (103 ms)
 
   ● renders the course name somewhere
 
@@ -46,7 +46,7 @@ FAIL src/App.test.tsx
             [0mUD CISC Degree Planner[0m
           [36m</header>[39m
           [36m<p>[39m
-            [0mThis application is for creating potential course outlines for UD CISC Degrees.[0m
+            [0mWelcome to the UD CISC Degree Planner! This application is for creating potential course outlines for UD CISC Majors. Start by creating a plan below, and then begin filling in the semesters with the appropriate courses.[0m
           [36m</p>[39m
           [36m<p>[39m
             [0mIsaac Lewis[0m
@@ -146,5 +146,5 @@ All files    |   43.75 |      100 |   33.33 |   43.75 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.666 s
+Time:        1.932 s
 Ran all test suites.
