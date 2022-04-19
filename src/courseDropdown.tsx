@@ -85,11 +85,14 @@ export function CoursesSelect({
             setCourse({ ...course, offered: event.target.value });
         }
         function setDefault() {
-            setCourse({ ...course, name: userSelection });
-            setCourse({ ...course, id: +userSelection2 });
-            setCourse({ ...course, credits: 3 });
-            setCourse({ ...course, req: "" });
-            setCourse({ ...course, offered: "" });
+            setCourse({
+                ...course,
+                name: userSelection,
+                id: +userSelection2,
+                credits: 3,
+                req: "",
+                offered: ""
+            });
         }
         return (
             <div>
