@@ -2,11 +2,6 @@
 > react-typescript-starter@0.1.0 test
 > react-scripts test "--coverage"
 
-  console.log
-    new plans
-
-      at PlanF (src/plan.tsx:21:13)
-
   console.error
     Warning: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
         at input
@@ -14,8 +9,7 @@
         at div
         at /home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/node_modules/react-bootstrap/cjs/FormGroup.js:19:3
         at div
-        at PlanF (/home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/src/plan.tsx:28:23)
-        at div
+        at PlanF (/home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/src/plan.tsx:10:23)
         at div
         at App
 
@@ -28,7 +22,7 @@
       at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19470:17)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (114 ms)
+  ✕ renders the course name somewhere (154 ms)
 
   ● renders the course name somewhere
 
@@ -149,59 +143,107 @@ FAIL src/App.test.tsx
             [36m</div>[39m
           [36m</div>[39m
           [36m<hr />[39m
+          [36m<hr />[39m
           [36m<div>[39m
-            [36m<hr />[39m
+            [36m<h3>[39m
+              [0mAdd a Plan[0m
+            [36m</h3>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mAdd Plan[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mClear Plans[0m
+            [36m</button>[39m
             [36m<div>[39m
-              [36m<button[39m
-                [33mclass[39m=[32m"btn btn-primary"[39m
-                [33mtype[39m=[32m"button"[39m
-              [36m>[39m
-                [0mAdd Plan[0m
-              [36m</button>[39m
-              [36m<button[39m
-                [33mclass[39m=[32m"btn btn-primary"[39m
-                [33mtype[39m=[32m"button"[39m
-              [36m>[39m
-                [0mClear Plans[0m
-              [36m</button>[39m
-              [36m<div>[39m
+              [36m<p>[39m
                 [0mPlan ID: [0m
                 [0m0[0m
-                [0m Semesters: [0m
-                [0m Complete?[0m
-                [0m [0m
-              [36m</div>[39m
-              [0mSelect Plan[0m
-              [36m<select[39m
-                [33mid[39m=[32m"selectList"[39m
-                [33mname[39m=[32m"selectList"[39m
-              [36m>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"option 1"[39m
-                [36m>[39m
-                  [0mPlan 1[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"option 2"[39m
-                [36m>[39m
-                  [0mPlan 2[0m
-                [36m</option>[39m
-              [36m</select>[39m
-              [36m<div>[39m
-                [36m<label[39m
-                  [33mclass[39m=[32m"form-label"[39m
-                  [33mfor[39m=[32m"checkAnswer"[39m
-                [36m>[39m
-                  [0mPlan To Remove: (enter id)[0m
-                [36m</label>[39m
-                [36m<input[39m
-                  [33mclass[39m=[32m"form-control"[39m
-                  [33mid[39m=[32m"checkAnswer"[39m
-                  [33mvalue[39m=[32m"0"[39m
-                [36m/>[39m
-              [36m</div>[39m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mSemesters: [0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mComplete? [0m
+              [36m</p>[39m
             [36m</div>[39m
-            [36m<hr />[39m
+            [36m<b>[39m
+              [0mSelect Plan:[0m
+            [36m</b>[39m
+            [36m<select[39m
+              [33mid[39m=[32m"selectList"[39m
+              [33mname[39m=[32m"selectList"[39m
+            [36m>[39m
+              [36m<option>[39m
+                [0m Plan 0 [0m
+              [36m</option>[39m
+            [36m</select>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mfor[39m=[32m"checkAnswer"[39m
+              [36m>[39m
+                [36m<b>[39m
+                  [0mRemove Plan:[0m
+                [36m</b>[39m
+                [0m (enter id)[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"form-control"[39m
+                [33mid[39m=[32m"checkAnswer"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0m Add a Semester [0m
+            [36m</h3>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mAdd Semester[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mClear Semesters[0m
+            [36m</button>[39m
+            [36m<div>[39m
+              [36m<p>[39m
+                [0mSemester: [0m
+                [0m0[0m
+              [36m</p>[39m
+              [0m [0m
+              [36m<p>[39m
+                [0mCourses: [0m
+              [36m</p>[39m
+              [0m [0m
+              [36m<p>[39m
+                [0mCredits: [0m
+                [0m0[0m
+                [0m [0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<b>[39m
+              [0mSelect Plan:[0m
+            [36m</b>[39m
+            [36m<select[39m
+              [33mid[39m=[32m"selectList"[39m
+              [33mname[39m=[32m"selectList"[39m
+            [36m>[39m
+              [36m<option>[39m
+                [0m Semester: 0 [0m
+              [36m</option>[39m
+            [36m</select>[39m
           [36m</div>[39m
         [36m</div>[39m
       [36m</div>[39m
@@ -225,20 +267,21 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
---------------------|---------|----------|---------|---------|---------------------
-File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s   
---------------------|---------|----------|---------|---------|---------------------
-All files           |   38.29 |       25 |   21.42 |   38.29 |                     
- App.tsx            |     100 |      100 |     100 |     100 |                     
- course.ts          |       0 |        0 |       0 |       0 |                     
- courseDropdown.tsx |      50 |       50 |   26.66 |      50 | 20,24,66-88,141-148 
- coursePlanEdit.tsx |       0 |        0 |       0 |       0 | 5-32                
- plan.tsx           |      40 |      100 |      20 |      40 | 31-44,55-58         
- planI.ts           |       0 |        0 |       0 |       0 |                     
- semester.ts        |       0 |        0 |       0 |       0 |                     
---------------------|---------|----------|---------|---------|---------------------
+----------------------|---------|----------|---------|---------|---------------------
+File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s   
+----------------------|---------|----------|---------|---------|---------------------
+All files             |   41.26 |       25 |   29.72 |   39.34 |                     
+ App.tsx              |     100 |      100 |     100 |     100 |                     
+ course.ts            |       0 |        0 |       0 |       0 |                     
+ courseDropdown.tsx   |      50 |       50 |   26.66 |      50 | 20,24,66-88,141-148 
+ coursePlanEdit.tsx   |       0 |        0 |       0 |       0 | 5-32                
+ plan.tsx             |   46.66 |      100 |   42.85 |   42.85 | 14-22,34-35         
+ planInterface.ts     |       0 |        0 |       0 |       0 |                     
+ semester.tsx         |   43.75 |      100 |   42.85 |      40 | 13-22,34-35         
+ semesterlnterface.ts |       0 |        0 |       0 |       0 |                     
+----------------------|---------|----------|---------|---------|---------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.208 s
+Time:        2.836 s
 Ran all test suites.
