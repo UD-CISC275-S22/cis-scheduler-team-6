@@ -1,4 +1,4 @@
-import { course } from "../src/course";
+import { course } from "./course";
 
 //semester interface
 export interface Semester {
