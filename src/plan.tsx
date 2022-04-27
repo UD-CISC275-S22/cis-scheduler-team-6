@@ -1,77 +1,56 @@
 import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Plan } from "../src/planI";
+import { Plan } from "./planInterface";
 import { Form } from "react-bootstrap";
-
-/*
-let plans: Plan[] = [];
-console.log("new plans");
-const pl: Plan = {
-    id: 0,
-    semesters: [],
-    complete: false
-};
-plans.push(pl);
-const [p, setP] = useState<Plan>(pl);
-*/
+import plan from "../src/plans_data.json";
+let plans = plan.map((cPlan: Plan) => ({ ...cPlan }));
 
 export function PlanF(): JSX.Element {
-    let plans: Plan[] = [];
-    console.log("new plans");
+    const [p, setP] = useState<Plan[]>(plans);
+    const [x, setX] = useState<number>(0);
+
+    function addPlan(newPlan: Plan) {
+        setP([...plans, newPlan]);
+        plans.push(newPlan);
+        setX(x + 1);
+    }
+
+    function clearPlans() {
+        setP([]);
+        setX(0);
+        plans = [];
+    }
+
     const pl: Plan = {
-        id: 0,
+        id: plans.length,
         semesters: [],
         complete: false
     };
-    plans.push(pl);
-    const [p, setP] = useState<Plan>(pl);
-
-    function createPlan(plans: Plan[]): Plan[] {
-        const pl: Plan = {
-            id: p.id + 1,
-            semesters: [],
-            complete: false
-        };
-        plans.push(pl);
-        setP(pl);
-        return plans;
-    }
-
-    function removePlan(plans: Plan[]): Plan[] {
-        plans.pop;
-        setP(plans[plans.length - 1]);
-        return plans;
-    }
-
-    /*
-    function findP(id: number) {
-        //if()
-    }
-    */
 
     return (
         <div>
-            <Button onClick={() => (plans = createPlan(plans))}>
-                Add Plan
-            </Button>
-            <Button onClick={() => (plans = removePlan(plans))}>
-                Clear Plans
-            </Button>
+            <h3>Add a Plan</h3>
+            <Button onClick={() => addPlan(pl)}>Add Plan</Button>
+            <Button onClick={() => clearPlans}>Clear Plans</Button>
             {
                 <div>
-                    Plan ID: {p.id} Semesters: {p.semesters} Complete?{" "}
-                    {p.complete}
+                    <p>Plan ID: {p[x].id}</p>
+                    <p>Semesters: {p[x].semesters}</p>
+                    <p>Complete? {p[x].complete}</p>
                 </div>
             }
-            Select Plan
+            <b>Select Plan:</b>
             <select name="selectList" id="selectList">
-                <option value="option 1">Plan 1</option>
-                <option value="option 2">Plan 2</option>
+                {plans.map((plan: Plan) => (
+                    <option key={plan.id}> Plan {plan.id} </option>
+                ))}
             </select>
             <Form.Group controlId="checkAnswer">
-                <Form.Label>Plan To Remove: (enter id)</Form.Label>
-                <Form.Control value={p.id} />
+                <Form.Label>
+                    <b>Remove Plan:</b> (enter id)
+                </Form.Label>
+                <Form.Control value={p[x].id} />
             </Form.Group>
         </div>
     );
