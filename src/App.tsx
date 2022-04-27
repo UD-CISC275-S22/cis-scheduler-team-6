@@ -7,7 +7,6 @@ import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
 import { SemesterF } from "../src/semester";
 
-
 function App(): JSX.Element {
     return (
         <div className="App">
