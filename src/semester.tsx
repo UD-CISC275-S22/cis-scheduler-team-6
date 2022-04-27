@@ -12,10 +12,12 @@ type ChangeEvent = React.ChangeEvent<
 >;
 
 export function SemesterF(): JSX.Element {
+    /*
     let j = false;
     if (plans[pId].semesters.length > 0 && plans.length > 0) {
         j = true;
     }
+    */
 
     const [s, setS] = useState<Semester[]>(semesters);
     const [x, setX] = useState<number>(0);
