@@ -2,27 +2,18 @@
 > react-typescript-starter@0.1.0 test
 > react-scripts test "--coverage"
 
-  console.error
-    Warning: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
-        at input
-        at /home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/node_modules/react-bootstrap/cjs/FormControl.js:27:3
-        at div
-        at /home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/node_modules/react-bootstrap/cjs/FormGroup.js:19:3
-        at div
-        at PlanF (/home/runner/work/cis-scheduler-team-6/cis-scheduler-team-6/src/plan.tsx:10:23)
-        at div
-        at App
+  console.log
+    jawn: 0
 
-      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
-      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
-      at checkControlledValueProps (node_modules/react-dom/cjs/react-dom.development.js:1323:7)
-      at initWrapperState (node_modules/react-dom/cjs/react-dom.development.js:1495:5)
-      at setInitialProperties (node_modules/react-dom/cjs/react-dom.development.js:9099:7)
-      at finalizeInitialChildren (node_modules/react-dom/cjs/react-dom.development.js:10201:3)
-      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19470:17)
+      at SemesterF (src/semester.tsx:24:13)
 
-FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (154 ms)
+  console.log
+    plan changed
+
+      at src/plan.tsx:70:17
+
+FAIL src/App.test.tsx (7.739 s)
+  ✕ renders the course name somewhere (204 ms)
 
   ● renders the course name somewhere
 
@@ -54,6 +45,135 @@ FAIL src/App.test.tsx
           [36m<hr />[39m
           [36m<div>[39m
             [36m<h3>[39m
+              [0mAdd a Plan[0m
+            [36m</h3>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mAdd Plan[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mClear Plans[0m
+            [36m</button>[39m
+            [36m<div>[39m
+              [36m<p>[39m
+                [0mPlan ID: [0m
+                [0m0[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mSemesters: [0m
+                [0m0[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mComplete? [0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mfor[39m=[32m"choiceDropdown"[39m
+              [36m>[39m
+                [36m<b>[39m
+                  [0mSelect Plan:[0m
+                [36m</b>[39m
+              [36m</label>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"form-select"[39m
+                [33mid[39m=[32m"selectList"[39m
+                [33mname[39m=[32m"selectList"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m>[39m
+                  [0m Plan 0 [0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mfor[39m=[32m"changeTextBox"[39m
+              [36m>[39m
+                [36m<b>[39m
+                  [0mRemove Plan:[0m
+                [36m</b>[39m
+                [0m (enter id)[0m
+                [36m<input[39m
+                  [33mclass[39m=[32m"form-control"[39m
+                  [33mid[39m=[32m"changeTextBox"[39m
+                  [33mtype[39m=[32m"number"[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m/>[39m
+              [36m</label>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0m Add a Semester [0m
+            [36m</h3>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mAdd Semester[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mClear Semesters[0m
+            [36m</button>[39m
+            [36m<div>[39m
+              [36m<p>[39m
+                [0mSemester: [0m
+                [0m0[0m
+              [36m</p>[39m
+              [0m [0m
+              [36m<p>[39m
+                [0mCourses: [0m
+                [0m0[0m
+              [36m</p>[39m
+              [0m [0m
+              [36m<p>[39m
+                [0mCredits: [0m
+                [0m0[0m
+                [0m [0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<b>[39m
+              [0mSelect Semester:[0m
+            [36m</b>[39m
+            [36m<select[39m
+              [33mclass[39m=[32m"form-select"[39m
+              [33mid[39m=[32m"selectList"[39m
+              [33mname[39m=[32m"selectList"[39m
+            [36m/>[39m
+            [36m<div>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mfor[39m=[32m"changeTextBox"[39m
+              [36m>[39m
+                [36m<b>[39m
+                  [0mRemove Semester:[0m
+                [36m</b>[39m
+                [0m (enter id)[0m
+                [36m<input[39m
+                  [33mclass[39m=[32m"form-control"[39m
+                  [33mid[39m=[32m"changeTextBox"[39m
+                  [33mtype[39m=[32m"number"[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m/>[39m
+              [36m</label>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
               [0mAdd a Course[0m
             [36m</h3>[39m
             [36m<div>[39m
@@ -68,9 +188,149 @@ FAIL src/App.test.tsx
                 [33mid[39m=[32m"choiceDropdown"[39m
               [36m>[39m
                 [36m<option[39m
+                  [33mvalue[39m=[32m"ACCT"[39m
+                [36m>[39m
+                  [0mACCT[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"AGED"[39m
+                [36m>[39m
+                  [0mAGED[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"AGRI"[39m
+                [36m>[39m
+                  [0mAGRI[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"AFSC"[39m
+                [36m>[39m
+                  [0mAFSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"AFRA"[39m
+                [36m>[39m
+                  [0mAFRA[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ANFS"[39m
+                [36m>[39m
+                  [0mANFS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ANTH"[39m
+                [36m>[39m
+                  [0mANTH[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"APEC"[39m
+                [36m>[39m
+                  [0mAPEC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ARAB"[39m
+                [36m>[39m
+                  [0mARAB[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ART"[39m
+                [36m>[39m
+                  [0mART[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ARTC"[39m
+                [36m>[39m
+                  [0mARTC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ARTH"[39m
+                [36m>[39m
+                  [0mARTH[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ARSC"[39m
+                [36m>[39m
+                  [0mARSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ASIA"[39m
+                [36m>[39m
+                  [0mASIA[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BHAN"[39m
+                [36m>[39m
+                  [0mBHAN[0m
+                [36m</option>[39m
+                [36m<option[39m
                   [33mvalue[39m=[32m"BISC"[39m
                 [36m>[39m
                   [0mBISC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BMEG"[39m
+                [36m>[39m
+                  [0mBMEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BREG"[39m
+                [36m>[39m
+                  [0mBREG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BUEC"[39m
+                [36m>[39m
+                  [0mBUEC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BUAD"[39m
+                [36m>[39m
+                  [0mBUAD[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"DIST"[39m
+                [36m>[39m
+                  [0mDIST[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CHEG"[39m
+                [36m>[39m
+                  [0mCHEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CHEM"[39m
+                [36m>[39m
+                  [0mCHEM[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CHIN"[39m
+                [36m>[39m
+                  [0mCHIN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CIEG"[39m
+                [36m>[39m
+                  [0mCIEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CGSC"[39m
+                [36m>[39m
+                  [0mCGSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CMLT"[39m
+                [36m>[39m
+                  [0mCMLT[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"COMM"[39m
+                [36m>[39m
+                  [0mCOMM[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CSCD"[39m
+                [36m>[39m
+                  [0mCSCD[0m
                 [36m</option>[39m
                 [36m<option[39m
                   [33mvalue[39m=[32m"CISC"[39m
@@ -78,9 +338,439 @@ FAIL src/App.test.tsx
                   [0mCISC[0m
                 [36m</option>[39m
                 [36m<option[39m
+                  [33mvalue[39m=[32m"CPEG"[39m
+                [36m>[39m
+                  [0mCPEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"CRJU"[39m
+                [36m>[39m
+                  [0mCRJU[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"DANC"[39m
+                [36m>[39m
+                  [0mDANC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"DISA"[39m
+                [36m>[39m
+                  [0mDISA[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ECON"[39m
+                [36m>[39m
+                  [0mECON[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"EDUC"[39m
+                [36m>[39m
+                  [0mEDUC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ELEG"[39m
+                [36m>[39m
+                  [0mELEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ENEP"[39m
+                [36m>[39m
+                  [0mENEP[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"EGGG"[39m
+                [36m>[39m
+                  [0mEGGG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ENGL"[39m
+                [36m>[39m
+                  [0mENGL[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ENWC"[39m
+                [36m>[39m
+                  [0mENWC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ENTR"[39m
+                [36m>[39m
+                  [0mENTR[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ENSC"[39m
+                [36m>[39m
+                  [0mENSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ENVR"[39m
+                [36m>[39m
+                  [0mENVR[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"GEOG"[39m
+                [36m>[39m
+                  [0mGEOG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"FASH"[39m
+                [36m>[39m
+                  [0mFASH[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"FINC"[39m
+                [36m>[39m
+                  [0mFINC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"FREN"[39m
+                [36m>[39m
+                  [0mFREN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"GAME"[39m
+                [36m>[39m
+                  [0mGAME[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"GEOL"[39m
+                [36m>[39m
+                  [0mGEOL[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"GRMN"[39m
+                [36m>[39m
+                  [0mGRMN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"GREK"[39m
+                [36m>[39m
+                  [0mGREK[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HLPR"[39m
+                [36m>[39m
+                  [0mHLPR[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HDES"[39m
+                [36m>[39m
+                  [0mHDES[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HLTH"[39m
+                [36m>[39m
+                  [0mHLTH[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HEBR"[39m
+                [36m>[39m
+                  [0mHEBR[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HIST"[39m
+                [36m>[39m
+                  [0mHIST[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HONR"[39m
+                [36m>[39m
+                  [0mHONR[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HOSP"[39m
+                [36m>[39m
+                  [0mHOSP[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HDFS"[39m
+                [36m>[39m
+                  [0mHDFS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"ITAL"[39m
+                [36m>[39m
+                  [0mITAL[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"JAPN"[39m
+                [36m>[39m
+                  [0mJAPN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"JWST"[39m
+                [36m>[39m
+                  [0mJWST[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"JOUR"[39m
+                [36m>[39m
+                  [0mJOUR[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"KAAP"[39m
+                [36m>[39m
+                  [0mKAAP[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LARC"[39m
+                [36m>[39m
+                  [0mLARC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LLCU"[39m
+                [36m>[39m
+                  [0mLLCU[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LATN"[39m
+                [36m>[39m
+                  [0mLATN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LAMS"[39m
+                [36m>[39m
+                  [0mLAMS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LEAD"[39m
+                [36m>[39m
+                  [0mLEAD[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LEST"[39m
+                [36m>[39m
+                  [0mLEST[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LING"[39m
+                [36m>[39m
+                  [0mLING[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MISY"[39m
+                [36m>[39m
+                  [0mMISY[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MAST"[39m
+                [36m>[39m
+                  [0mMAST[0m
+                [36m</option>[39m
+                [36m<option[39m
                   [33mvalue[39m=[32m"MATH"[39m
                 [36m>[39m
                   [0mMATH[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MCST"[39m
+                [36m>[39m
+                  [0mMCST[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MSEG"[39m
+                [36m>[39m
+                  [0mMSEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MEEG"[39m
+                [36m>[39m
+                  [0mMEEG[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MMSC"[39m
+                [36m>[39m
+                  [0mMMSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MLSC"[39m
+                [36m>[39m
+                  [0mMLSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MSST"[39m
+                [36m>[39m
+                  [0mMSST[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MUSC"[39m
+                [36m>[39m
+                  [0mMUSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MUED"[39m
+                [36m>[39m
+                  [0mMUED[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"NSCI"[39m
+                [36m>[39m
+                  [0mNSCI[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"NURS"[39m
+                [36m>[39m
+                  [0mNURS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"NTDT"[39m
+                [36m>[39m
+                  [0mNTDT[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PHIL"[39m
+                [36m>[39m
+                  [0mPHIL[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PHYT"[39m
+                [36m>[39m
+                  [0mPHYT[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PHYS"[39m
+                [36m>[39m
+                  [0mPHYS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PLSC"[39m
+                [36m>[39m
+                  [0mPLSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"POSC"[39m
+                [36m>[39m
+                  [0mPOSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PORT"[39m
+                [36m>[39m
+                  [0mPORT[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PSYC"[39m
+                [36m>[39m
+                  [0mPSYC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"RUSS"[39m
+                [36m>[39m
+                  [0mRUSS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SCEN"[39m
+                [36m>[39m
+                  [0mSCEN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SOCI"[39m
+                [36m>[39m
+                  [0mSOCI[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SPAN"[39m
+                [36m>[39m
+                  [0mSPAN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SPTM"[39m
+                [36m>[39m
+                  [0mSPTM[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"STAT"[39m
+                [36m>[39m
+                  [0mSTAT[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"THEA"[39m
+                [36m>[39m
+                  [0mTHEA[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"UNIV"[39m
+                [36m>[39m
+                  [0mUNIV[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SPPA"[39m
+                [36m>[39m
+                  [0mSPPA[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"UAPP"[39m
+                [36m>[39m
+                  [0mUAPP[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"WOMS"[39m
+                [36m>[39m
+                  [0mWOMS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BINF"[39m
+                [36m>[39m
+                  [0mBINF[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BMSC"[39m
+                [36m>[39m
+                  [0mBMSC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"BMBA"[39m
+                [36m>[39m
+                  [0mBMBA[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"EAMC"[39m
+                [36m>[39m
+                  [0mEAMC[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SMED"[39m
+                [36m>[39m
+                  [0mSMED[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"EDLM"[39m
+                [36m>[39m
+                  [0mEDLM[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"EPID"[39m
+                [36m>[39m
+                  [0mEPID[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"EVAL"[39m
+                [36m>[39m
+                  [0mEVAL[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"FSAN"[39m
+                [36m>[39m
+                  [0mFSAN[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"HSAD"[39m
+                [36m>[39m
+                  [0mHSAD[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"MALS"[39m
+                [36m>[39m
+                  [0mMALS[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PRES"[39m
+                [36m>[39m
+                  [0mPRES[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"PCS"[39m
+                [36m>[39m
+                  [0mPCS[0m
                 [36m</option>[39m
               [36m</select>[39m
             [36m</div>[39m
@@ -138,112 +828,9 @@ FAIL src/App.test.tsx
                 [33mtype[39m=[32m"button"[39m
               [36m>[39m
                 [0mAdd [0m
-                [0mBISC101[0m
+                [0mACCT101[0m
               [36m</button>[39m
             [36m</div>[39m
-          [36m</div>[39m
-          [36m<hr />[39m
-          [36m<hr />[39m
-          [36m<div>[39m
-            [36m<h3>[39m
-              [0mAdd a Plan[0m
-            [36m</h3>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mAdd Plan[0m
-            [36m</button>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mClear Plans[0m
-            [36m</button>[39m
-            [36m<div>[39m
-              [36m<p>[39m
-                [0mPlan ID: [0m
-                [0m0[0m
-              [36m</p>[39m
-              [36m<p>[39m
-                [0mSemesters: [0m
-              [36m</p>[39m
-              [36m<p>[39m
-                [0mComplete? [0m
-              [36m</p>[39m
-            [36m</div>[39m
-            [36m<b>[39m
-              [0mSelect Plan:[0m
-            [36m</b>[39m
-            [36m<select[39m
-              [33mid[39m=[32m"selectList"[39m
-              [33mname[39m=[32m"selectList"[39m
-            [36m>[39m
-              [36m<option>[39m
-                [0m Plan 0 [0m
-              [36m</option>[39m
-            [36m</select>[39m
-            [36m<div>[39m
-              [36m<label[39m
-                [33mclass[39m=[32m"form-label"[39m
-                [33mfor[39m=[32m"checkAnswer"[39m
-              [36m>[39m
-                [36m<b>[39m
-                  [0mRemove Plan:[0m
-                [36m</b>[39m
-                [0m (enter id)[0m
-              [36m</label>[39m
-              [36m<input[39m
-                [33mclass[39m=[32m"form-control"[39m
-                [33mid[39m=[32m"checkAnswer"[39m
-                [33mvalue[39m=[32m"0"[39m
-              [36m/>[39m
-            [36m</div>[39m
-          [36m</div>[39m
-          [36m<hr />[39m
-          [36m<div>[39m
-            [36m<h3>[39m
-              [0m Add a Semester [0m
-            [36m</h3>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mAdd Semester[0m
-            [36m</button>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mClear Semesters[0m
-            [36m</button>[39m
-            [36m<div>[39m
-              [36m<p>[39m
-                [0mSemester: [0m
-                [0m0[0m
-              [36m</p>[39m
-              [0m [0m
-              [36m<p>[39m
-                [0mCourses: [0m
-              [36m</p>[39m
-              [0m [0m
-              [36m<p>[39m
-                [0mCredits: [0m
-                [0m0[0m
-                [0m [0m
-              [36m</p>[39m
-            [36m</div>[39m
-            [36m<b>[39m
-              [0mSelect Plan:[0m
-            [36m</b>[39m
-            [36m<select[39m
-              [33mid[39m=[32m"selectList"[39m
-              [33mname[39m=[32m"selectList"[39m
-            [36m>[39m
-              [36m<option>[39m
-                [0m Semester: 0 [0m
-              [36m</option>[39m
-            [36m</select>[39m
           [36m</div>[39m
         [36m</div>[39m
       [36m</div>[39m
@@ -270,18 +857,19 @@ FAIL src/App.test.tsx
 ----------------------|---------|----------|---------|---------|---------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s   
 ----------------------|---------|----------|---------|---------|---------------------
-All files             |   41.26 |       25 |   29.72 |   39.34 |                     
+All files             |   41.93 |       25 |   32.55 |      40 |                     
  App.tsx              |     100 |      100 |     100 |     100 |                     
+ catalog.ts           |     100 |      100 |     100 |     100 |                     
  course.ts            |       0 |        0 |       0 |       0 |                     
  courseDropdown.tsx   |      50 |       50 |   26.66 |      50 | 20,24,66-88,141-148 
- coursePlanEdit.tsx   |       0 |        0 |       0 |       0 | 5-32                
- plan.tsx             |   46.66 |      100 |   42.85 |   42.85 | 14-22,34-35         
+ coursePlanEdit.tsx   |       0 |        0 |       0 |       0 | 5-33                
+ plan.tsx             |   42.85 |      100 |   44.44 |   40.74 | 23-39,57-60,76-77   
  planInterface.ts     |       0 |        0 |       0 |       0 |                     
- semester.tsx         |   43.75 |      100 |   42.85 |      40 | 13-22,34-35         
+ semester.tsx         |   33.33 |      100 |      25 |   30.76 | 35-53,64-68,87-101  
  semesterlnterface.ts |       0 |        0 |       0 |       0 |                     
 ----------------------|---------|----------|---------|---------|---------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.836 s
+Time:        9.091 s
 Ran all test suites.
