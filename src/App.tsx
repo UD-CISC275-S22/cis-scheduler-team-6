@@ -22,15 +22,14 @@ function App(): JSX.Element {
             <p>Alexander Trunzo</p>
             <p>Yuchen Zhang</p>
             <hr></hr>
+            <PlanF></PlanF>
+            <hr></hr>
+            <SemesterF></SemesterF>
+            <hr></hr>
             <CoursesSelect
                 options={catalogHeader}
                 options2={["101", "202", "303"]}
             ></CoursesSelect>
-            <hr></hr>
-            <hr></hr>
-            <PlanF></PlanF>
-            <hr></hr>
-            <SemesterF></SemesterF>
         </div>
     );
 }
