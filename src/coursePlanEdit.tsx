@@ -9,6 +9,7 @@ export function EditCourse(): JSX.Element {
         req: "",
         offered: ""
     });
+
     const [editState, setEditState] = useState<boolean>(false);
 
     function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
