@@ -1,4 +1,4 @@
-import { Semester } from "../src/semester";
+import { Semester } from "./semesterlnterface";
 
 //plan interface
 //contains an array of semesters which will contain an array of courses

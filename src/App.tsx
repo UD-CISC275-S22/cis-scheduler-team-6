@@ -6,6 +6,8 @@ import "./plan";
 import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
 import { catalogNumber } from "./catalog";
+import { SemesterF } from "../src/semester";
+
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -25,11 +27,10 @@ function App(): JSX.Element {
                 options2={catalogNumber}
             ></CoursesSelect>
             <hr></hr>
-            <div>
-                <hr></hr>
-                <PlanF></PlanF>
-                <hr></hr>
-            </div>
+            <hr></hr>
+            <PlanF></PlanF>
+            <hr></hr>
+            <SemesterF></SemesterF>
         </div>
     );
 }
