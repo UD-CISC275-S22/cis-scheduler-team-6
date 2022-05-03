@@ -26,7 +26,8 @@ function App(): JSX.Element {
             <hr></hr>
             <CoursesSelect
                 options={catalogHeader}
-                options2={[["101"], ["202"], ["303"]]}
+                options2={catalogNumber}
+                options3={catalogNumber[0]}
             ></CoursesSelect>
         </div>
         //<upload></upload>

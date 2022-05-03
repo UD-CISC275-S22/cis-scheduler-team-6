@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { CoursePool } from "./coursePool";
+import { Semester } from "./semesterlnterface";
+import { SemesterF } from "./semester";
+import { catalogBreadth, catalogCredit, catalogRestrict } from "./catalog";
+import { catalogName } from "./catalog";
+import { catalogPreReq } from "./catalog";
+import { catalogTyp } from "./catalog";
+import { catalogDescr } from "./catalog";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -8,16 +15,20 @@ type ChangeEvent = React.ChangeEvent<
 
 export function CoursesSelect({
     options,
-    options2
+    options2,
+    options3
 }: {
     options: string[];
     options2: string[][];
+    options3: string[];
 }): JSX.Element {
     const [userSelection, setUserSelection] = useState<string>(options[0]);
     const [userSelection2, setUserSelection2] = useState<string>(
-        options2[0][0]
+        options2[options.indexOf(userSelection)][0]
     );
+    const [userSelection3, setUserSelection3] = useState<string>(options3[0]);
     const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
+
     const [visible, setVisible] = useState<boolean>(true);
 
     const setAnswer = (Event: ChangeEvent) => {
@@ -25,13 +36,16 @@ export function CoursesSelect({
     };
 
     const setAnswer2 = (Event: ChangeEvent) => {
-        setUserSelection2(Event.target.value);
+        setUserSelection3(Event.target.value);
     };
 
     const setForm = (Event: ChangeEvent) => {
-        setFormSelection(options2[+userSelection]);
+        setFormSelection(options2[options.indexOf(userSelection)]);
     };
 
+    {
+        options3 = options2[options.indexOf(userSelection)];
+    }
     return (
         <div>
             <h3>Add a Course</h3>
@@ -45,12 +59,12 @@ export function CoursesSelect({
                     ))}
                 </Form.Select>
             </Form.Group>
-            <Form.Group controlId="choiceDropdown2">
-                <Form.Label>Choose a course</Form.Label>
-                <Form.Select value={formSelection} onChange={setForm}>
-                    {options2.map((choice2: string[]) => (
-                        <option key={userSelection} value={choice2}>
-                            {choice2}
+            <Form.Group controlId="choiceDropdown3">
+                <Form.Label>Choose a real course</Form.Label>
+                <Form.Select value={userSelection3} onChange={setAnswer2}>
+                    {options3.map((choice3: string) => (
+                        <option key={choice3} value={choice3}>
+                            {choice3}
                         </option>
                     ))}
                 </Form.Select>
@@ -62,14 +76,31 @@ export function CoursesSelect({
 
     function EditCourse(): JSX.Element {
         const [course, setCourse] = useState({
-            code: userSelection2,
-            name: "",
-            descr: "",
-            credits: "",
-            preReq: "",
-            restrict: "",
-            breadth: "",
-            typ: ""
+            code: userSelection3,
+            name: catalogName[options.indexOf(userSelection)][
+                options3.indexOf(userSelection3)
+            ],
+            descr: catalogDescr[options.indexOf(userSelection)][
+                options3.indexOf(userSelection3)
+            ],
+            credits:
+                catalogCredit[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ],
+            preReq: catalogPreReq[options.indexOf(userSelection)][
+                options3.indexOf(userSelection3)
+            ],
+            restrict:
+                catalogRestrict[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ],
+            breadth:
+                catalogBreadth[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ],
+            typ: catalogTyp[options.indexOf(userSelection)][
+                options3.indexOf(userSelection3)
+            ]
         });
         const [editState, setEditState] = useState<boolean>(false);
 
@@ -111,14 +142,31 @@ export function CoursesSelect({
         function setDefault() {
             setCourse({
                 ...course,
-                code: userSelection2,
-                name: "",
-                descr: "",
-                credits: "",
-                preReq: "",
-                restrict: "",
-                breadth: "",
-                typ: ""
+                code: userSelection3,
+                name: catalogName[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ],
+                descr: catalogDescr[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ],
+                credits:
+                    catalogCredit[options.indexOf(userSelection)][
+                        options3.indexOf(userSelection3)
+                    ],
+                preReq: catalogPreReq[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ],
+                restrict:
+                    catalogRestrict[options.indexOf(userSelection)][
+                        options3.indexOf(userSelection3)
+                    ],
+                breadth:
+                    catalogBreadth[options.indexOf(userSelection)][
+                        options3.indexOf(userSelection3)
+                    ],
+                typ: catalogTyp[options.indexOf(userSelection)][
+                    options3.indexOf(userSelection3)
+                ]
             });
         }
         return (
@@ -155,7 +203,7 @@ export function CoursesSelect({
                             />
                             <Form.Label>Change Credits:</Form.Label>
                             <Form.Control
-                                type="number"
+                                type="string"
                                 value={course.credits}
                                 onChange={updateCourseCredits}
                             />
