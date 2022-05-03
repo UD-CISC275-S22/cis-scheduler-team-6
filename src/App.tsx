@@ -7,6 +7,7 @@ import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
 import { catalogNumber } from "./catalog";
 import { SemesterF } from "../src/semester";
+import { upload } from "../src/import"; 
 
 function App(): JSX.Element {
     return (
@@ -31,7 +32,7 @@ function App(): JSX.Element {
                 options2={catalogNumber}
             ></CoursesSelect>
             <hr></hr>
-            <import><</import>
+            <upload><</upload>
         </div>
     );
 }
