@@ -8,14 +8,9 @@ import { Form } from "react-bootstrap";
 import { skipPartiallyEmittedExpressions } from "typescript";
 import { catalogNumber } from "./catalog";
 import { SemesterF } from "../src/semester";
-import { upload } from "../src/import";
-
+//import { upload } from "../src/import";
+export default App;
 function App(): JSX.Element {
-    const [editState, setEditState] = useState<boolean>(false);
-
-    function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
-        setEditState(event.target.checked);
-    }
     return (
         <div className="App">
             <header className="App-header">UD CISC Degree Planner</header>
@@ -28,24 +23,11 @@ function App(): JSX.Element {
             <p>Isaac Lewis - Alexander Trunzo - Yuchen Zhang</p>
             <hr></hr>
             <PlanF></PlanF>
-            <Form.Check
-                type="switch"
-                id="check-edit"
-                label="Edit Plan"
-                checked={editState}
-                onChange={updateEditState}
-            />
             <hr></hr>
-            {editState && (
-                <>
-                    <SemesterF></SemesterF>
-                    <hr></hr>
-                    <CoursesSelect
-                        options={catalogHeader}
-                        options2={["101", "202", "303"]}
-                    ></CoursesSelect>
-                </>
-            )}
+            <CoursesSelect
+                options={catalogHeader}
+                options2={[["101"], ["202"], ["303"]]}
+            ></CoursesSelect>
         </div>
         //<upload></upload>
     );
