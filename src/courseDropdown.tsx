@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { CoursePool } from "./coursePool";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -10,10 +11,13 @@ export function CoursesSelect({
     options2
 }: {
     options: string[];
-    options2: string[];
+    options2: string[][];
 }): JSX.Element {
     const [userSelection, setUserSelection] = useState<string>(options[0]);
-    const [userSelection2, setUserSelection2] = useState<string>(options2[0]);
+    const [userSelection2, setUserSelection2] = useState<string>(
+        options2[0][0]
+    );
+    const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
     const [visible, setVisible] = useState<boolean>(true);
 
     const setAnswer = (Event: ChangeEvent) => {
@@ -22,6 +26,10 @@ export function CoursesSelect({
 
     const setAnswer2 = (Event: ChangeEvent) => {
         setUserSelection2(Event.target.value);
+    };
+
+    const setForm = (Event: ChangeEvent) => {
+        setFormSelection(options2[+userSelection]);
     };
 
     return (
@@ -39,10 +47,10 @@ export function CoursesSelect({
             </Form.Group>
             <Form.Group controlId="choiceDropdown2">
                 <Form.Label>Choose a course</Form.Label>
-                <Form.Select value={userSelection2} onChange={setAnswer2}>
-                    {options2.map((choice: string) => (
-                        <option key={choice} value={choice}>
-                            {choice}
+                <Form.Select value={formSelection} onChange={setForm}>
+                    {options2.map((choice2: string[]) => (
+                        <option key={userSelection} value={choice2}>
+                            {choice2}
                         </option>
                     ))}
                 </Form.Select>
@@ -54,11 +62,14 @@ export function CoursesSelect({
 
     function EditCourse(): JSX.Element {
         const [course, setCourse] = useState({
-            id: +userSelection2,
-            name: userSelection,
-            credits: 3,
-            req: "",
-            offered: ""
+            code: userSelection2,
+            name: "",
+            descr: "",
+            credits: "",
+            preReq: "",
+            restrict: "",
+            breadth: "",
+            typ: ""
         });
         const [editState, setEditState] = useState<boolean>(false);
 
@@ -66,32 +77,48 @@ export function CoursesSelect({
             setEditState(event.target.checked);
         }
         function updateCourseID(event: React.ChangeEvent<HTMLInputElement>) {
-            setCourse({ ...course, id: event.target.valueAsNumber });
+            setCourse({ ...course, code: event.target.value });
         }
         function updateCourseName(event: React.ChangeEvent<HTMLInputElement>) {
             setCourse({ ...course, name: event.target.value });
         }
+        function updateCourseDescr(event: React.ChangeEvent<HTMLInputElement>) {
+            setCourse({ ...course, descr: event.target.value });
+        }
         function updateCourseCredits(
             event: React.ChangeEvent<HTMLInputElement>
         ) {
-            setCourse({ ...course, credits: event.target.valueAsNumber });
+            setCourse({ ...course, credits: event.target.value });
         }
         function updateCourseReq(event: React.ChangeEvent<HTMLInputElement>) {
-            setCourse({ ...course, req: event.target.value });
+            setCourse({ ...course, preReq: event.target.value });
+        }
+        function updateCourseRestrict(
+            event: React.ChangeEvent<HTMLInputElement>
+        ) {
+            setCourse({ ...course, restrict: event.target.value });
+        }
+        function updateCourseBreadth(
+            event: React.ChangeEvent<HTMLInputElement>
+        ) {
+            setCourse({ ...course, breadth: event.target.value });
         }
         function updateCourseOffered(
             event: React.ChangeEvent<HTMLInputElement>
         ) {
-            setCourse({ ...course, offered: event.target.value });
+            setCourse({ ...course, typ: event.target.value });
         }
         function setDefault() {
             setCourse({
                 ...course,
-                name: userSelection,
-                id: +userSelection2,
-                credits: 3,
-                req: "",
-                offered: ""
+                code: userSelection2,
+                name: "",
+                descr: "",
+                credits: "",
+                preReq: "",
+                restrict: "",
+                breadth: "",
+                typ: ""
             });
         }
         return (
@@ -108,17 +135,23 @@ export function CoursesSelect({
                 <div>
                     {editState && (
                         <Form.Group controlId="changeTextBox">
+                            <Form.Label>Change Code:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.code}
+                                onChange={updateCourseID}
+                            />
                             <Form.Label>Change Name:</Form.Label>
                             <Form.Control
                                 type="string"
                                 value={course.name}
                                 onChange={updateCourseName}
                             />
-                            <Form.Label>Change ID:</Form.Label>
+                            <Form.Label>Change description:</Form.Label>
                             <Form.Control
-                                type="number"
-                                value={course.id}
-                                onChange={updateCourseID}
+                                type="string"
+                                value={course.descr}
+                                onChange={updateCourseDescr}
                             />
                             <Form.Label>Change Credits:</Form.Label>
                             <Form.Control
@@ -129,13 +162,25 @@ export function CoursesSelect({
                             <Form.Label>Change PreRequisites:</Form.Label>
                             <Form.Control
                                 type="string"
-                                value={course.req}
+                                value={course.preReq}
                                 onChange={updateCourseReq}
+                            />
+                            <Form.Label>Change Restrict:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.restrict}
+                                onChange={updateCourseRestrict}
+                            />
+                            <Form.Label>Change Breadth:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.breadth}
+                                onChange={updateCourseBreadth}
                             />
                             <Form.Label>Change Offered:</Form.Label>
                             <Form.Control
                                 type="string"
-                                value={course.offered}
+                                value={course.typ}
                                 onChange={updateCourseOffered}
                             />
                             <Button onClick={() => setDefault()}>
@@ -146,7 +191,7 @@ export function CoursesSelect({
                 </div>
                 {visible}
                 <Button onClick={() => setVisible(!visible)}>
-                    Add {course.name + course.id}
+                    Add {course.code}
                 </Button>
             </div>
         );

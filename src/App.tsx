@@ -5,6 +5,7 @@ import { CoursesSelect } from "./courseDropdown";
 import "./plan";
 import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
+import { catalogNumber } from "./catalog";
 import { SemesterF } from "../src/semester";
 
 function App(): JSX.Element {
@@ -27,7 +28,7 @@ function App(): JSX.Element {
             <hr></hr>
             <CoursesSelect
                 options={catalogHeader}
-                options2={["101", "202", "303"]}
+                options2={catalogNumber}
             ></CoursesSelect>
         </div>
     );

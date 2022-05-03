@@ -1,15 +1,6 @@
-interface courseDetails {
-    code: string;
-    name: string;
-    descr: string;
-    credits: string;
-    preReq: string;
-    restrict: string;
-    breadth: string;
-    typ: string;
-}
+import { course } from "./course";
 
-export const courseCatalog: Record<string, Record<string, courseDetails>> = {
+export const courseCatalog: Record<string, Record<string, course>> = {
     ACCT: {
         "ACCT 166": {
             code: "ACCT 166",
@@ -76666,6 +76657,6 @@ export const catalogHeader = Object.keys(courseCatalog).map(
 );
 
 export const catalogNumber = Object.values(courseCatalog).map(
-    (course: Record<string, courseDetails>): string[] =>
+    (course: Record<string, course>): string[] =>
         Object.keys(course).map((title: string): string => title)
 );
