@@ -76660,3 +76660,52 @@ export const catalogNumber = Object.values(courseCatalog).map(
     (course: Record<string, course>): string[] =>
         Object.keys(course).map((title: string): string => title)
 );
+
+export const catalogCredit = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.credits
+        )
+);
+
+export const catalogName = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.name
+        )
+);
+
+export const catalogDescr = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.descr
+        )
+);
+
+export const catalogPreReq = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.preReq
+        )
+);
+
+export const catalogRestrict = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.restrict
+        )
+);
+
+export const catalogBreadth = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.breadth
+        )
+);
+
+export const catalogTyp = Object.entries(courseCatalog).map(
+    ([title, thecourses]: [string, Record<string, course>]) =>
+        Object.entries(thecourses).map(
+            ([dept, rest]: [string, course]) => rest.typ
+        )
+);
