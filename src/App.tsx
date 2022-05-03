@@ -6,7 +6,9 @@ import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
 import { Form } from "react-bootstrap";
 import { skipPartiallyEmittedExpressions } from "typescript";
+import { catalogNumber } from "./catalog";
 import { SemesterF } from "../src/semester";
+import { upload } from "../src/import";
 
 function App(): JSX.Element {
     const [editState, setEditState] = useState<boolean>(false);
@@ -45,7 +47,6 @@ function App(): JSX.Element {
                 </>
             )}
         </div>
+        //<upload></upload>
     );
 }
-
-export default App;
