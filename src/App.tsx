@@ -30,6 +30,8 @@ function App(): JSX.Element {
                 options={catalogHeader}
                 options2={catalogNumber}
             ></CoursesSelect>
+            <hr></hr>
+            <import><</import>
         </div>
     );
 }
