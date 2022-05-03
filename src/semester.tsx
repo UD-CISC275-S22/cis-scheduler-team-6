@@ -4,40 +4,28 @@ import { Button, Form } from "react-bootstrap";
 import { Semester } from "./semesterlnterface";
 import semester from "../src/semesters_data.json";
 import { pId, plans } from "./plan";
-//import { PlanF } from "./plan";
-let semesters = semester.map((cSemester: Semester) => ({ ...cSemester }));
+import { PlanF } from "./plan";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
 >;
 
+let semesters = semester.map((cSemester: Semester) => ({ ...cSemester }));
+console.log("jawn: " + plans[pId].semesters.length);
+
 export function SemesterF(): JSX.Element {
-    /*
-    let j = false;
-    if (plans[pId].semesters.length > 0 && plans.length > 0) {
-        j = true;
-    }
-    */
-
     const [s, setS] = useState<Semester[]>(semesters);
-    const [x, setX] = useState<number>(0);
-    console.log("jawn: " + plans[pId].semesters.length);
-
-    /*
-    function check() {
-        if (j == true) {
-            setX(plans[pId].semesters.length);
-        }
-    }
-    */
+    const [y, setY] = useState<number>(0);
 
     function addSemester(newSemester: Semester) {
         setS([...semesters, newSemester]);
-        //setS(plans[pId].semesters);
-        semesters.push(newSemester);
-        setX(x + 1);
-        plans[pId].semesters.push(newSemester);
-        setUserSelection(semesters.length - 1);
+        if (pId > 0) {
+            semesters.push(newSemester);
+            setY(y + 1);
+            plans[pId].semesters.push(newSemester);
+            setS(s);
+            setUserSelection2(semesters.length - 1);
+        }
     }
 
     function clearSemesters(newSemester: Semester) {
@@ -47,10 +35,12 @@ export function SemesterF(): JSX.Element {
             courses: [],
             credits: 0
         };
-        setX(0);
-        semesters = [];
-        semesters.push(sl);
-        plans[pId].semesters = [];
+        if (plans.length > 1) {
+            setY(0);
+            semesters = [];
+            semesters.push(sl);
+            plans[pId].semesters = [];
+        }
     }
 
     const st: Semester = {
@@ -59,43 +49,45 @@ export function SemesterF(): JSX.Element {
         credits: 0
     };
 
-    const [userSelection, setUserSelection] = useState<number>(semesters[0].id);
-    const setAnswer = (Event: ChangeEvent) => {
+    const [userSelection2, setUserSelection2] = useState<number>(
+        semesters[0].id
+    );
+    const setAnswerS = (Event: ChangeEvent) => {
         const v = parseInt(Event.target.value);
-        setUserSelection(v);
-        setX(v);
-        //setS(plans[pId].semesters);
-        setX(plans[pId].semesters[v - 1].id);
+        setUserSelection2(v);
+        setY(v);
+        setY(plans[pId].semesters[v - 1].id);
     };
 
-    /*
-    function updatePlans(event: React.ChangeEvent<HTMLInputElement>) {
-        //
+    function deleteSemester(newSemester: Semester) {
+        newSemester.courses = [];
+        if (s.length > 1) {
+            semesters.splice(y, 1);
+            setY(y - 1);
+        }
     }
-    */
 
-    /*
     React.useEffect(() => {
         console.log("plan changed");
         clearSemesters;
     }, [PlanF]);
-    */
 
     return (
         <div>
             <h3> Add a Semester </h3>
             <Button onClick={() => addSemester(st)}>Add Semester</Button>
             <Button onClick={() => clearSemesters(st)}>Clear Semesters</Button>
+            <Button onClick={() => deleteSemester(st)}>Delete Semester</Button>
             <div>
-                <p>Semester: {s[x].id}</p> <p>Courses: {s[x].courses.length}</p>{" "}
-                <p>Credits: {s[x].credits} </p>
+                <p>Semester: {s[y].id}</p> <p>Courses: {s[y].courses.length}</p>{" "}
+                <p>Credits: {s[y].credits} </p>
             </div>
             <b>Select Semester:</b>
             <Form.Select
                 name="selectList"
                 id="selectList"
-                value={userSelection}
-                onChange={setAnswer}
+                value={userSelection2}
+                onChange={setAnswerS}
             >
                 {plans[pId].semesters.map((semester: Semester) => (
                     <option key={semester.id} value={semester.id}>
@@ -104,16 +96,6 @@ export function SemesterF(): JSX.Element {
                     </option>
                 ))}
             </Form.Select>
-            <Form.Group controlId="changeTextBox">
-                <Form.Label>
-                    <b>Remove Semester:</b> (enter id)
-                    <Form.Control
-                        type="number"
-                        defaultValue={semesters[x].id}
-                        //onChange={updatePlans}
-                    ></Form.Control>
-                </Form.Label>
-            </Form.Group>
         </div>
     );
 }

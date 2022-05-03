@@ -1,13 +1,19 @@
-import React from "react";
-//import { Button } from "react-bootstrap";
+import React, { useState } from "react";
 import "./App.css";
 import { CoursesSelect } from "./courseDropdown";
 import "./plan";
 import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
+import { Form } from "react-bootstrap";
+import { skipPartiallyEmittedExpressions } from "typescript";
 import { SemesterF } from "../src/semester";
 
 function App(): JSX.Element {
+    const [editState, setEditState] = useState<boolean>(false);
+
+    function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
+        setEditState(event.target.checked);
+    }
     return (
         <div className="App">
             <header className="App-header">UD CISC Degree Planner</header>
@@ -17,18 +23,27 @@ function App(): JSX.Element {
                 creating a plan below, and then begin filling in the semesters
                 with the appropriate courses.
             </p>
-            <p>Isaac Lewis</p>
-            <p>Alexander Trunzo</p>
-            <p>Yuchen Zhang</p>
+            <p>Isaac Lewis - Alexander Trunzo - Yuchen Zhang</p>
             <hr></hr>
             <PlanF></PlanF>
+            <Form.Check
+                type="switch"
+                id="check-edit"
+                label="Edit Plan"
+                checked={editState}
+                onChange={updateEditState}
+            />
             <hr></hr>
-            <SemesterF></SemesterF>
-            <hr></hr>
-            <CoursesSelect
-                options={catalogHeader}
-                options2={["101", "202", "303"]}
-            ></CoursesSelect>
+            {editState && (
+                <>
+                    <SemesterF></SemesterF>
+                    <hr></hr>
+                    <CoursesSelect
+                        options={catalogHeader}
+                        options2={["101", "202", "303"]}
+                    ></CoursesSelect>
+                </>
+            )}
         </div>
     );
 }
