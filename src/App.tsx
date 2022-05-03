@@ -10,7 +10,7 @@ import { catalogNumber } from "./catalog";
 import { SemesterF } from "../src/semester";
 import { upload } from "../src/import";
 
-function App(): JSX.Element {
+export function App(): JSX.Element {
     const [editState, setEditState] = useState<boolean>(false);
 
     function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
@@ -42,7 +42,8 @@ function App(): JSX.Element {
                     <hr></hr>
                     <CoursesSelect
                         options={catalogHeader}
-                        options2={["101", "202", "303"]}
+                        options2={catalogNumber}
+                        options3={catalogNumber[0]}
                     ></CoursesSelect>
                 </>
             )}
