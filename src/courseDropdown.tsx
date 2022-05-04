@@ -119,7 +119,7 @@ export function CoursesSelect({
         function updateCourseCredits(
             event: React.ChangeEvent<HTMLInputElement>
         ) {
-            setCourse({ ...course, credits: event.target.value });
+            //setCourse({ ...course, credits: parseInt(event.target.value) });
         }
         function updateCourseReq(event: React.ChangeEvent<HTMLInputElement>) {
             setCourse({ ...course, preReq: event.target.value });

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { CoursesSelect } from "./courseDropdown";
 import "./plan";
 import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
-import { Form } from "react-bootstrap";
-import { skipPartiallyEmittedExpressions } from "typescript";
+//import { Form } from "react-bootstrap";
+//import { skipPartiallyEmittedExpressions } from "typescript";
 import { catalogNumber } from "./catalog";
-import { SemesterF } from "../src/semester";
+//import { SemesterF } from "../src/semester";
 //import { upload } from "../src/import";
-export default App;
+export { App };
 function App(): JSX.Element {
     return (
         <div className="App">

@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+//import { Button } from "react-bootstrap";
 import { Plan } from "./planInterface";
 import { Form } from "react-bootstrap";
 import plan from "../src/plans_data.json";
 import { Semester } from "./semesterlnterface";
 import semester from "../src/semesters_data.json";
+import Modal from "react-bootstrap/Modal";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -39,6 +40,7 @@ export function PlanF(): JSX.Element {
     function clearPlans(newPlan: Plan) {
         console.log(newPlan.id);
         const pl: Plan = {
+            name: "Default Plan",
             id: 0,
             semesters: [],
             complete: false
@@ -47,16 +49,19 @@ export function PlanF(): JSX.Element {
             setX(0);
             plans = [];
             plans.push(pl);
+            /*
             const sl: Semester = {
                 id: 0,
                 courses: [],
                 credits: 0
             };
+            */
             pId = 0;
         }
     }
 
     const pl: Plan = {
+        name: "Default Plan",
         id: plans.length,
         semesters: [],
         complete: false
@@ -166,19 +171,122 @@ export function PlanF(): JSX.Element {
     }, [s, y]);
     */
 
+    interface Props {
+        border: string;
+        color: string;
+        children?: React.ReactNode;
+        height: string;
+        onClick: () => void;
+        radius: string;
+        width: string;
+    }
+
+    const Button: React.FC<Props> = ({
+        border,
+        color,
+        children,
+        height,
+        onClick,
+        radius,
+        width
+    }) => {
+        return (
+            <button
+                onClick={onClick}
+                style={{
+                    backgroundColor: color,
+                    border,
+                    borderRadius: radius,
+                    height,
+                    width
+                }}
+            >
+                {children}
+            </button>
+        );
+    };
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <div>
-            <h3>Add a Plan</h3>
-            <Button onClick={() => addPlan(pl)}>Add Plan</Button>
-            <Button onClick={() => clearPlans(pl)}>Clear Plans</Button>
-            <Button onClick={() => deletePlan(pl)}>Delete Plan</Button>
-            {
-                <div>
-                    <p>Plan ID: {p[x].id}</p>
-                    <p>Semesters: {p[x].semesters.length}</p>
-                    <p>Complete? {}</p>
-                </div>
-            }
+            <h3>Plans</h3>
+            <>
+                <Button
+                    onClick={handleShow}
+                    border={""}
+                    color={""}
+                    height={""}
+                    radius={""}
+                    width={""}
+                >
+                    Add Plan
+                </Button>
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add Plan</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Name: Starting Semester: </Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            onClick={handleClose}
+                            border={""}
+                            color={""}
+                            height={""}
+                            radius={""}
+                            width={""}
+                        >
+                            Close
+                        </Button>
+                        <Button
+                            onClick={handleClose}
+                            border={""}
+                            color={""}
+                            height={""}
+                            radius={""}
+                            width={""}
+                        >
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+            <Button
+                onClick={() => addPlan(pl)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Add Plan
+            </Button>
+            ‏‏‎ ‎
+            <Button
+                onClick={() => clearPlans(pl)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Clear Plans
+            </Button>
+            ‏‏‎ ‎
+            <Button
+                onClick={() => deletePlan(pl)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Delete Plan
+            </Button>
             <Form.Group controlId="choiceDropdown">
                 <Form.Label>
                     <b>Select Plan:</b>
@@ -196,30 +304,59 @@ export function PlanF(): JSX.Element {
                         </option>
                     ))}
                 </Form.Select>
+                {
+                    <div>
+                        <p>Selected Plan: {p[x].name}</p>
+                    </div>
+                }
             </Form.Group>
-            <Form.Check
-                type="switch"
-                id="check-edit"
-                label="Edit Plan"
-                checked={editState}
-                onChange={updateEditState}
-            />
+            <b>
+                <Form.Check
+                    type="switch"
+                    id="check-edit"
+                    label="Edit Plan"
+                    checked={editState}
+                    onChange={updateEditState}
+                />
+            </b>
             {editState && (
                 <div>
-                    <h3> Add a Semester </h3>
-                    <Button onClick={() => addSemester(st)}>
+                    <hr></hr>
+                    <h3> Semesters </h3>
+                    <Button
+                        onClick={() => addSemester(st)}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"100px"}
+                    >
                         Add Semester
                     </Button>
-                    <Button onClick={() => clearSemesters(st)}>
+                    ‏‏‎ ‎
+                    <Button
+                        onClick={() => clearSemesters(st)}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"100px"}
+                    >
                         Clear Semesters
                     </Button>
-                    <Button onClick={() => deleteSemester(st)}>
+                    ‏‏‎ ‎
+                    <Button
+                        onClick={() => deleteSemester(st)}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"100px"}
+                    >
                         Delete Semester
                     </Button>
                     <div>
                         <p>Semester: {s[y].id}</p>{" "}
-                        <p>Courses: {s[y].courses.length}</p>{" "}
-                        <p>Credits: {s[y].credits} </p>
                     </div>
                     <b>Select Semester:</b>
                     <Form.Select

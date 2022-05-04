@@ -1,5 +1,6 @@
 [
     {
+        "name": "Default Plan",
         "id": 0,
         "semesters": [],
         "complete": false
