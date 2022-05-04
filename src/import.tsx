@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+export {};
+//import React, { useState } from "react";
+//import { Form } from "react-bootstrap";
 /*
 export function upload(): JSX.Element{
     const [content, setContent] = useState<string>("No file data uploaded");
