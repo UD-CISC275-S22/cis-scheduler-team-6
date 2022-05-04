@@ -12,6 +12,7 @@ import { catalogName } from "./catalog";
 import { catalogPreReq } from "./catalog";
 import { catalogTyp } from "./catalog";
 import { catalogDescr } from "./catalog";
+import { course } from "./course";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -92,6 +93,7 @@ export function PlanF({
         setY(plans[pId].semesters[v - 1].id);
     };
     const [editState, setEditState] = useState<boolean>(false);
+    const [editState2, setEditState2] = useState<boolean>(false);
 
     {
         options3 = options2[options.indexOf(userSelection4)];
@@ -106,7 +108,6 @@ export function PlanF({
         radius: string;
         width: string;
     }
-
     const Buttons: React.FC<Props> = ({
         border,
         color,
@@ -286,6 +287,8 @@ export function PlanF({
                                 </Buttons>
                                 <div>
                                     <p>Semester: {s[y].id}</p>{" "}
+                                    <p>Courses: {s[y].courses.length}</p>{" "}
+                                    <p>Credits: {s[y].credits} </p>
                                 </div>
                                 <b>Select Semester:</b>
                                 <Form.Select
@@ -306,35 +309,64 @@ export function PlanF({
                                         )
                                     )}
                                 </Form.Select>
+                                <b>
+                                    <Form.Check
+                                        type="switch"
+                                        id="check-edit"
+                                        label="Edit Semester"
+                                        checked={editState2}
+                                        onChange={updateEditState2}
+                                    />
+                                </b>
                             </div>
                             <div>
-                                <h3>Add a Course</h3>
-                                <Form.Group controlId="choiceDropdown">
-                                    <Form.Label>Choose a department</Form.Label>
-                                    <Form.Select value={userSelection4} onChange={setAnswer4}>
-                                    >
-                                        {options.map((choice: string) => (
-                                            <option key={choice} value={choice}>
-                                                {choice}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                </Form.Group>
-                                <Form.Group controlId="choiceDropdown3">
-                                    <Form.Label>Choose a real course</Form.Label>
-                                    <Form.Select value={userSelection5} onChange={setAnswer5}>
-                                        {options3.map((choice3: string) => (
-                                            <option
-                                                key={choice3}
-                                                value={choice3}
+                                {editState2 && (
+                                    <>
+                                        <h3>Add a Course</h3>
+                                        <Form.Group controlId="choiceDropdown">
+                                            <Form.Label>
+                                                Choose a department
+                                            </Form.Label>
+                                            <Form.Select
+                                                value={userSelection4}
+                                                onChange={setAnswer4}
                                             >
-                                                {choice3}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                </Form.Group>
-                                <hr></hr>
-                                <EditCourse></EditCourse>
+                                                {options.map(
+                                                    (choice: string) => (
+                                                        <option
+                                                            key={choice}
+                                                            value={choice}
+                                                        >
+                                                            {choice}
+                                                        </option>
+                                                    )
+                                                )}
+                                            </Form.Select>
+                                        </Form.Group>
+                                        <Form.Group controlId="choiceDropdown3">
+                                            <Form.Label>
+                                                Choose a course
+                                            </Form.Label>
+                                            <Form.Select
+                                                value={userSelection5}
+                                                onChange={setAnswer5}
+                                            >
+                                                {options3.map(
+                                                    (choice3: string) => (
+                                                        <option
+                                                            key={choice3}
+                                                            value={choice3}
+                                                        >
+                                                            {choice3}
+                                                        </option>
+                                                    )
+                                                )}
+                                            </Form.Select>
+                                        </Form.Group>
+                                        <hr></hr>
+                                        <EditCourse></EditCourse>
+                                    </>
+                                )}
                             </div>
                         </>
                     </>
@@ -430,6 +462,9 @@ export function PlanF({
     function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
         setEditState(event.target.checked);
     }
+    function updateEditState2(event: React.ChangeEvent<HTMLInputElement>) {
+        setEditState2(event.target.checked);
+    }
     /*
     React.useEffect(() => {
         console.log("plan changed");
@@ -448,6 +483,21 @@ export function PlanF({
         setY(plans[pId].semesters.length);
     }, [s, y]);
     */
+
+    /*
+   
+    React.useEffect(() => {
+        console.log("plan changed");
+        clearSemesters;
+        setY(0);
+    }, [s, y]);
+
+    React.useEffect(() => {
+        console.log("plan changed");
+        setY(plans[pId].semesters.length);
+    }, [s, y]);
+    */
+
     function EditCourse(): JSX.Element {
         const [course, setCourse] = useState({
             code: userSelection5,
@@ -477,6 +527,47 @@ export function PlanF({
             ]
         });
         const [editState, setEditState] = useState<boolean>(false);
+        function Adding(): JSX.Element {
+            s[y].courses = [course, ...s[y].courses];
+            const convert = course.credits.trim();
+            s[y].credits = s[y].credits + +convert[0];
+
+            /* React.useEffect(() => {
+                console.log("semester changed");
+                setS(s);
+                setY(y);
+            }, [s]);*/
+            return <div></div>;
+        }
+        function Removing(): JSX.Element {
+            console.log(s[y].courses);
+            const temp = s[y].courses.filter(
+                (Thisone: course): boolean => Thisone !== course
+            );
+            s[y].courses = temp;
+            console.log(s[y].courses);
+            const convert = course.credits.trim();
+
+            s[y].credits = s[y].credits - +convert[0];
+
+            /* React.useEffect(() => {
+                console.log("semester changed");
+                setS(s);
+                setY(y);
+            }, [s]);*/
+            return <div></div>;
+        }
+        function Clearing(): JSX.Element {
+            s[y].courses = [];
+            s[y].credits = 0;
+
+            /* React.useEffect(() => {
+                console.log("semester changed");
+                setS(s);
+                setY(y);
+            }, [s]);*/
+            return <div></div>;
+        }
 
         function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
             setEditState(event.target.checked);
@@ -611,10 +702,9 @@ export function PlanF({
                         </Form.Group>
                     )}
                 </div>
-                {visible}
-                <Button onClick={() => setVisible(!visible)}>
-                    Add {course.code}
-                </Button>
+                <Button onClick={() => Adding()}>Add {course.code}</Button>
+                <Button onClick={() => Removing()}>Remove {course.code}</Button>
+                <Button onClick={() => Clearing()}>Clear </Button>
             </div>
         );
     }
