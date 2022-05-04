@@ -13,6 +13,76 @@ import { catalogPreReq } from "./catalog";
 import { catalogTyp } from "./catalog";
 import { catalogDescr } from "./catalog";
 import { course } from "./course";
+import { findRenderedComponentWithType } from "react-dom/test-utils";
+import "./plan.css";
+
+interface coursesProps {
+    courses: course[];
+}
+
+const CourseItem: React.FC<course> = ({
+    code,
+    name,
+    descr,
+    credits
+}: course) => {
+    return (
+        <tr>
+            <td>
+                <h5>{code}</h5>
+            </td>
+            <td>
+                <h5>{name}</h5>
+            </td>
+            <td>
+                <p style={{ fontSize: 10 }}>{descr}</p>
+            </td>
+            <td>
+                <h5>{credits}</h5>
+            </td>
+        </tr>
+    );
+};
+
+const CourseOverview: React.FC<coursesProps> = ({ courses }: coursesProps) => {
+    return (
+        <div className="Course-View">
+            <table>
+                <tbody>
+                    <tr className="Table-Header">
+                        <td>
+                            <h4>Course ID</h4>
+                        </td>
+                        <td>
+                            <h4>Course Name</h4>
+                        </td>
+                        <td>
+                            <h4>Description</h4>
+                        </td>
+                        <td>
+                            <h4>Credits</h4>
+                        </td>
+                    </tr>
+                    {courses.map((item) => {
+                        return (
+                            <CourseItem
+                                key="0"
+                                code={item.code}
+                                name={item.name}
+                                descr={item.descr}
+                                credits={item.credits}
+                                preReq={item.preReq}
+                                restrict={item.restrict}
+                                typ={item.typ}
+                                breadth={item.breadth}
+                            ></CourseItem>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
+    );
+};
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -138,50 +208,55 @@ export function PlanF({
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    /*
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+            <Modal.Title>Add Plan</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Name: Starting Semester: </Modal.Body>
+        <Modal.Footer>
+            <Buttons
+                onClick={handleClose}
+                border={""}
+                color={""}
+                height={""}
+                radius={""}
+                width={""}
+            >
+                Close
+            </Buttons>
+            <Buttons
+                onClick={handleClose}
+                border={""}
+                color={""}
+                height={""}
+                radius={""}
+                width={""}
+            >
+                Save Changes
+            </Buttons>
+        </Modal.Footer>
+    </Modal>;
+
+    /////
+
+        <>
+        <Buttons
+            onClick={handleShow}
+            border={""}
+            color={""}
+            height={""}
+            radius={""}
+            width={""}
+        >
+            Add Plan
+        </Buttons>
+    </>
+    */
+
     return (
         <div>
             <h3>Plans</h3>
-            <>
-                <Buttons
-                    onClick={handleShow}
-                    border={""}
-                    color={""}
-                    height={""}
-                    radius={""}
-                    width={""}
-                >
-                    Add Plan
-                </Buttons>
-
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Add Plan</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Name: Starting Semester: </Modal.Body>
-                    <Modal.Footer>
-                        <Buttons
-                            onClick={handleClose}
-                            border={""}
-                            color={""}
-                            height={""}
-                            radius={""}
-                            width={""}
-                        >
-                            Close
-                        </Buttons>
-                        <Buttons
-                            onClick={handleClose}
-                            border={""}
-                            color={""}
-                            height={""}
-                            radius={""}
-                            width={""}
-                        >
-                            Save Changes
-                        </Buttons>
-                    </Modal.Footer>
-                </Modal>
-            </>
             <Buttons
                 onClick={() => addPlan(pl)}
                 border={""}
@@ -233,7 +308,7 @@ export function PlanF({
                 </Form.Select>
                 {
                     <div>
-                        <p>Selected Plan: {p[x].id}</p>
+                        <p>Plan: {p[x].id}</p>
                     </div>
                 }
             </Form.Group>
@@ -322,10 +397,16 @@ export function PlanF({
                             <div>
                                 {editState2 && (
                                     <>
-                                        <h3>Add a Course</h3>
+                                        <div className="App">
+                                            <h3>Semester {s[y].id}</h3>
+                                            <CourseOverview
+                                                courses={semesters[y].courses}
+                                            />
+                                        </div>
+                                        <h3>Courses</h3>
                                         <Form.Group controlId="choiceDropdown">
                                             <Form.Label>
-                                                Choose a department
+                                                Choose a Department
                                             </Form.Label>
                                             <Form.Select
                                                 value={userSelection4}
@@ -345,7 +426,7 @@ export function PlanF({
                                         </Form.Group>
                                         <Form.Group controlId="choiceDropdown3">
                                             <Form.Label>
-                                                Choose a course
+                                                Choose a Course
                                             </Form.Label>
                                             <Form.Select
                                                 value={userSelection5}
@@ -531,7 +612,6 @@ export function PlanF({
             s[y].courses = [course, ...s[y].courses];
             const convert = course.credits.trim();
             s[y].credits = s[y].credits + +convert[0];
-
             /* React.useEffect(() => {
                 console.log("semester changed");
                 setS(s);
@@ -546,7 +626,8 @@ export function PlanF({
             );
             s[y].courses = temp;
             console.log(s[y].courses);
-            const convert = course.credits.trim();
+            const convert = course.credits;
+            //credits.trim?
 
             s[y].credits = s[y].credits - +convert[0];
 
@@ -660,7 +741,7 @@ export function PlanF({
                                 value={course.name}
                                 onChange={updateCourseName}
                             />
-                            <Form.Label>Change description:</Form.Label>
+                            <Form.Label>Change Description:</Form.Label>
                             <Form.Control
                                 type="string"
                                 value={course.descr}
@@ -702,10 +783,43 @@ export function PlanF({
                         </Form.Group>
                     )}
                 </div>
-                <Button onClick={() => Adding()}>Add {course.code}</Button>
-                <Button onClick={() => Removing()}>Remove {course.code}</Button>
-                <Button onClick={() => Clearing()}>Clear </Button>
+                <Buttons
+                    onClick={() => Adding()}
+                    border={""}
+                    color={"#03A9F4"}
+                    height={"50px"}
+                    radius={"10%"}
+                    width={"130px"}
+                >
+                    Add {course.code}
+                </Buttons>
+                ‏‏‎ ‎
+                <Buttons
+                    onClick={() => Removing()}
+                    border={""}
+                    color={"#03A9F4"}
+                    height={"50px"}
+                    radius={"10%"}
+                    width={"130px"}
+                >
+                    Remove {course.code}
+                </Buttons>
+                ‏‏‎ ‎
+                <Buttons
+                    onClick={() => Clearing()}
+                    border={""}
+                    color={"#03A9F4"}
+                    height={"50px"}
+                    radius={"10%"}
+                    width={"130px"}
+                >
+                    Clear Courses
+                </Buttons>
             </div>
         );
     }
+}
+
+{
+    //semesters[y].courses[0].name;
 }

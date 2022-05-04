@@ -1,0 +1,21 @@
+table {
+    display: flex;
+    justify-content: center;
+    border: 1px solid gray;
+    margin: 5vh;
+}
+
+td {
+    border: 1px solid gray;
+    width: 30em;
+}
+
+.Budget-Overview {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Table-Header {
+    background-color: #03a9f4;
+}
