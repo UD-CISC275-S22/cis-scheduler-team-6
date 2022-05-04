@@ -306,7 +306,7 @@ export function PlanF(): JSX.Element {
                 </Form.Select>
                 {
                     <div>
-                        <p>Selected Plan: {p[x].name}</p>
+                        <p>Selected Plan: {p[x].id}</p>
                     </div>
                 }
             </Form.Group>
