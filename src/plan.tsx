@@ -2,11 +2,16 @@ import React from "react";
 import { useState } from "react";
 //import { Button } from "react-bootstrap";
 import { Plan } from "./planInterface";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import plan from "../src/plans_data.json";
 import { Semester } from "./semesterlnterface";
 import semester from "../src/semesters_data.json";
 import Modal from "react-bootstrap/Modal";
+import { catalogBreadth, catalogCredit, catalogRestrict } from "./catalog";
+import { catalogName } from "./catalog";
+import { catalogPreReq } from "./catalog";
+import { catalogTyp } from "./catalog";
+import { catalogDescr } from "./catalog";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -19,9 +24,324 @@ export { pId };
 
 let semesters = semester.map((cSemester: Semester) => ({ ...cSemester }));
 
-export function PlanF(): JSX.Element {
+export function PlanF({
+    options,
+    options2,
+    options3
+}: {
+    options: string[];
+    options2: string[][];
+    options3: string[];
+}): JSX.Element {
+    const [userSelection4, setUserSelection4] = useState<string>(options[0]);
+
+    const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
+    const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
+
+    const [visible, setVisible] = useState<boolean>(true);
+
+    const setAnswer4 = (Event: ChangeEvent) => {
+        setUserSelection4(Event.target.value);
+    };
+
+    const setAnswer5 = (Event: ChangeEvent) => {
+        setUserSelection5(Event.target.value);
+    };
+
+    const setForm = (Event: ChangeEvent) => {
+        setFormSelection(options2[options.indexOf(userSelection4)]);
+    };
+
     const [p, setP] = useState<Plan[]>(plans);
     const [x, setX] = useState<number>(0);
+    const pl: Plan = {
+        name: "Default Plan",
+        id: plans.length,
+        semesters: [],
+        complete: false
+    };
+
+    const [userSelection, setUserSelection] = useState<number>(plans[0].id);
+    const setAnswer = (Event: ChangeEvent) => {
+        const v = parseInt(Event.target.value);
+        setUserSelection(v);
+        setX(v);
+        console.log("x on set: ", x);
+        pId = v;
+    };
+    React.useEffect(() => {
+        console.log("plan changed");
+        setY(plans[pId].semesters.length);
+    }, [p, x]);
+
+    const [s, setS] = useState<Semester[]>(semesters);
+    const [y, setY] = useState<number>(0);
+    const st: Semester = {
+        id: semesters.length,
+        courses: [],
+        credits: 0
+    };
+
+    const [userSelection2, setUserSelection2] = useState<number>(
+        semesters[0].id
+    );
+    const setAnswerS = (Event: ChangeEvent) => {
+        const v = parseInt(Event.target.value);
+        setUserSelection2(v);
+        setY(v);
+        setY(plans[pId].semesters[v - 1].id);
+    };
+    const [editState, setEditState] = useState<boolean>(false);
+
+    {
+        options3 = options2[options.indexOf(userSelection4)];
+    }
+
+    interface Props {
+        border: string;
+        color: string;
+        children?: React.ReactNode;
+        height: string;
+        onClick: () => void;
+        radius: string;
+        width: string;
+    }
+
+    const Buttons: React.FC<Props> = ({
+        border,
+        color,
+        children,
+        height,
+        onClick,
+        radius,
+        width
+    }) => {
+        return (
+            <button
+                onClick={onClick}
+                style={{
+                    backgroundColor: color,
+                    border,
+                    borderRadius: radius,
+                    height,
+                    width
+                }}
+            >
+                {children}
+            </button>
+        );
+    };
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+        <div>
+            <h3>Plans</h3>
+            <>
+                <Buttons
+                    onClick={handleShow}
+                    border={""}
+                    color={""}
+                    height={""}
+                    radius={""}
+                    width={""}
+                >
+                    Add Plan
+                </Buttons>
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add Plan</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Name: Starting Semester: </Modal.Body>
+                    <Modal.Footer>
+                        <Buttons
+                            onClick={handleClose}
+                            border={""}
+                            color={""}
+                            height={""}
+                            radius={""}
+                            width={""}
+                        >
+                            Close
+                        </Buttons>
+                        <Buttons
+                            onClick={handleClose}
+                            border={""}
+                            color={""}
+                            height={""}
+                            radius={""}
+                            width={""}
+                        >
+                            Save Changes
+                        </Buttons>
+                    </Modal.Footer>
+                </Modal>
+            </>
+            <Buttons
+                onClick={() => addPlan(pl)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Add Plan
+            </Buttons>
+            ‏‏‎ ‎
+            <Buttons
+                onClick={() => clearPlans(pl)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Clear Plans
+            </Buttons>
+            ‏‏‎ ‎
+            <Buttons
+                onClick={() => deletePlan(pl)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Delete Plan
+            </Buttons>
+            <Form.Group controlId="choiceDropdown">
+                <Form.Label>
+                    <b>Select Plan:</b>
+                </Form.Label>
+                <Form.Select
+                    name="selectList"
+                    id="selectList"
+                    value={userSelection}
+                    onChange={setAnswer}
+                >
+                    {plans.map((plan: Plan) => (
+                        <option key={plan.id} value={plan.id}>
+                            {" "}
+                            Plan {plan.id}{" "}
+                        </option>
+                    ))}
+                </Form.Select>
+                {
+                    <div>
+                        <p>Selected Plan: {p[x].id}</p>
+                    </div>
+                }
+            </Form.Group>
+            <b>
+                <Form.Check
+                    type="switch"
+                    id="check-edit"
+                    label="Edit Plan"
+                    checked={editState}
+                    onChange={updateEditState}
+                />
+            </b>
+            {editState && (
+                <>
+                    <>
+                        <>
+                            <div>
+                                <hr></hr>
+                                <h3> Semesters </h3>
+                                <Buttons
+                                    onClick={() => addSemester(st)}
+                                    border={""}
+                                    color={"#03A9F4"}
+                                    height={"50px"}
+                                    radius={"10%"}
+                                    width={"100px"}
+                                >
+                                    Add Semester
+                                </Buttons>
+                                ‏‏‎ ‎
+                                <Buttons
+                                    onClick={() => clearSemesters(st)}
+                                    border={""}
+                                    color={"#03A9F4"}
+                                    height={"50px"}
+                                    radius={"10%"}
+                                    width={"100px"}
+                                >
+                                    Clear Semesters
+                                </Buttons>
+                                ‏‏‎ ‎
+                                <Buttons
+                                    onClick={() => deleteSemester(st)}
+                                    border={""}
+                                    color={"#03A9F4"}
+                                    height={"50px"}
+                                    radius={"10%"}
+                                    width={"100px"}
+                                >
+                                    Delete Semester
+                                </Buttons>
+                                <div>
+                                    <p>Semester: {s[y].id}</p>{" "}
+                                </div>
+                                <b>Select Semester:</b>
+                                <Form.Select
+                                    name="selectList"
+                                    id="selectList"
+                                    value={userSelection2}
+                                    onChange={setAnswerS}
+                                >
+                                    {plans[pId].semesters.map(
+                                        (semester: Semester) => (
+                                            <option
+                                                key={semester.id}
+                                                value={semester.id}
+                                            >
+                                                {" "}
+                                                Semester {semester.id}{" "}
+                                            </option>
+                                        )
+                                    )}
+                                </Form.Select>
+                            </div>
+                            <div>
+                                <h3>Add a Course</h3>
+                                <Form.Group controlId="choiceDropdown">
+                                    <Form.Label>Choose a department</Form.Label>
+                                    <Form.Select value={userSelection4} onChange={setAnswer4}>
+                                    >
+                                        {options.map((choice: string) => (
+                                            <option key={choice} value={choice}>
+                                                {choice}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group controlId="choiceDropdown3">
+                                    <Form.Label>Choose a real course</Form.Label>
+                                    <Form.Select value={userSelection5} onChange={setAnswer5}>
+                                        {options3.map((choice3: string) => (
+                                            <option
+                                                key={choice3}
+                                                value={choice3}
+                                            >
+                                                {choice3}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+                                <hr></hr>
+                                <EditCourse></EditCourse>
+                            </div>
+                        </>
+                    </>
+                </>
+            )}
+        </div>
+    );
 
     function addPlan(newPlan: Plan) {
         console.log("add plan initiated");
@@ -60,22 +380,6 @@ export function PlanF(): JSX.Element {
         }
     }
 
-    const pl: Plan = {
-        name: "Default Plan",
-        id: plans.length,
-        semesters: [],
-        complete: false
-    };
-
-    const [userSelection, setUserSelection] = useState<number>(plans[0].id);
-    const setAnswer = (Event: ChangeEvent) => {
-        const v = parseInt(Event.target.value);
-        setUserSelection(v);
-        setX(v);
-        console.log("x on set: ", x);
-        pId = v;
-    };
-
     function deletePlan(newPlan: Plan) {
         //plans[x].complete = false;
         //plans[x].id = 0;
@@ -87,14 +391,6 @@ export function PlanF(): JSX.Element {
             pId = x - 1;
         }
     }
-
-    React.useEffect(() => {
-        console.log("plan changed");
-        setY(plans[pId].semesters.length);
-    }, [p, x]);
-
-    const [s, setS] = useState<Semester[]>(semesters);
-    const [y, setY] = useState<number>(0);
 
     function addSemester(newSemester: Semester) {
         setS([...semesters, newSemester]);
@@ -122,22 +418,6 @@ export function PlanF(): JSX.Element {
         }
     }
 
-    const st: Semester = {
-        id: semesters.length,
-        courses: [],
-        credits: 0
-    };
-
-    const [userSelection2, setUserSelection2] = useState<number>(
-        semesters[0].id
-    );
-    const setAnswerS = (Event: ChangeEvent) => {
-        const v = parseInt(Event.target.value);
-        setUserSelection2(v);
-        setY(v);
-        setY(plans[pId].semesters[v - 1].id);
-    };
-
     function deleteSemester(newSemester: Semester) {
         newSemester.courses = [];
         if (plans[pId].semesters.length > 1) {
@@ -146,8 +426,6 @@ export function PlanF(): JSX.Element {
             setY(y - 1);
         }
     }
-
-    const [editState, setEditState] = useState<boolean>(false);
 
     function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
         setEditState(event.target.checked);
@@ -170,210 +448,174 @@ export function PlanF(): JSX.Element {
         setY(plans[pId].semesters.length);
     }, [s, y]);
     */
+    function EditCourse(): JSX.Element {
+        const [course, setCourse] = useState({
+            code: userSelection5,
+            name: catalogName[options.indexOf(userSelection4)][
+                options3.indexOf(userSelection5)
+            ],
+            descr: catalogDescr[options.indexOf(userSelection4)][
+                options3.indexOf(userSelection5)
+            ],
+            credits:
+                catalogCredit[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ],
+            preReq: catalogPreReq[options.indexOf(userSelection4)][
+                options3.indexOf(userSelection5)
+            ],
+            restrict:
+                catalogRestrict[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ],
+            breadth:
+                catalogBreadth[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ],
+            typ: catalogTyp[options.indexOf(userSelection4)][
+                options3.indexOf(userSelection5)
+            ]
+        });
+        const [editState, setEditState] = useState<boolean>(false);
 
-    interface Props {
-        border: string;
-        color: string;
-        children?: React.ReactNode;
-        height: string;
-        onClick: () => void;
-        radius: string;
-        width: string;
-    }
-
-    const Button: React.FC<Props> = ({
-        border,
-        color,
-        children,
-        height,
-        onClick,
-        radius,
-        width
-    }) => {
+        function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
+            setEditState(event.target.checked);
+        }
+        function updateCourseID(event: React.ChangeEvent<HTMLInputElement>) {
+            setCourse({ ...course, code: event.target.value });
+        }
+        function updateCourseName(event: React.ChangeEvent<HTMLInputElement>) {
+            setCourse({ ...course, name: event.target.value });
+        }
+        function updateCourseDescr(event: React.ChangeEvent<HTMLInputElement>) {
+            setCourse({ ...course, descr: event.target.value });
+        }
+        function updateCourseCredits(
+            event: React.ChangeEvent<HTMLInputElement>
+        ) {
+            setCourse({ ...course, credits: event.target.value });
+        }
+        function updateCourseReq(event: React.ChangeEvent<HTMLInputElement>) {
+            setCourse({ ...course, preReq: event.target.value });
+        }
+        function updateCourseRestrict(
+            event: React.ChangeEvent<HTMLInputElement>
+        ) {
+            setCourse({ ...course, restrict: event.target.value });
+        }
+        function updateCourseBreadth(
+            event: React.ChangeEvent<HTMLInputElement>
+        ) {
+            setCourse({ ...course, breadth: event.target.value });
+        }
+        function updateCourseOffered(
+            event: React.ChangeEvent<HTMLInputElement>
+        ) {
+            setCourse({ ...course, typ: event.target.value });
+        }
+        function setDefault() {
+            setCourse({
+                ...course,
+                code: userSelection5,
+                name: catalogName[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ],
+                descr: catalogDescr[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ],
+                credits:
+                    catalogCredit[options.indexOf(userSelection4)][
+                        options3.indexOf(userSelection5)
+                    ],
+                preReq: catalogPreReq[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ],
+                restrict:
+                    catalogRestrict[options.indexOf(userSelection4)][
+                        options3.indexOf(userSelection5)
+                    ],
+                breadth:
+                    catalogBreadth[options.indexOf(userSelection4)][
+                        options3.indexOf(userSelection5)
+                    ],
+                typ: catalogTyp[options.indexOf(userSelection4)][
+                    options3.indexOf(userSelection5)
+                ]
+            });
+        }
         return (
-            <button
-                onClick={onClick}
-                style={{
-                    backgroundColor: color,
-                    border,
-                    borderRadius: radius,
-                    height,
-                    width
-                }}
-            >
-                {children}
-            </button>
-        );
-    };
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return (
-        <div>
-            <h3>Plans</h3>
-            <>
-                <Button
-                    onClick={handleShow}
-                    border={""}
-                    color={""}
-                    height={""}
-                    radius={""}
-                    width={""}
-                >
-                    Add Plan
-                </Button>
-
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Add Plan</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Name: Starting Semester: </Modal.Body>
-                    <Modal.Footer>
-                        <Button
-                            onClick={handleClose}
-                            border={""}
-                            color={""}
-                            height={""}
-                            radius={""}
-                            width={""}
-                        >
-                            Close
-                        </Button>
-                        <Button
-                            onClick={handleClose}
-                            border={""}
-                            color={""}
-                            height={""}
-                            radius={""}
-                            width={""}
-                        >
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
-            <Button
-                onClick={() => addPlan(pl)}
-                border={""}
-                color={"#03A9F4"}
-                height={"50px"}
-                radius={"10%"}
-                width={"100px"}
-            >
-                Add Plan
-            </Button>
-            ‏‏‎ ‎
-            <Button
-                onClick={() => clearPlans(pl)}
-                border={""}
-                color={"#03A9F4"}
-                height={"50px"}
-                radius={"10%"}
-                width={"100px"}
-            >
-                Clear Plans
-            </Button>
-            ‏‏‎ ‎
-            <Button
-                onClick={() => deletePlan(pl)}
-                border={""}
-                color={"#03A9F4"}
-                height={"50px"}
-                radius={"10%"}
-                width={"100px"}
-            >
-                Delete Plan
-            </Button>
-            <Form.Group controlId="choiceDropdown">
-                <Form.Label>
-                    <b>Select Plan:</b>
-                </Form.Label>
-                <Form.Select
-                    name="selectList"
-                    id="selectList"
-                    value={userSelection}
-                    onChange={setAnswer}
-                >
-                    {plans.map((plan: Plan) => (
-                        <option key={plan.id} value={plan.id}>
-                            {" "}
-                            Plan {plan.id}{" "}
-                        </option>
-                    ))}
-                </Form.Select>
-                {
-                    <div>
-                        <p>Selected Plan: {p[x].id}</p>
-                    </div>
-                }
-            </Form.Group>
-            <b>
-                <Form.Check
-                    type="switch"
-                    id="check-edit"
-                    label="Edit Plan"
-                    checked={editState}
-                    onChange={updateEditState}
-                />
-            </b>
-            {editState && (
+            <div>
                 <div>
-                    <hr></hr>
-                    <h3> Semesters </h3>
-                    <Button
-                        onClick={() => addSemester(st)}
-                        border={""}
-                        color={"#03A9F4"}
-                        height={"50px"}
-                        radius={"10%"}
-                        width={"100px"}
-                    >
-                        Add Semester
-                    </Button>
-                    ‏‏‎ ‎
-                    <Button
-                        onClick={() => clearSemesters(st)}
-                        border={""}
-                        color={"#03A9F4"}
-                        height={"50px"}
-                        radius={"10%"}
-                        width={"100px"}
-                    >
-                        Clear Semesters
-                    </Button>
-                    ‏‏‎ ‎
-                    <Button
-                        onClick={() => deleteSemester(st)}
-                        border={""}
-                        color={"#03A9F4"}
-                        height={"50px"}
-                        radius={"10%"}
-                        width={"100px"}
-                    >
-                        Delete Semester
-                    </Button>
-                    <div>
-                        <p>Semester: {s[y].id}</p>{" "}
-                    </div>
-                    <b>Select Semester:</b>
-                    <Form.Select
-                        name="selectList"
-                        id="selectList"
-                        value={userSelection2}
-                        onChange={setAnswerS}
-                    >
-                        {plans[pId].semesters.map((semester: Semester) => (
-                            <option key={semester.id} value={semester.id}>
-                                {" "}
-                                Semester {semester.id}{" "}
-                            </option>
-                        ))}
-                    </Form.Select>
+                    <Form.Check
+                        type="switch"
+                        id="check-edit"
+                        label="Edit?"
+                        checked={editState}
+                        onChange={updateEditState}
+                    />
                 </div>
-            )}
-        </div>
-    );
+                <div>
+                    {editState && (
+                        <Form.Group controlId="changeTextBox">
+                            <Form.Label>Change Code:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.code}
+                                onChange={updateCourseID}
+                            />
+                            <Form.Label>Change Name:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.name}
+                                onChange={updateCourseName}
+                            />
+                            <Form.Label>Change description:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.descr}
+                                onChange={updateCourseDescr}
+                            />
+                            <Form.Label>Change Credits:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.credits}
+                                onChange={updateCourseCredits}
+                            />
+                            <Form.Label>Change PreRequisites:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.preReq}
+                                onChange={updateCourseReq}
+                            />
+                            <Form.Label>Change Restrict:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.restrict}
+                                onChange={updateCourseRestrict}
+                            />
+                            <Form.Label>Change Breadth:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.breadth}
+                                onChange={updateCourseBreadth}
+                            />
+                            <Form.Label>Change Offered:</Form.Label>
+                            <Form.Control
+                                type="string"
+                                value={course.typ}
+                                onChange={updateCourseOffered}
+                            />
+                            <Button onClick={() => setDefault()}>
+                                Set to Default
+                            </Button>
+                        </Form.Group>
+                    )}
+                </div>
+                {visible}
+                <Button onClick={() => setVisible(!visible)}>
+                    Add {course.code}
+                </Button>
+            </div>
+        );
+    }
 }

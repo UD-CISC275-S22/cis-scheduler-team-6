@@ -22,13 +22,12 @@ function App(): JSX.Element {
             </p>
             <p>Isaac Lewis - Alexander Trunzo - Yuchen Zhang</p>
             <hr></hr>
-            <PlanF></PlanF>
-            <hr></hr>
-            <CoursesSelect
+            <PlanF
                 options={catalogHeader}
                 options2={catalogNumber}
                 options3={catalogNumber[0]}
-            ></CoursesSelect>
+            ></PlanF>
+            <hr></hr>
         </div>
         //<upload></upload>
     );
