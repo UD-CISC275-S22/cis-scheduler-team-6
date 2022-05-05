@@ -580,15 +580,17 @@ export function PlanF({
         }
         function Removing(): JSX.Element {
             console.log(s[y].courses);
+            const initial = s[y].courses.length;
             const temp = s[y].courses.filter(
-                (Thisone: course): boolean => Thisone !== course
+                (Thisone: course): boolean => Thisone.code !== course.code
             );
             s[y].courses = temp;
             console.log(s[y].courses);
-            const convert = course.credits;
-            //credits.trim?
-
-            s[y].credits = s[y].credits - +convert[0];
+            const final = s[y].courses.length;
+            const convert = course.credits.trim();
+            const dif = initial - final;
+            const newCred = +convert[0] * dif;
+            s[y].credits = s[y].credits - newCred;
 
             /* React.useEffect(() => {
                 console.log("semester changed");
