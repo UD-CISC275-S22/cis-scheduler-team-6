@@ -107,12 +107,14 @@ export function PlanF({
     const [userSelection4, setUserSelection4] = useState<string>(options[0]);
 
     const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
+
     //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
 
     //const [visible, setVisible] = useState<boolean>(true);
 
     const setAnswer4 = (Event: ChangeEvent) => {
         setUserSelection4(Event.target.value);
+        setUserSelection5(options2[options.indexOf(Event.target.value)][0]);
     };
 
     const setAnswer5 = (Event: ChangeEvent) => {
