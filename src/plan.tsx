@@ -567,48 +567,36 @@ export function PlanF({
             ]
         });
         const [editState, setEditState] = useState<boolean>(false);
-        function Adding(): JSX.Element {
-            s[y].courses = [course, ...s[y].courses];
+        function Adding(newSemester: Semester) {
+            newSemester.courses = [course, ...newSemester.courses];
             const convert = course.credits.trim();
-            s[y].credits = s[y].credits + +convert[0];
+            newSemester.credits = newSemester.credits + +convert[0];
+            setS([...semesters, newSemester]);
             /* React.useEffect(() => {
                 console.log("semester changed");
                 setS(s);
                 setY(y);
             }, [s]);*/
-            return <div></div>;
         }
-        function Removing(): JSX.Element {
-            console.log(s[y].courses);
-            const initial = s[y].courses.length;
-            const temp = s[y].courses.filter(
+        function Removing(newSemester: Semester) {
+            console.log(newSemester.courses);
+            const initial = newSemester.courses.length;
+            const temp = newSemester.courses.filter(
                 (Thisone: course): boolean => Thisone.code !== course.code
             );
-            s[y].courses = temp;
-            console.log(s[y].courses);
-            const final = s[y].courses.length;
+            newSemester.courses = temp;
+            console.log(newSemester.courses);
+            const final = newSemester.courses.length;
             const convert = course.credits.trim();
             const dif = initial - final;
             const newCred = +convert[0] * dif;
-            s[y].credits = s[y].credits - newCred;
-
-            /* React.useEffect(() => {
-                console.log("semester changed");
-                setS(s);
-                setY(y);
-            }, [s]);*/
-            return <div></div>;
+            newSemester.credits = newSemester.credits - newCred;
+            setS([...semesters, newSemester]);
         }
-        function Clearing(): JSX.Element {
-            s[y].courses = [];
-            s[y].credits = 0;
-
-            /* React.useEffect(() => {
-                console.log("semester changed");
-                setS(s);
-                setY(y);
-            }, [s]);*/
-            return <div></div>;
+        function Clearing(newSemester: Semester) {
+            newSemester.courses = [];
+            newSemester.credits = 0;
+            setS([...semesters, newSemester]);
         }
 
         function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
@@ -755,7 +743,7 @@ export function PlanF({
                 </div>
                 <p></p>
                 <Buttons
-                    onClick={() => Adding()}
+                    onClick={() => Adding(s[y])}
                     border={""}
                     color={"#03A9F4"}
                     height={"50px"}
@@ -766,7 +754,7 @@ export function PlanF({
                 </Buttons>
                 ‏‏‎ ‎
                 <Buttons
-                    onClick={() => Removing()}
+                    onClick={() => Removing(s[y])}
                     border={""}
                     color={"#03A9F4"}
                     height={"50px"}
@@ -777,7 +765,7 @@ export function PlanF({
                 </Buttons>
                 ‏‏‎ ‎
                 <Buttons
-                    onClick={() => Clearing()}
+                    onClick={() => Clearing(s[y])}
                     border={""}
                     color={"#03A9F4"}
                     height={"50px"}
