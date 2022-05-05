@@ -2,18 +2,18 @@ import React from "react";
 import { useState } from "react";
 //import { Button } from "react-bootstrap";
 import { Plan } from "./planInterface";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import plan from "../src/plans_data.json";
 import { Semester } from "./semesterlnterface";
 import semester from "../src/semesters_data.json";
-import Modal from "react-bootstrap/Modal";
+//import Modal from "react-bootstrap/Modal";
 import { catalogBreadth, catalogCredit, catalogRestrict } from "./catalog";
 import { catalogName } from "./catalog";
 import { catalogPreReq } from "./catalog";
 import { catalogTyp } from "./catalog";
 import { catalogDescr } from "./catalog";
 import { course } from "./course";
-import { findRenderedComponentWithType } from "react-dom/test-utils";
+//import { findRenderedComponentWithType } from "react-dom/test-utils";
 import "./plan.css";
 
 interface coursesProps {
@@ -35,7 +35,7 @@ const CourseItem: React.FC<course> = ({
                 <h5>{name}</h5>
             </td>
             <td>
-                <p style={{ fontSize: 10 }}>{descr}</p>
+                <p style={{ fontSize: 15 }}>{descr}</p>
             </td>
             <td>
                 <h5>{credits}</h5>
@@ -107,9 +107,9 @@ export function PlanF({
     const [userSelection4, setUserSelection4] = useState<string>(options[0]);
 
     const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
-    const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
+    //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
 
-    const [visible, setVisible] = useState<boolean>(true);
+    //const [visible, setVisible] = useState<boolean>(true);
 
     const setAnswer4 = (Event: ChangeEvent) => {
         setUserSelection4(Event.target.value);
@@ -119,9 +119,11 @@ export function PlanF({
         setUserSelection5(Event.target.value);
     };
 
+    /*
     const setForm = (Event: ChangeEvent) => {
         setFormSelection(options2[options.indexOf(userSelection4)]);
     };
+    */
 
     const [p, setP] = useState<Plan[]>(plans);
     const [x, setX] = useState<number>(0);
@@ -162,8 +164,11 @@ export function PlanF({
         setY(v);
         setY(plans[pId].semesters[v - 1].id);
     };
+
+    /*
     const [editState, setEditState] = useState<boolean>(false);
     const [editState2, setEditState2] = useState<boolean>(false);
+    */
 
     {
         options3 = options2[options.indexOf(userSelection4)];
@@ -203,12 +208,12 @@ export function PlanF({
         );
     };
 
+    /*
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    /*
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
             <Modal.Title>Add Plan</Modal.Title>
@@ -256,7 +261,49 @@ export function PlanF({
 
     return (
         <div>
-            <h3>Plans</h3>
+            {
+                <div>
+                    <h3>Plan: {p[x].id}</h3>
+                </div>
+            }
+            <div className="App">
+                <h3>Semester {s[y].id}</h3>
+                Courses: {s[y].courses.length}
+                ‏‏‎ Credits: {s[y].credits}
+                <Form.Group controlId="choiceDropdown">
+                    <Form.Label>
+                        <b>Select Plan:</b>
+                    </Form.Label>
+                    <Form.Select
+                        name="selectList"
+                        id="selectList"
+                        value={userSelection}
+                        onChange={setAnswer}
+                    >
+                        {plans.map((plan: Plan) => (
+                            <option key={plan.id} value={plan.id}>
+                                {" "}
+                                Plan {plan.id}{" "}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+                <b>Select Semester:</b>
+                <Form.Select
+                    name="selectList"
+                    id="selectList"
+                    value={userSelection2}
+                    onChange={setAnswerS}
+                >
+                    {plans[pId].semesters.map((semester: Semester) => (
+                        <option key={semester.id} value={semester.id}>
+                            {" "}
+                            Semester {semester.id}{" "}
+                        </option>
+                    ))}
+                </Form.Select>
+            </div>
+            <CourseOverview courses={semesters[y].courses} />
             <Buttons
                 onClick={() => addPlan(pl)}
                 border={""}
@@ -289,172 +336,82 @@ export function PlanF({
             >
                 Delete Plan
             </Buttons>
-            <Form.Group controlId="choiceDropdown">
-                <Form.Label>
-                    <b>Select Plan:</b>
-                </Form.Label>
-                <Form.Select
-                    name="selectList"
-                    id="selectList"
-                    value={userSelection}
-                    onChange={setAnswer}
-                >
-                    {plans.map((plan: Plan) => (
-                        <option key={plan.id} value={plan.id}>
-                            {" "}
-                            Plan {plan.id}{" "}
-                        </option>
-                    ))}
-                </Form.Select>
-                {
-                    <div>
-                        <p>Plan: {p[x].id}</p>
-                    </div>
-                }
-            </Form.Group>
-            <b>
-                <Form.Check
-                    type="switch"
-                    id="check-edit"
-                    label="Edit Plan"
-                    checked={editState}
-                    onChange={updateEditState}
-                />
-            </b>
-            {editState && (
-                <>
-                    <>
-                        <>
-                            <div>
-                                <hr></hr>
-                                <h3> Semesters </h3>
-                                <Buttons
-                                    onClick={() => addSemester(st)}
-                                    border={""}
-                                    color={"#03A9F4"}
-                                    height={"50px"}
-                                    radius={"10%"}
-                                    width={"100px"}
-                                >
-                                    Add Semester
-                                </Buttons>
-                                ‏‏‎ ‎
-                                <Buttons
-                                    onClick={() => clearSemesters(st)}
-                                    border={""}
-                                    color={"#03A9F4"}
-                                    height={"50px"}
-                                    radius={"10%"}
-                                    width={"100px"}
-                                >
-                                    Clear Semesters
-                                </Buttons>
-                                ‏‏‎ ‎
-                                <Buttons
-                                    onClick={() => deleteSemester(st)}
-                                    border={""}
-                                    color={"#03A9F4"}
-                                    height={"50px"}
-                                    radius={"10%"}
-                                    width={"100px"}
-                                >
-                                    Delete Semester
-                                </Buttons>
-                                <div>
-                                    <p>Semester: {s[y].id}</p>{" "}
-                                    <p>Courses: {s[y].courses.length}</p>{" "}
-                                    <p>Credits: {s[y].credits} </p>
-                                </div>
-                                <b>Select Semester:</b>
-                                <Form.Select
-                                    name="selectList"
-                                    id="selectList"
-                                    value={userSelection2}
-                                    onChange={setAnswerS}
-                                >
-                                    {plans[pId].semesters.map(
-                                        (semester: Semester) => (
-                                            <option
-                                                key={semester.id}
-                                                value={semester.id}
-                                            >
-                                                {" "}
-                                                Semester {semester.id}{" "}
-                                            </option>
-                                        )
-                                    )}
-                                </Form.Select>
-                                <b>
-                                    <Form.Check
-                                        type="switch"
-                                        id="check-edit"
-                                        label="Edit Semester"
-                                        checked={editState2}
-                                        onChange={updateEditState2}
-                                    />
-                                </b>
-                            </div>
-                            <div>
-                                {editState2 && (
-                                    <>
-                                        <div className="App">
-                                            <h3>Semester {s[y].id}</h3>
-                                            <CourseOverview
-                                                courses={semesters[y].courses}
-                                            />
-                                        </div>
-                                        <h3>Courses</h3>
-                                        <Form.Group controlId="choiceDropdown">
-                                            <Form.Label>
-                                                Choose a Department
-                                            </Form.Label>
-                                            <Form.Select
-                                                value={userSelection4}
-                                                onChange={setAnswer4}
-                                            >
-                                                {options.map(
-                                                    (choice: string) => (
-                                                        <option
-                                                            key={choice}
-                                                            value={choice}
-                                                        >
-                                                            {choice}
-                                                        </option>
-                                                    )
-                                                )}
-                                            </Form.Select>
-                                        </Form.Group>
-                                        <Form.Group controlId="choiceDropdown3">
-                                            <Form.Label>
-                                                Choose a Course
-                                            </Form.Label>
-                                            <Form.Select
-                                                value={userSelection5}
-                                                onChange={setAnswer5}
-                                            >
-                                                {options3.map(
-                                                    (choice3: string) => (
-                                                        <option
-                                                            key={choice3}
-                                                            value={choice3}
-                                                        >
-                                                            {choice3}
-                                                        </option>
-                                                    )
-                                                )}
-                                            </Form.Select>
-                                        </Form.Group>
-                                        <hr></hr>
-                                        <EditCourse></EditCourse>
-                                    </>
-                                )}
-                            </div>
-                        </>
-                    </>
-                </>
-            )}
+            <p></p>
+            <Buttons
+                onClick={() => addSemester(st)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Add Semester
+            </Buttons>
+            ‏‏‎ ‎
+            <Buttons
+                onClick={() => clearSemesters(st)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Clear Semesters
+            </Buttons>
+            ‏‏‎ ‎
+            <Buttons
+                onClick={() => deleteSemester(st)}
+                border={""}
+                color={"#03A9F4"}
+                height={"50px"}
+                radius={"10%"}
+                width={"100px"}
+            >
+                Delete Semester
+            </Buttons>
+            <>
+                <h3></h3>
+                <Form.Group controlId="choiceDropdown">
+                    <Form.Label>
+                        <b>Choose a Department</b>
+                    </Form.Label>
+                    <Form.Select value={userSelection4} onChange={setAnswer4}>
+                        {options.map((choice: string) => (
+                            <option key={choice} value={choice}>
+                                {choice}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group controlId="choiceDropdown3">
+                    <Form.Label>
+                        <b>Choose a Course</b>
+                    </Form.Label>
+                    <Form.Select value={userSelection5} onChange={setAnswer5}>
+                        {options3.map((choice3: string) => (
+                            <option key={choice3} value={choice3}>
+                                {choice3}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+                <hr></hr>
+                <EditCourse></EditCourse>
+            </>
         </div>
     );
+
+    /*
+    <b>
+        <Form.Check
+            type="switch"
+            id="check-edit"
+            label="Edit Plan"
+            checked={editState}
+            onChange={updateEditState}
+        />
+    </b>;
+    */
 
     function addPlan(newPlan: Plan) {
         console.log("add plan initiated");
@@ -539,13 +496,15 @@ export function PlanF({
             setY(y - 1);
         }
     }
-
+    /*
     function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
         setEditState(event.target.checked);
     }
     function updateEditState2(event: React.ChangeEvent<HTMLInputElement>) {
         setEditState2(event.target.checked);
     }
+    */
+
     /*
     React.useEffect(() => {
         console.log("plan changed");
@@ -718,13 +677,15 @@ export function PlanF({
         return (
             <div>
                 <div>
-                    <Form.Check
-                        type="switch"
-                        id="check-edit"
-                        label="Edit?"
-                        checked={editState}
-                        onChange={updateEditState}
-                    />
+                    <b>
+                        <Form.Check
+                            type="switch"
+                            id="check-edit"
+                            label="Edit?"
+                            checked={editState}
+                            onChange={updateEditState}
+                        />
+                    </b>
                 </div>
                 <div>
                     {editState && (
@@ -777,12 +738,20 @@ export function PlanF({
                                 value={course.typ}
                                 onChange={updateCourseOffered}
                             />
-                            <Button onClick={() => setDefault()}>
+                            <Buttons
+                                onClick={() => setDefault()}
+                                border={""}
+                                color={"#03A9F4"}
+                                height={"50px"}
+                                radius={"10%"}
+                                width={"130px"}
+                            >
                                 Set to Default
-                            </Button>
+                            </Buttons>
                         </Form.Group>
                     )}
                 </div>
+                <p></p>
                 <Buttons
                     onClick={() => Adding()}
                     border={""}

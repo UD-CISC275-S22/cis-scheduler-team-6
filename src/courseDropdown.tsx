@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+/*
 import { CoursePool } from "./coursePool";
 import { Semester } from "./semesterlnterface";
 import { SemesterF } from "./semester";
+*/
 import { catalogBreadth, catalogCredit, catalogRestrict } from "./catalog";
 import { catalogName } from "./catalog";
 import { catalogPreReq } from "./catalog";
@@ -23,11 +25,13 @@ export function CoursesSelect({
     options3: string[];
 }): JSX.Element {
     const [userSelection, setUserSelection] = useState<string>(options[0]);
+    /*
     const [userSelection2, setUserSelection2] = useState<string>(
         options2[options.indexOf(userSelection)][0]
     );
+    */
     const [userSelection3, setUserSelection3] = useState<string>(options3[0]);
-    const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
+    //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
 
     const [visible, setVisible] = useState<boolean>(true);
 
@@ -39,9 +43,11 @@ export function CoursesSelect({
         setUserSelection3(Event.target.value);
     };
 
+    /*
     const setForm = (Event: ChangeEvent) => {
         setFormSelection(options2[options.indexOf(userSelection)]);
     };
+    */
 
     {
         options3 = options2[options.indexOf(userSelection)];
@@ -119,7 +125,7 @@ export function CoursesSelect({
         function updateCourseCredits(
             event: React.ChangeEvent<HTMLInputElement>
         ) {
-            //setCourse({ ...course, credits: parseInt(event.target.value) });
+            setCourse({ ...course, credits: event.target.value });
         }
         function updateCourseReq(event: React.ChangeEvent<HTMLInputElement>) {
             setCourse({ ...course, preReq: event.target.value });
