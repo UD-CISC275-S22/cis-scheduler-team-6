@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { CoursesSelect } from "./courseDropdown";
+//import { CoursesSelect } from "./courseDropdown";
 import "./plan";
 import { PlanF } from "../src/plan";
 import { catalogHeader } from "./catalog";
