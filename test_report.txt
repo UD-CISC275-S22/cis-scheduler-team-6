@@ -7,8 +7,8 @@
 
       at src/plan.tsx:148:17
 
-FAIL src/App.test.tsx (5.997 s)
-  ✕ renders the course name somewhere (183 ms)
+FAIL src/App.test.tsx (7.372 s)
+  ✕ renders the course name somewhere (217 ms)
 
   ● renders the course name somewhere
 
@@ -257,5 +257,5 @@ All files             |   26.92 |     4.54 |   27.45 |   23.76 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        7.33 s
+Time:        8.96 s
 Ran all test suites.
