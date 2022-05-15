@@ -95,6 +95,35 @@ export { pId };
 
 let semesters = semester.map((cSemester: Semester) => ({ ...cSemester }));
 
+const core = [
+    "ENGL 110 ",
+    "EGGG 101 ",
+    "CISC 108 ",
+    "MATH 241 ",
+    "MATH 242 ",
+    "CISC 181 ",
+    "CISC 210 ",
+    "CISC 220 ",
+    "CISC 260 ",
+    "CISC 355 ",
+    "MATH 205 ",
+    "MATH 210 ",
+    "CISC 275 "
+];
+let coursesTaken = [""];
+let coreReq = core;
+/*
+const tech = 6;
+const lab = 2;
+const breadths = 5;
+const breadthReqs = [
+    "Creative Arts and Humanities",
+    "History and Cultural Change",
+    "Social and Behaviorial Sciences",
+    "Math Natural Science and Technology"
+];
+const coreSci = 0; //LabSci #1, #2*/
+
 export function PlanF({
     options,
     options2,
@@ -260,6 +289,7 @@ export function PlanF({
         </Buttons>
     </>
     */
+    let creditsRequired = 124 - s[y].credits;
 
     return (
         <div>
@@ -270,8 +300,10 @@ export function PlanF({
             }
             <div className="App">
                 <h3>Semester {s[y].id}</h3>
-                Courses: {s[y].courses.length}
-                ‏‏‎ Credits: {s[y].credits}
+                <p>Unfulfilled Requirements: {coreReq}</p>
+                <p>Courses Taken: {s[y].courses.length}</p>
+                <p>Minimum Credits Remaining: {creditsRequired} </p>
+                <p> Credits Taken: {s[y].credits}</p>
                 <Form.Group controlId="choiceDropdown">
                     <Form.Label>
                         <b>Select Plan:</b>
@@ -570,17 +602,229 @@ export function PlanF({
         });
         const [editState, setEditState] = useState<boolean>(false);
         function Adding(newSemester: Semester) {
-            newSemester.courses = [course, ...newSemester.courses];
+            console.log("check 1");
+            let checker = true;
             const convert = course.credits.trim();
-            newSemester.credits = newSemester.credits + +convert[0];
-            setS([...semesters, newSemester]);
-            /* React.useEffect(() => {
-                console.log("semester changed");
-                setS(s);
-                setY(y);
-            }, [s]);*/
+            console.log("check 2");
+            //list of all of the prereqs (or's not handled)
+            const PreReqs = course.preReq.replace(".", "").split(",");
+            console.log("check 3");
+            const PreReqNormCase = PreReqs.filter(
+                (Thisone: string): boolean => Thisone.length < 10
+            );
+            console.log("check 4");
+            const PreReqOrCase = PreReqs.filter(
+                (Thisone: string): boolean =>
+                    Thisone.length > 10 && Thisone.length < 21
+            );
+            console.log("check 5");
+            let ProperOr = [""];
+            if (PreReqOrCase.length > 0) {
+                ProperOr = PreReqOrCase[0].split("or");
+            }
+            console.log("check 6");
+            const PreReqAndCase = PreReqs.filter(
+                (Thisone: string): boolean => Thisone.length >= 21
+            );
+            console.log("check 7");
+            let ProperAnd = [""];
+            if (PreReqAndCase.length > 0) {
+                ProperAnd = PreReqAndCase[0].split("and");
+            }
+            console.log("check 8");
+            //greater than 10, less than 21
+            //handle the ors
+            //determine if the prereq requirements are fulfilled
+            const testingthis = (currentValue: string) =>
+                coursesTaken.includes(currentValue);
+            if (ProperOr.length > 1) {
+                if (
+                    coursesTaken.includes(ProperOr[0]) ||
+                    coursesTaken.includes(ProperOr[1])
+                ) {
+                    if (ProperAnd.length > 1) {
+                        if (
+                            coursesTaken.includes(ProperAnd[0]) &&
+                            coursesTaken.includes(ProperAnd[1])
+                        ) {
+                            if (PreReqNormCase.length > 0) {
+                                if (PreReqNormCase.every(testingthis)) {
+                                    checker = true;
+                                    console.log("true 1");
+                                } else {
+                                    checker = false;
+                                    console.log("false 1");
+                                }
+                            }
+                        } else {
+                            checker = false;
+                            console.log("false 2");
+                        }
+                    } else {
+                        if (PreReqNormCase.length > 1) {
+                            if (PreReqNormCase.every(testingthis)) {
+                                checker = true;
+                                console.log("true 2");
+                            } else {
+                                checker = false;
+                                console.log("false 3");
+                            }
+                        }
+                    }
+                } else {
+                    checker = false;
+                    console.log("false 4");
+                }
+            } else if (ProperAnd.length > 1) {
+                if (
+                    coursesTaken.includes(ProperAnd[0]) &&
+                    coursesTaken.includes(ProperAnd[1])
+                ) {
+                    if (PreReqNormCase.length > 0) {
+                        if (PreReqNormCase.every(testingthis)) {
+                            checker = true;
+                            console.log("true 3");
+                            if (ProperOr.length > 1) {
+                                if (
+                                    coursesTaken.includes(ProperOr[0]) ||
+                                    coursesTaken.includes(ProperOr[1])
+                                ) {
+                                    if (ProperAnd.length > 1) {
+                                        if (
+                                            coursesTaken.includes(
+                                                ProperAnd[0]
+                                            ) &&
+                                            coursesTaken.includes(ProperAnd[1])
+                                        ) {
+                                            if (PreReqNormCase.length > 0) {
+                                                if (
+                                                    PreReqNormCase.every(
+                                                        testingthis
+                                                    )
+                                                ) {
+                                                    checker = true;
+                                                    console.log("2- true 1");
+                                                } else {
+                                                    checker = false;
+                                                    console.log("2-false 1");
+                                                }
+                                            }
+                                        } else {
+                                            checker = false;
+                                            console.log("2-false 2");
+                                        }
+                                    } else {
+                                        if (PreReqNormCase.length > 1) {
+                                            if (
+                                                PreReqNormCase.every(
+                                                    testingthis
+                                                )
+                                            ) {
+                                                checker = true;
+                                                console.log("2-true 2");
+                                            } else {
+                                                checker = false;
+                                                console.log("2-false 3");
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    checker = false;
+                                    console.log("2-false 4");
+                                }
+                            }
+                        } else {
+                            checker = false;
+                            console.log("false 5");
+                        }
+                    }
+                } else {
+                    checker = false;
+                    console.log("false 6");
+                }
+            } else {
+                if (PreReqNormCase.length > 0) {
+                    if (PreReqNormCase.every(testingthis)) {
+                        checker = true;
+                        console.log("3 - true 4");
+                        console.log(PreReqOrCase);
+                        console.log(ProperOr);
+                        if (ProperOr.length > 1) {
+                            if (
+                                coursesTaken.includes(ProperOr[0]) ||
+                                coursesTaken.includes(ProperOr[1])
+                            ) {
+                                if (ProperAnd.length > 1) {
+                                    if (
+                                        coursesTaken.includes(ProperAnd[0]) &&
+                                        coursesTaken.includes(ProperAnd[1])
+                                    ) {
+                                        if (PreReqNormCase.length > 0) {
+                                            if (
+                                                PreReqNormCase.every(
+                                                    testingthis
+                                                )
+                                            ) {
+                                                checker = true;
+                                                console.log("3- true 1");
+                                            } else {
+                                                checker = false;
+                                                console.log("3 - false 1");
+                                            }
+                                        }
+                                    } else {
+                                        checker = false;
+                                        console.log("3 - false 2");
+                                    }
+                                } else {
+                                    if (PreReqNormCase.length > 1) {
+                                        if (PreReqNormCase.every(testingthis)) {
+                                            checker = true;
+                                            console.log("3 - true 2");
+                                        } else {
+                                            checker = false;
+                                            console.log("3 - false 3");
+                                        }
+                                    }
+                                }
+                            } else {
+                                checker = false;
+                                console.log("3- false 4");
+                            }
+                        }
+                    } else {
+                        checker = false;
+                        console.log("false 7");
+                    }
+                }
+            }
+            if (checker === true) {
+                //removing from courses required (department requirements functionality)
+                if (coreReq.includes(course.code)) {
+                    const temp = coreReq.filter(
+                        (Thisone: string): boolean => Thisone !== course.code
+                    );
+                    coreReq = temp;
+                }
+
+                newSemester.courses = [course, ...newSemester.courses];
+                newSemester.credits = newSemester.credits + +convert[0];
+                setS([...semesters, newSemester]);
+                coursesTaken = [course.code, ...coursesTaken];
+                creditsRequired = creditsRequired - +convert[0];
+            } else {
+                //say add the prereq first
+                /*const temp = PreReqs.filter(
+                    (Thisone: string): boolean =>
+                        coursesTaken.includes(Thisone) !== true
+                );*/
+                console.log("missing prerequisite");
+            }
         }
         function Removing(newSemester: Semester) {
+            if (core.includes(course.code)) {
+                coreReq = [course.code, ...coreReq];
+            }
             console.log(newSemester.courses);
             const initial = newSemester.courses.length;
             const temp = newSemester.courses.filter(
@@ -594,6 +838,7 @@ export function PlanF({
             const newCred = +convert[0] * dif;
             newSemester.credits = newSemester.credits - newCred;
             setS([...semesters, newSemester]);
+            coursesTaken = [course.code, ...coursesTaken];
         }
         function Clearing(newSemester: Semester) {
             newSemester.courses = [];
