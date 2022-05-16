@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
-//import { Button } from "react-bootstrap";
 import { Plan } from "./planInterface";
 import { Form } from "react-bootstrap";
 import plan from "../src/plans_data.json";
 import { Semester } from "./semesterlnterface";
 import semester from "../src/semesters_data.json";
-//import Modal from "react-bootstrap/Modal";
+import Modal from "react-bootstrap/Modal";
 import { catalogBreadth, catalogCredit, catalogRestrict } from "./catalog";
 import { catalogName } from "./catalog";
 import { catalogPreReq } from "./catalog";
@@ -107,25 +106,21 @@ export function PlanF({
     const [userSelection4, setUserSelection4] = useState<string>(options[0]);
 
     const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
-
     //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
-
     //const [visible, setVisible] = useState<boolean>(true);
-
-    const setAnswer4 = (Event: ChangeEvent) => {
-        setUserSelection4(Event.target.value);
-        setUserSelection5(options2[options.indexOf(Event.target.value)][0]);
-    };
-
-    const setAnswer5 = (Event: ChangeEvent) => {
-        setUserSelection5(Event.target.value);
-    };
-
     /*
     const setForm = (Event: ChangeEvent) => {
         setFormSelection(options2[options.indexOf(userSelection4)]);
     };
     */
+
+    const setAnswer4 = (Event: ChangeEvent) => {
+        setUserSelection4(Event.target.value);
+    };
+
+    const setAnswer5 = (Event: ChangeEvent) => {
+        setUserSelection5(Event.target.value);
+    };
 
     const [p, setP] = useState<Plan[]>(plans);
     const [x, setX] = useState<number>(0);
@@ -136,6 +131,36 @@ export function PlanF({
         complete: false
     };
 
+    const [s, setS] = useState<Semester[]>(semesters);
+    const [y, setY] = useState<number>(0);
+    const st: Semester = {
+        id: semesters.length,
+        courses: [],
+        credits: 0
+    };
+
+    function charts() {
+        for (const semester in p[x].semesters) {
+            return (
+                <div>
+                    {" "}
+                    <CourseOverview
+                        courses={p[x].semesters[semester].courses}
+                    />{" "}
+                </div>
+            );
+            /*
+            if (p[x].semesters[i].courses.length > 0) {
+                return (
+                    <div>
+                        test <CourseOverview courses={semesters[y].courses} />{" "}
+                    </div>
+                );
+            }
+            */
+        }
+    }
+
     const [userSelection, setUserSelection] = useState<number>(plans[0].id);
     const setAnswer = (Event: ChangeEvent) => {
         const v = parseInt(Event.target.value);
@@ -143,18 +168,6 @@ export function PlanF({
         setX(v);
         console.log("x on set: ", x);
         pId = v;
-    };
-    React.useEffect(() => {
-        console.log("plan changed");
-        setY(plans[pId].semesters.length);
-    }, [p, x]);
-
-    const [s, setS] = useState<Semester[]>(semesters);
-    const [y, setY] = useState<number>(0);
-    const st: Semester = {
-        id: semesters.length,
-        courses: [],
-        credits: 0
     };
 
     const [userSelection2, setUserSelection2] = useState<number>(
@@ -164,8 +177,13 @@ export function PlanF({
         const v = parseInt(Event.target.value);
         setUserSelection2(v);
         setY(v);
-        setY(plans[pId].semesters[v - 1].id);
+        //setY(plans[pId].semesters[v - 1].id);
     };
+
+    React.useEffect(() => {
+        console.log("plan changed");
+        setY(plans[pId].semesters.length);
+    }, [p, x]);
 
     /*
     const [editState, setEditState] = useState<boolean>(false);
@@ -210,59 +228,45 @@ export function PlanF({
         );
     };
 
-    /*
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-            <Modal.Title>Add Plan</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Name: Starting Semester: </Modal.Body>
-        <Modal.Footer>
-            <Buttons
-                onClick={handleClose}
-                border={""}
-                color={""}
-                height={""}
-                radius={""}
-                width={""}
-            >
-                Close
-            </Buttons>
-            <Buttons
-                onClick={handleClose}
-                border={""}
-                color={""}
-                height={""}
-                radius={""}
-                width={""}
-            >
-                Save Changes
-            </Buttons>
-        </Modal.Footer>
-    </Modal>;
-
-    /////
-
-        <>
-        <Buttons
-            onClick={handleShow}
-            border={""}
-            color={""}
-            height={""}
-            radius={""}
-            width={""}
-        >
-            Add Plan
-        </Buttons>
-    </>
-    */
-
     return (
         <div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Major Requirements</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{p[x].semesters}</Modal.Body>
+                <Modal.Footer>
+                    <Buttons
+                        onClick={handleClose}
+                        border={""}
+                        color={""}
+                        height={""}
+                        radius={""}
+                        width={""}
+                    >
+                        Close
+                    </Buttons>
+                </Modal.Footer>
+            </Modal>
+            <>
+                <Buttons
+                    onClick={handleShow}
+                    border={""}
+                    color={""}
+                    height={""}
+                    radius={""}
+                    width={""}
+                >
+                    View Requirements
+                </Buttons>
+            </>
+            {}
+            {charts()}
             {
                 <div>
                     <h3>Plan: {p[x].id}</h3>
@@ -297,7 +301,7 @@ export function PlanF({
                     value={userSelection2}
                     onChange={setAnswerS}
                 >
-                    {plans[pId].semesters.map((semester: Semester) => (
+                    {plans[x].semesters.map((semester: Semester) => (
                         <option key={semester.id} value={semester.id}>
                             {" "}
                             Semester {semester.id}{" "}
@@ -416,17 +420,11 @@ export function PlanF({
     */
 
     function addPlan(newPlan: Plan) {
-        console.log("add plan initiated");
         setP([...plans, newPlan]);
-        console.log("plan set");
         plans.push(newPlan);
-        console.log("plan pushed");
         setX(x + 1);
-        console.log("x set");
         setUserSelection(plans.length - 1);
-        console.log("user selection set");
         pId = x + 1;
-        console.log("test");
     }
 
     function clearPlans(newPlan: Plan) {
@@ -441,21 +439,11 @@ export function PlanF({
             setX(0);
             plans = [];
             plans.push(pl);
-            /*
-            const sl: Semester = {
-                id: 0,
-                courses: [],
-                credits: 0
-            };
-            */
             pId = 0;
         }
     }
 
     function deletePlan(newPlan: Plan) {
-        //plans[x].complete = false;
-        //plans[x].id = 0;
-        //plans[x].semesters = [];
         newPlan.semesters = [];
         if (plans.length > 1) {
             plans.splice(x, 1);
@@ -466,12 +454,14 @@ export function PlanF({
 
     function addSemester(newSemester: Semester) {
         setS([...semesters, newSemester]);
-        if (pId > 0) {
+        console.log("");
+        if (x > 0) {
             semesters.push(newSemester);
             setY(y + 1);
-            plans[pId].semesters.push(newSemester);
+            plans[x].semesters.push(newSemester);
             setS(s);
             setUserSelection2(semesters.length - 1);
+            //sId = y + 1;
         }
     }
 
@@ -492,12 +482,17 @@ export function PlanF({
 
     function deleteSemester(newSemester: Semester) {
         newSemester.courses = [];
-        if (plans[pId].semesters.length > 1) {
-            plans[pId].semesters.splice(y, 1);
+        if (plans[x].semesters.length > 1) {
+            console.log("old sem length: " + plans[x].semesters.length);
+            plans[x].semesters.splice(y, 1);
+            console.log("new sem length: " + plans[x].semesters.length);
             s.splice(y, 1);
+            console.log("old y value: " + y);
             setY(y - 1);
+            console.log("new y value: " + y);
         }
     }
+
     /*
     function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
         setEditState(event.target.checked);
@@ -524,10 +519,7 @@ export function PlanF({
         console.log("plan changed");
         setY(plans[pId].semesters.length);
     }, [s, y]);
-    */
 
-    /*
-   
     React.useEffect(() => {
         console.log("plan changed");
         clearSemesters;
@@ -578,7 +570,8 @@ export function PlanF({
                 console.log("semester changed");
                 setS(s);
                 setY(y);
-            }, [s]);*/
+            }, [s]);
+            */
         }
         function Removing(newSemester: Semester) {
             console.log(newSemester.courses);
