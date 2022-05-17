@@ -7,15 +7,12 @@ import plan from "../src/plans_data.json";
 import { Semester } from "./semesterlnterface";
 import semester from "../src/semesters_data.json";
 //import Modal from "react-bootstrap/Modal";
-import { catalogBreadth, catalogCredit, catalogRestrict } from "./catalog";
-import { catalogName } from "./catalog";
-import { catalogPreReq } from "./catalog";
-import { catalogTyp } from "./catalog";
-import { catalogDescr } from "./catalog";
 import { course } from "./course";
+import { Props } from "./InterfaceProps";
 //import { findRenderedComponentWithType } from "react-dom/test-utils";
 import "./plan.css";
-
+import { CoursesSelect } from "./courseDropdown";
+//
 interface coursesProps {
     courses: course[];
 }
@@ -95,6 +92,18 @@ export { pId };
 
 let semesters = semester.map((cSemester: Semester) => ({ ...cSemester }));
 
+/*
+const tech = 6;
+const lab = 2;
+const breadths = 5;
+const breadthReqs = [
+    "Creative Arts and Humanities",
+    "History and Cultural Change",
+    "Social and Behaviorial Sciences",
+    "Math Natural Science and Technology"
+];
+const coreSci = 0; //LabSci #1, #2*/
+
 export function PlanF({
     options,
     options2,
@@ -104,23 +113,6 @@ export function PlanF({
     options2: string[][];
     options3: string[];
 }): JSX.Element {
-    const [userSelection4, setUserSelection4] = useState<string>(options[0]);
-
-    const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
-
-    //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
-
-    //const [visible, setVisible] = useState<boolean>(true);
-
-    const setAnswer4 = (Event: ChangeEvent) => {
-        setUserSelection4(Event.target.value);
-        setUserSelection5(options2[options.indexOf(Event.target.value)][0]);
-    };
-
-    const setAnswer5 = (Event: ChangeEvent) => {
-        setUserSelection5(Event.target.value);
-    };
-
     /*
     const setForm = (Event: ChangeEvent) => {
         setFormSelection(options2[options.indexOf(userSelection4)]);
@@ -172,19 +164,6 @@ export function PlanF({
     const [editState2, setEditState2] = useState<boolean>(false);
     */
 
-    {
-        options3 = options2[options.indexOf(userSelection4)];
-    }
-
-    interface Props {
-        border: string;
-        color: string;
-        children?: React.ReactNode;
-        height: string;
-        onClick: () => void;
-        radius: string;
-        width: string;
-    }
     const Buttons: React.FC<Props> = ({
         border,
         color,
@@ -260,6 +239,7 @@ export function PlanF({
         </Buttons>
     </>
     */
+    const creditsRequired = 124 - s[y].credits;
 
     return (
         <div>
@@ -270,8 +250,9 @@ export function PlanF({
             }
             <div className="App">
                 <h3>Semester {s[y].id}</h3>
-                Courses: {s[y].courses.length}
-                ‏‏‎ Credits: {s[y].credits}
+                <p>Courses Taken: {s[y].courses.length}</p>
+                <p>Minimum Credits Remaining: {creditsRequired} </p>
+                <p> Credits Taken: {s[y].credits}</p>
                 <Form.Group controlId="choiceDropdown">
                     <Form.Label>
                         <b>Select Plan:</b>
@@ -373,32 +354,18 @@ export function PlanF({
             </Buttons>
             <>
                 <h3></h3>
-                <Form.Group controlId="choiceDropdown">
-                    <Form.Label>
-                        <b>Choose a Department</b>
-                    </Form.Label>
-                    <Form.Select value={userSelection4} onChange={setAnswer4}>
-                        {options.map((choice: string) => (
-                            <option key={choice} value={choice}>
-                                {choice}
-                            </option>
-                        ))}
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group controlId="choiceDropdown3">
-                    <Form.Label>
-                        <b>Choose a Course</b>
-                    </Form.Label>
-                    <Form.Select value={userSelection5} onChange={setAnswer5}>
-                        {options3.map((choice3: string) => (
-                            <option key={choice3} value={choice3}>
-                                {choice3}
-                            </option>
-                        ))}
-                    </Form.Select>
-                </Form.Group>
+                <CoursesSelect
+                    options={options}
+                    options2={options2}
+                    options3={options3}
+                    creditsRequired={creditsRequired}
+                    semesters={semesters}
+                    Buttons={Buttons}
+                    setS={setS}
+                    s={s}
+                    y={y}
+                ></CoursesSelect>
                 <hr></hr>
-                <EditCourse></EditCourse>
             </>
         </div>
     );
@@ -539,246 +506,6 @@ export function PlanF({
         setY(plans[pId].semesters.length);
     }, [s, y]);
     */
-
-    function EditCourse(): JSX.Element {
-        const [course, setCourse] = useState({
-            code: userSelection5,
-            name: catalogName[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            descr: catalogDescr[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            credits:
-                catalogCredit[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            preReq: catalogPreReq[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            restrict:
-                catalogRestrict[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            breadth:
-                catalogBreadth[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            typ: catalogTyp[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ]
-        });
-        const [editState, setEditState] = useState<boolean>(false);
-        function Adding(newSemester: Semester) {
-            newSemester.courses = [course, ...newSemester.courses];
-            const convert = course.credits.trim();
-            newSemester.credits = newSemester.credits + +convert[0];
-            setS([...semesters, newSemester]);
-            /* React.useEffect(() => {
-                console.log("semester changed");
-                setS(s);
-                setY(y);
-            }, [s]);*/
-        }
-        function Removing(newSemester: Semester) {
-            console.log(newSemester.courses);
-            const initial = newSemester.courses.length;
-            const temp = newSemester.courses.filter(
-                (Thisone: course): boolean => Thisone.code !== course.code
-            );
-            newSemester.courses = temp;
-            console.log(newSemester.courses);
-            const final = newSemester.courses.length;
-            const convert = course.credits.trim();
-            const dif = initial - final;
-            const newCred = +convert[0] * dif;
-            newSemester.credits = newSemester.credits - newCred;
-            setS([...semesters, newSemester]);
-        }
-        function Clearing(newSemester: Semester) {
-            newSemester.courses = [];
-            newSemester.credits = 0;
-            setS([...semesters, newSemester]);
-        }
-
-        function updateEditState(event: React.ChangeEvent<HTMLInputElement>) {
-            setEditState(event.target.checked);
-        }
-        function updateCourseID(event: React.ChangeEvent<HTMLInputElement>) {
-            setCourse({ ...course, code: event.target.value });
-        }
-        function updateCourseName(event: React.ChangeEvent<HTMLInputElement>) {
-            setCourse({ ...course, name: event.target.value });
-        }
-        function updateCourseDescr(event: React.ChangeEvent<HTMLInputElement>) {
-            setCourse({ ...course, descr: event.target.value });
-        }
-        function updateCourseCredits(
-            event: React.ChangeEvent<HTMLInputElement>
-        ) {
-            setCourse({ ...course, credits: event.target.value });
-        }
-        function updateCourseReq(event: React.ChangeEvent<HTMLInputElement>) {
-            setCourse({ ...course, preReq: event.target.value });
-        }
-        function updateCourseRestrict(
-            event: React.ChangeEvent<HTMLInputElement>
-        ) {
-            setCourse({ ...course, restrict: event.target.value });
-        }
-        function updateCourseBreadth(
-            event: React.ChangeEvent<HTMLInputElement>
-        ) {
-            setCourse({ ...course, breadth: event.target.value });
-        }
-        function updateCourseOffered(
-            event: React.ChangeEvent<HTMLInputElement>
-        ) {
-            setCourse({ ...course, typ: event.target.value });
-        }
-        function setDefault() {
-            setCourse({
-                ...course,
-                code: userSelection5,
-                name: catalogName[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-                descr: catalogDescr[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-                credits:
-                    catalogCredit[options.indexOf(userSelection4)][
-                        options3.indexOf(userSelection5)
-                    ],
-                preReq: catalogPreReq[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-                restrict:
-                    catalogRestrict[options.indexOf(userSelection4)][
-                        options3.indexOf(userSelection5)
-                    ],
-                breadth:
-                    catalogBreadth[options.indexOf(userSelection4)][
-                        options3.indexOf(userSelection5)
-                    ],
-                typ: catalogTyp[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ]
-            });
-        }
-        return (
-            <div>
-                <div>
-                    <b>
-                        <Form.Check
-                            type="switch"
-                            id="check-edit"
-                            label="Edit?"
-                            checked={editState}
-                            onChange={updateEditState}
-                        />
-                    </b>
-                </div>
-                <div>
-                    {editState && (
-                        <Form.Group controlId="changeTextBox">
-                            <Form.Label>Change Code:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.code}
-                                onChange={updateCourseID}
-                            />
-                            <Form.Label>Change Name:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.name}
-                                onChange={updateCourseName}
-                            />
-                            <Form.Label>Change Description:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.descr}
-                                onChange={updateCourseDescr}
-                            />
-                            <Form.Label>Change Credits:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.credits}
-                                onChange={updateCourseCredits}
-                            />
-                            <Form.Label>Change PreRequisites:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.preReq}
-                                onChange={updateCourseReq}
-                            />
-                            <Form.Label>Change Restrict:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.restrict}
-                                onChange={updateCourseRestrict}
-                            />
-                            <Form.Label>Change Breadth:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.breadth}
-                                onChange={updateCourseBreadth}
-                            />
-                            <Form.Label>Change Offered:</Form.Label>
-                            <Form.Control
-                                type="string"
-                                value={course.typ}
-                                onChange={updateCourseOffered}
-                            />
-                            <Buttons
-                                onClick={() => setDefault()}
-                                border={""}
-                                color={"#03A9F4"}
-                                height={"50px"}
-                                radius={"10%"}
-                                width={"130px"}
-                            >
-                                Set to Default
-                            </Buttons>
-                        </Form.Group>
-                    )}
-                </div>
-                <p></p>
-                <Buttons
-                    onClick={() => Adding(s[y])}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Add {course.code}
-                </Buttons>
-                ‏‏‎ ‎
-                <Buttons
-                    onClick={() => Removing(s[y])}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Remove {course.code}
-                </Buttons>
-                ‏‏‎ ‎
-                <Buttons
-                    onClick={() => Clearing(s[y])}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Clear Courses
-                </Buttons>
-            </div>
-        );
-    }
 }
 
 {
