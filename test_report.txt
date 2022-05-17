@@ -24,15 +24,15 @@
       'ACCT 867', 'ACCT 868'
     ]
 
-      at EditCourse (src/EditCourse.tsx:102:13)
+      at EditCourse (src/EditCourse.tsx:115:13)
 
   console.log
     plan changed
 
       at src/plan.tsx:140:17
 
-FAIL src/App.test.tsx (7.003 s)
-  ✕ renders the course name somewhere (221 ms)
+FAIL src/App.test.tsx (6.653 s)
+  ✕ renders the course name somewhere (214 ms)
 
   ● renders the course name somewhere
 
@@ -197,39 +197,39 @@ FAIL src/App.test.tsx (7.003 s)
               [36m<p>[39m
                 [0mCore Requirements Remaining: [0m
                 [0mENGL 110[0m
-                [0m [0m
+                [0m  [0m
                 [0mEGGG 101[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 108[0m
-                [0m [0m
+                [0m  [0m
                 [0mMATH 241[0m
-                [0m [0m
+                [0m  [0m
                 [0mMATH 242[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 181[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 210[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 220[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 260[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 355[0m
-                [0m [0m
+                [0m  [0m
                 [0mMATH 205[0m
-                [0m [0m
+                [0m  [0m
                 [0mMATH 210[0m
-                [0m [0m
+                [0m  [0m
                 [0mCISC 275[0m
               [36m</p>[39m
               [36m<p>[39m
                 [0mBreadths Remaining: [0m
-                [0mCreative Arts and Humanities[0m
-                [0m [0m
-                [0mHistory and Cultural Change[0m
-                [0m [0m
-                [0mSocial and Behavioral Sciences[0m
-                [0m [0m
+                [0mCreative Arts and Humanities,[0m
+                [0m   [0m
+                [0mHistory and Cultural Change,[0m
+                [0m   [0m
+                [0mSocial and Behavioral Sciences,[0m
+                [0m   [0m
                 [0mMath, Natural Sci and Tech[0m
               [36m</p>[39m
               [36m<p>[39m
@@ -239,8 +239,7 @@ FAIL src/App.test.tsx (7.003 s)
                 [36m<label[39m
                   [33mclass[39m=[32m"form-label"[39m
                   [33mfor[39m=[32m"choiceDropdown"[39m
-                [36m>[39m
-        ...
+           ...
 
        5 | test("renders the course name somewhere", () => {
        6 |     render(<App />);
@@ -263,9 +262,9 @@ FAIL src/App.test.tsx (7.003 s)
 ----------------------|---------|----------|---------|---------|-------------------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s             
 ----------------------|---------|----------|---------|---------|-------------------------------
-All files             |   18.96 |     0.84 |   26.85 |   16.84 |                               
+All files             |   18.61 |     0.68 |    27.1 |   16.66 |                               
  App.tsx              |     100 |      100 |     100 |     100 |                               
- EditCourse.tsx       |    4.76 |        1 |    2.38 |    4.76 | 106-478,511-622               
+ EditCourse.tsx       |    6.14 |     0.78 |    2.43 |    6.14 | 119-549,582-693               
  InterfaceProps.ts    |       0 |        0 |       0 |       0 |                               
  catalog.ts           |     100 |      100 |     100 |     100 |                               
  course.ts            |       0 |        0 |       0 |       0 |                               
@@ -282,5 +281,5 @@ All files             |   18.96 |     0.84 |   26.85 |   16.84 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        8.336 s
+Time:        7.914 s
 Ran all test suites.
