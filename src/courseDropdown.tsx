@@ -101,21 +101,9 @@ export function CoursesSelect({
             <h3></h3>
             <br></br>
             <br></br>
-            <p>
-                The core plan requires all of the following courses: ENGL 110,
-                EGGG 101, CISC 101, CISC 108 , MATH 241 , MATH 242 , CISC 181 ,
-                CISC 210 , CISC 260 , CISC 355 , MATH 205 , MATH 210 , CISC 275
-            </p>
-            <br></br>
-            <p>
-                The plan also requires 4 breadths fulfilling each category, 6
-                free electives and 4 restricted electives
-            </p>
-            <br></br>
             <br></br>
             <p>Core Requirements Remaining: {coreReq}</p>
             <p>Breadths Remaining: {breadthReq}</p>
-            <p>Restricted Electives Remaining: 4</p>
             {visible2 && (
                 <Form.Group controlId="choiceDropdown">
                     <Form.Label>Choose a department</Form.Label>
