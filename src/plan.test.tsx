@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { App } from "./App";
-import { PlanF } from "./plan";
-import { catalogHeader, catalogNumber } from "./catalog";
+//import { PlanF } from "./plan";
+//import { catalogHeader, catalogNumber } from "./catalog";
 
 test("renders the course name somewhere", () => {
     render(<App />);
@@ -11,7 +11,7 @@ test("renders the course name somewhere", () => {
 });
 
 //does course get added to semester
-
+/*
 describe("Course Component tests", () => {
     beforeEach(() => {
         render(
@@ -85,3 +85,4 @@ describe("Course Component tests", () => {
 });
 
 //Does course get removed from semester
+*/
