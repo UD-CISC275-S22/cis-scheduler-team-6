@@ -24,15 +24,15 @@
       'ACCT 867', 'ACCT 868'
     ]
 
-      at EditCourse (src/EditCourse.tsx:115:13)
+      at EditCourse (src/EditCourse.tsx:121:13)
 
   console.log
     plan changed
 
       at src/plan.tsx:140:17
 
-FAIL src/App.test.tsx (6.653 s)
-  ✕ renders the course name somewhere (214 ms)
+FAIL src/App.test.tsx (6.264 s)
+  ✕ renders the course name somewhere (190 ms)
 
   ● renders the course name somewhere
 
@@ -262,13 +262,13 @@ FAIL src/App.test.tsx (6.653 s)
 ----------------------|---------|----------|---------|---------|-------------------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s             
 ----------------------|---------|----------|---------|---------|-------------------------------
-All files             |   18.61 |     0.68 |    27.1 |   16.66 |                               
+All files             |   18.82 |      7.4 |    26.6 |    16.9 |                               
  App.tsx              |     100 |      100 |     100 |     100 |                               
- EditCourse.tsx       |    6.14 |     0.78 |    2.43 |    6.14 | 119-549,582-693               
+ EditCourse.tsx       |    6.42 |     5.71 |    2.32 |    6.42 | 125-588,595-727               
  InterfaceProps.ts    |       0 |        0 |       0 |       0 |                               
  catalog.ts           |     100 |      100 |     100 |     100 |                               
  course.ts            |       0 |        0 |       0 |       0 |                               
- courseDropdown.tsx   |      75 |      100 |      60 |      75 | 51-52,86                      
+ courseDropdown.tsx   |   76.92 |      100 |      60 |   76.92 | 54-55,59                      
  coursePlanEdit.tsx   |       0 |        0 |       0 |       0 | 5-33                          
  coursePool.tsx       |       0 |      100 |       0 |       0 | 10-11                         
  export.tsx           |       0 |        0 |       0 |       0 |                               
@@ -281,5 +281,5 @@ All files             |   18.61 |     0.68 |    27.1 |   16.66 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        7.914 s
+Time:        7.987 s
 Ran all test suites.
