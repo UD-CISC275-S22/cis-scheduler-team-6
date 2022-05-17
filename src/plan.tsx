@@ -12,7 +12,6 @@ import { catalogPreReq } from "./catalog";
 import { catalogTyp } from "./catalog";
 import { catalogDescr } from "./catalog";
 import { course } from "./course";
-//import { findRenderedComponentWithType } from "react-dom/test-utils";
 import "./plan.css";
 
 interface coursesProps {
@@ -104,11 +103,11 @@ export function PlanF({
     options3: string[];
 }): JSX.Element {
     const [userSelection4, setUserSelection4] = useState<string>(options[0]);
-
     const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
-    //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
-    //const [visible, setVisible] = useState<boolean>(true);
+
     /*
+    const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
+    const [visible, setVisible] = useState<boolean>(true);
     const setForm = (Event: ChangeEvent) => {
         setFormSelection(options2[options.indexOf(userSelection4)]);
     };
@@ -139,6 +138,7 @@ export function PlanF({
         credits: 0
     };
 
+    /*
     function charts() {
         for (const semester in p[x].semesters) {
             return (
@@ -149,7 +149,7 @@ export function PlanF({
                     />{" "}
                 </div>
             );
-            /*
+            
             if (p[x].semesters[i].courses.length > 0) {
                 return (
                     <div>
@@ -157,9 +157,10 @@ export function PlanF({
                     </div>
                 );
             }
-            */
+            
         }
     }
+    */
 
     const [userSelection, setUserSelection] = useState<number>(plans[0].id);
     const setAnswer = (Event: ChangeEvent) => {
@@ -177,7 +178,6 @@ export function PlanF({
         const v = parseInt(Event.target.value);
         setUserSelection2(v);
         setY(v);
-        //setY(plans[pId].semesters[v - 1].id);
     };
 
     React.useEffect(() => {
@@ -266,7 +266,6 @@ export function PlanF({
                 </Buttons>
             </>
             {}
-            {charts()}
             {
                 <div>
                     <h3>Plan: {p[x].id}</h3>
@@ -461,7 +460,6 @@ export function PlanF({
             plans[x].semesters.push(newSemester);
             setS(s);
             setUserSelection2(semesters.length - 1);
-            //sId = y + 1;
         }
     }
 
@@ -567,7 +565,6 @@ export function PlanF({
             newSemester.credits = newSemester.credits + +convert[0];
             setS([...semesters, newSemester]);
             /* React.useEffect(() => {
-                console.log("semester changed");
                 setS(s);
                 setY(y);
             }, [s]);
