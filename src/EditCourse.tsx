@@ -18,43 +18,56 @@ import "./plan.css";
 let coursesTaken = [""];
 export const core = [
     "ENGL 110",
-    " ",
+    "  ",
     "EGGG 101",
-    " ",
+    "  ",
     "CISC 108",
-    " ",
+    "  ",
     "MATH 241",
-    " ",
+    "  ",
     "MATH 242",
-    " ",
+    "  ",
     "CISC 181",
-    " ",
+    "  ",
     "CISC 210",
-    " ",
+    "  ",
     "CISC 220",
-    " ",
+    "  ",
     "CISC 260",
-    " ",
+    "  ",
     "CISC 355",
-    " ",
+    "  ",
     "MATH 205",
-    " ",
+    "  ",
     "MATH 210",
-    " ",
+    "  ",
     "CISC 275"
+];
+const BREADTH = [
+    "Creative Arts and Humanities,",
+    "   ",
+    "History and Cultural Change,",
+    "   ",
+    "Social and Behavioral Sciences,",
+    "   ",
+    "Math, Natural Sci and Tech"
 ];
 export let coreReq = core;
 export const restReq = 4;
 export const freeReq = 6;
 export let breadthReq = [
-    "Creative Arts and Humanities",
-    " ",
-    "History and Cultural Change",
-    " ",
-    "Social and Behavioral Sciences",
-    " ",
+    "Creative Arts and Humanities,",
+    "   ",
+    "History and Cultural Change,",
+    "   ",
+    "Social and Behavioral Sciences,",
+    "   ",
     "Math, Natural Sci and Tech"
 ];
+let breadthArtCount = 0;
+let breadthHisCount = 0;
+let breadthSocialCount = 0;
+let breadthMathCount = 0;
 export function EditCourse({
     options,
     options2,
@@ -120,7 +133,9 @@ export function EditCourse({
         console.log(PreReqNormCase);
         console.log("check 4");
         const PreReqOrCase = PreReqs.filter(
-            (Thisone: string): boolean => Thisone.length === 21
+            (Thisone: string): boolean =>
+                Thisone.split("OR").length === 2 ||
+                Thisone.split("or").length === 2
         );
         console.log("check 5");
         console.log(PreReqOrCase);
@@ -134,7 +149,9 @@ export function EditCourse({
         console.log(ProperOr);
         console.log("check 6");
         const PreReqAndCase = PreReqs.filter(
-            (Thisone: string): boolean => Thisone.length === 22
+            (Thisone: string): boolean =>
+                Thisone.split("AND").length === 2 ||
+                Thisone.split("and").length === 2
         );
         console.log("check 7");
         console.log(PreReqAndCase);
@@ -256,24 +273,8 @@ export function EditCourse({
                     }
                 }
             } else {
-                if (ProperOr.length > 1) {
-                    if (
-                        coursesTaken.includes(ProperOr[0].trim()) ||
-                        coursesTaken.includes(ProperOr[1].trim())
-                    ) {
-                        const anothertemp = missingreq.filter(
-                            (Thisone: string): boolean =>
-                                Thisone !== ProperOr[0].trim() &&
-                                Thisone !== ProperOr[1].trim()
-                        );
-                        missingreq = anothertemp;
-                        checker = true;
-                        console.log("true 4");
-                    } else {
-                        checker = false;
-                        console.log("2-false 4");
-                    }
-                }
+                checker = false;
+                console.log("2-false 4");
             }
         } else {
             if (PreReqNormCase.length > 0) {
@@ -368,9 +369,10 @@ export function EditCourse({
             ) {
                 const temp = breadthReq.filter(
                     (Thisone: string): boolean =>
-                        Thisone !== "Creative Arts and Humanities"
+                        Thisone !== "Creative Arts and Humanities,"
                 );
                 breadthReq = temp;
+                breadthArtCount = breadthArtCount + 1;
             }
             if (
                 BreadthsCheck.includes(
@@ -379,9 +381,10 @@ export function EditCourse({
             ) {
                 const temp = breadthReq.filter(
                     (Thisone: string): boolean =>
-                        Thisone !== "Social and Behavioral Sciences"
+                        Thisone !== "Social and Behavioral Sciences,"
                 );
                 breadthReq = temp;
+                breadthSocialCount = breadthSocialCount + 1;
             }
             if (
                 BreadthsCheck.includes(
@@ -393,6 +396,7 @@ export function EditCourse({
                         Thisone !== "Math, Natural Sci and Tech"
                 );
                 breadthReq = temp;
+                breadthMathCount = breadthMathCount + 1;
             }
             if (
                 BreadthsCheck.includes(
@@ -401,9 +405,10 @@ export function EditCourse({
             ) {
                 const temp = breadthReq.filter(
                     (Thisone: string): boolean =>
-                        Thisone !== "History and Cultural Change"
+                        Thisone !== "History and Cultural Change,"
                 );
                 breadthReq = temp;
+                breadthHisCount = breadthHisCount + 1;
             }
         } else {
             //say add the prereq first
@@ -439,11 +444,77 @@ export function EditCourse({
             (Thisone: string): boolean => Thisone !== course.code
         );
         coursesTaken = temp2;
+
+        const BreadthsCheck = course.breadth.split(";");
+        if (
+            BreadthsCheck.includes("University: Creative Arts and Humanities")
+        ) {
+            if (breadthArtCount > 0) {
+                breadthArtCount = breadthArtCount - 1;
+            }
+            if (breadthArtCount == 0) {
+                if (!breadthReq.includes("Creative Arts and Humanities,")) {
+                    breadthReq = [
+                        "Creative Arts and Humanities,",
+                        ...breadthReq
+                    ];
+                }
+            }
+        }
+        if (
+            BreadthsCheck.includes("University: Social and Behavioral Sciences")
+        ) {
+            if (breadthSocialCount > 0) {
+                breadthSocialCount = breadthSocialCount - 1;
+            }
+            if (breadthSocialCount == 0) {
+                if (!breadthReq.includes("Social and Behavioral Sciences,")) {
+                    breadthReq = [
+                        "Social and Behavioral Sciences,",
+                        ...breadthReq
+                    ];
+                }
+            }
+        }
+        if (
+            BreadthsCheck.includes(
+                "University: Mathematics, Natural Sciences and Technology"
+            )
+        ) {
+            if (breadthMathCount > 0) {
+                breadthMathCount = breadthMathCount - 1;
+            }
+            if (breadthMathCount == 0) {
+                if (!breadthReq.includes("Math, Natural Sci and Tech")) {
+                    breadthReq = ["Math, Natural Sci and Tech", ...breadthReq];
+                }
+            }
+        }
+        if (BreadthsCheck.includes("University: History and Cultural Change")) {
+            if (breadthHisCount > 0) {
+                breadthHisCount = breadthHisCount - 1;
+            }
+            if (breadthHisCount == 0) {
+                if (!breadthReq.includes("History and Cultural Change,")) {
+                    breadthReq = [
+                        "History and Cultural Change,",
+                        ...breadthReq
+                    ];
+                }
+            }
+        }
     }
 
     function Clearing(newSemester: Semester) {
         newSemester.courses = [];
         newSemester.credits = 0;
+        coursesTaken = [""];
+        coreReq = core;
+        breadthReq = BREADTH;
+        breadthArtCount = 0;
+        breadthHisCount = 0;
+        breadthSocialCount = 0;
+        breadthMathCount = 0;
         setS([...semesters, newSemester]);
     }
 
