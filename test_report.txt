@@ -31,8 +31,8 @@
 
       at src/plan.tsx:140:17
 
-FAIL src/App.test.tsx (6.264 s)
-  ✕ renders the course name somewhere (190 ms)
+FAIL src/App.test.tsx (6.375 s)
+  ✕ renders the course name somewhere (211 ms)
 
   ● renders the course name somewhere
 
@@ -185,14 +185,6 @@ FAIL src/App.test.tsx (6.264 s)
               [36m<h3 />[39m
               [36m<br />[39m
               [36m<br />[39m
-              [36m<p>[39m
-                [0mThe core plan requires all of the following courses: ENGL 110, EGGG 101, CISC 101, CISC 108 , MATH 241 , MATH 242 , CISC 181 , CISC 210 , CISC 260 , CISC 355 , MATH 205 , MATH 210 , CISC 275[0m
-              [36m</p>[39m
-              [36m<br />[39m
-              [36m<p>[39m
-                [0mThe plan also requires 4 breadths fulfilling each category, 6 free electives and 4 restricted electives[0m
-              [36m</p>[39m
-              [36m<br />[39m
               [36m<br />[39m
               [36m<p>[39m
                 [0mCore Requirements Remaining: [0m
@@ -232,14 +224,27 @@ FAIL src/App.test.tsx (6.264 s)
                 [0m   [0m
                 [0mMath, Natural Sci and Tech[0m
               [36m</p>[39m
-              [36m<p>[39m
-                [0mRestricted Electives Remaining: 4[0m
-              [36m</p>[39m
               [36m<div>[39m
                 [36m<label[39m
                   [33mclass[39m=[32m"form-label"[39m
                   [33mfor[39m=[32m"choiceDropdown"[39m
-           ...
+                [36m>[39m
+                  [0mChoose a department[0m
+                [36m</label>[39m
+                [36m<select[39m
+                  [33mclass[39m=[32m"form-select"[39m
+                  [33mid[39m=[32m"choiceDropdown"[39m
+                [36m>[39m
+                  [36m<option[39m
+                    [33mvalue[39m=[32m"ACCT"[39m
+                  [36m>[39m
+                    [0mACCT[0m
+                  [36m</option>[39m
+                  [36m<option[39m
+                    [33mvalue[39m=[32m"AGED"[39m
+                  [36m>[39m
+                    [0mAGED[0m
+                  [36m</option>[39...
 
        5 | test("renders the course name somewhere", () => {
        6 |     render(<App />);
@@ -281,5 +286,5 @@ All files             |   18.82 |      7.4 |    26.6 |    16.9 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        7.987 s
+Time:        7.608 s
 Ran all test suites.
