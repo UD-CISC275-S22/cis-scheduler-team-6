@@ -15,10 +15,12 @@ import { Semester } from "./semesterlnterface";
 //import { Button } from "react-bootstrap";
 //import Modal from "react-bootstrap/Modal";
 import { Props } from "./InterfaceProps";
+import { course } from "./course";
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
 >;
 //
+
 export function CoursesSelect({
     options,
     options2,
@@ -42,6 +44,7 @@ export function CoursesSelect({
 }): JSX.Element {
     const [userSelection4, setUserSelection4] = useState<string>(options[0]);
     const [userSelection5, setUserSelection5] = useState<string>(options3[0]);
+    const [visible2, setVisible2] = useState<boolean>(true);
 
     //const [formSelection, setFormSelection] = useState<string[]>(options2[0]);
 
@@ -50,71 +53,13 @@ export function CoursesSelect({
     const setAnswer4 = (Event: ChangeEvent) => {
         setUserSelection4(Event.target.value);
         setUserSelection5(options2[options.indexOf(Event.target.value)][0]);
-
-        /*
-        setCourse({
-            ...course,
-            code: userSelection5,
-            name: catalogName[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            descr: catalogDescr[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            credits:
-                catalogCredit[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            preReq: catalogPreReq[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            restrict:
-                catalogRestrict[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            breadth:
-                catalogBreadth[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            typ: catalogTyp[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ]
-        });*/
     };
 
     const setAnswer5 = (Event: ChangeEvent) => {
         setUserSelection5(Event.target.value);
-        /*setCourse({
-            ...course,
-            code: userSelection5,
-            name: catalogName[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            descr: catalogDescr[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            credits:
-                catalogCredit[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            preReq: catalogPreReq[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ],
-            restrict:
-                catalogRestrict[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            breadth:
-                catalogBreadth[options.indexOf(userSelection4)][
-                    options3.indexOf(userSelection5)
-                ],
-            typ: catalogTyp[options.indexOf(userSelection4)][
-                options3.indexOf(userSelection5)
-            ]
-        });*/
     };
 
-    const [course, setCourse] = useState({
+    const [course, setCourse] = useState<course>({
         code: userSelection5,
         name: catalogName[options.indexOf(userSelection4)][
             options3.indexOf(userSelection5)
@@ -141,6 +86,7 @@ export function CoursesSelect({
             options3.indexOf(userSelection5)
         ]
     });
+
     /*
     const setForm = (Event: ChangeEvent) => {
         setFormSelection(options2[options.indexOf(userSelection)]);
@@ -170,26 +116,30 @@ export function CoursesSelect({
             <p>Core Requirements Remaining: {coreReq}</p>
             <p>Breadths Remaining: {breadthReq}</p>
             <p>Restricted Electives Remaining: 4</p>
-            <Form.Group controlId="choiceDropdown">
-                <Form.Label>Choose a department</Form.Label>
-                <Form.Select value={userSelection4} onChange={setAnswer4}>
-                    {options.map((choice: string) => (
-                        <option key={choice} value={choice}>
-                            {choice}
-                        </option>
-                    ))}
-                </Form.Select>
-            </Form.Group>
-            <Form.Group controlId="choiceDropdown3">
-                <Form.Label>Choose a course</Form.Label>
-                <Form.Select value={userSelection5} onChange={setAnswer5}>
-                    {options3.map((choice3: string) => (
-                        <option key={choice3} value={choice3}>
-                            {choice3}
-                        </option>
-                    ))}
-                </Form.Select>
-            </Form.Group>
+            {visible2 && (
+                <Form.Group controlId="choiceDropdown">
+                    <Form.Label>Choose a department</Form.Label>
+                    <Form.Select value={userSelection4} onChange={setAnswer4}>
+                        {options.map((choice: string) => (
+                            <option key={choice} value={choice}>
+                                {choice}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+            )}
+            {visible2 && (
+                <Form.Group controlId="choiceDropdown3">
+                    <Form.Label>Choose a course</Form.Label>
+                    <Form.Select value={userSelection5} onChange={setAnswer5}>
+                        {options3.map((choice3: string) => (
+                            <option key={choice3} value={choice3}>
+                                {choice3}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+            )}
             <EditCourse
                 options={options}
                 options2={options2}
@@ -204,6 +154,8 @@ export function CoursesSelect({
                 y={y}
                 course={course}
                 setCourse={setCourse}
+                setVisible2={setVisible2}
+                visible2={visible2}
             ></EditCourse>
             <hr></hr>
         </div>
