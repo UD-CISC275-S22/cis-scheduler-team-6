@@ -11,7 +11,7 @@ test("renders the course name somewhere", () => {
 });
 
 //does course get added to semester
-/*
+
 describe("Course Component tests", () => {
     beforeEach(() => {
         render(
@@ -81,8 +81,6 @@ describe("Course Component tests", () => {
     //Does set to default work
 
     //Do buttons update after changing course department/course
-
 });
 
 //Does course get removed from semester
-*/
