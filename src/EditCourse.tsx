@@ -15,6 +15,7 @@ import { Props } from "./InterfaceProps";
 //userSelection5 userSelection4 coursesTaken coreReq creditsRequired semester
 import "./plan.css";
 //
+
 let coursesTaken = [""];
 export const core = [
     "ENGL 110",
@@ -81,7 +82,9 @@ export function EditCourse({
     s,
     y,
     course,
-    setCourse
+    setCourse,
+    setVisible2,
+    visible2
 }: {
     options: string[];
     options2: string[][];
@@ -107,8 +110,11 @@ export function EditCourse({
             typ: string;
         }>
     >;
+    setVisible2: React.Dispatch<React.SetStateAction<boolean>>;
+    visible2: boolean;
 }): JSX.Element {
     const [editState, setEditState] = useState<boolean>(false);
+    const [visible, setVisible] = useState<boolean>(false);
     {
         options3 = options2[options.indexOf(userSelection4)];
     }
@@ -575,30 +581,40 @@ export function EditCourse({
             ]
         });
     }
+
+    function confirmChoice() {
+        setDefault();
+        setVisible(!visible);
+        setVisible2(!visible2);
+    }
     return (
         <>
             <div>
-                <Buttons
-                    onClick={() => setDefault()}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Confirm Choice
-                </Buttons>
+                {visible2 && (
+                    <Buttons
+                        onClick={() => confirmChoice()}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"130px"}
+                    >
+                        Confirm Course
+                    </Buttons>
+                )}
             </div>
             <div>
                 <div>
                     <b>
-                        <Form.Check
-                            type="switch"
-                            id="check-edit"
-                            label="Edit?"
-                            checked={editState}
-                            onChange={updateEditState}
-                        />
+                        {visible && (
+                            <Form.Check
+                                type="switch"
+                                id="check-edit"
+                                label="Edit Course?"
+                                checked={editState}
+                                onChange={updateEditState}
+                            />
+                        )}
                     </b>
                     <br></br>
                 </div>
@@ -667,38 +683,57 @@ export function EditCourse({
                     )}
                 </div>
                 <p></p>
-                <Buttons
-                    onClick={() => Adding(s[y])}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Add {course.code}
-                </Buttons>
+                {visible && (
+                    <Buttons
+                        onClick={() => Adding(s[y])}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"130px"}
+                    >
+                        Add {course.code}
+                    </Buttons>
+                )}
                 ‏‏‎ ‎
-                <Buttons
-                    onClick={() => Removing(s[y])}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Remove {course.code}
-                </Buttons>
+                {visible && (
+                    <Buttons
+                        onClick={() => Removing(s[y])}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"130px"}
+                    >
+                        Remove {course.code}
+                    </Buttons>
+                )}
                 ‏‏‎ ‎
-                <Buttons
-                    onClick={() => Clearing(s[y])}
-                    border={""}
-                    color={"#03A9F4"}
-                    height={"50px"}
-                    radius={"10%"}
-                    width={"130px"}
-                >
-                    Clear Courses
-                </Buttons>
+                {visible && (
+                    <Buttons
+                        onClick={() => Clearing(s[y])}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"130px"}
+                    >
+                        Clear Courses
+                    </Buttons>
+                )}
+                ‏‏‎ ‎
+                {visible && (
+                    <Buttons
+                        onClick={() => confirmChoice()}
+                        border={""}
+                        color={"#03A9F4"}
+                        height={"50px"}
+                        radius={"10%"}
+                        width={"130px"}
+                    >
+                        Select Course
+                    </Buttons>
+                )}
             </div>
         </>
     );
