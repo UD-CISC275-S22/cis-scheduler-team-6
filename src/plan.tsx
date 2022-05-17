@@ -12,7 +12,7 @@ import { Props } from "./InterfaceProps";
 //import { findRenderedComponentWithType } from "react-dom/test-utils";
 import "./plan.css";
 import { CoursesSelect } from "./courseDropdown";
-
+//
 interface coursesProps {
     courses: course[];
 }

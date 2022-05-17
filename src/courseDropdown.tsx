@@ -18,7 +18,7 @@ import { Props } from "./InterfaceProps";
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
 >;
-
+//
 export function CoursesSelect({
     options,
     options2,

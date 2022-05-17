@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { useState } from "react";
 //import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
@@ -14,7 +14,7 @@ import { Props } from "./InterfaceProps";
 //import { findRenderedComponentWithType } from "react-dom/test-utils";
 //userSelection5 userSelection4 coursesTaken coreReq creditsRequired semester
 import "./plan.css";
-
+//
 let coursesTaken = [""];
 export const core = [
     "ENGL 110",
