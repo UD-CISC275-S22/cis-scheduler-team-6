@@ -3,12 +3,36 @@
 > react-scripts test "--coverage"
 
   console.log
+    [
+      'ACCT 166', 'ACCT 200', 'ACCT 207', 'ACCT 208',
+      'ACCT 266', 'ACCT 267', 'ACCT 302', 'ACCT 305',
+      'ACCT 313', 'ACCT 315', 'ACCT 316', 'ACCT 320',
+      'ACCT 327', 'ACCT 350', 'ACCT 351', 'ACCT 352',
+      'ACCT 363', 'ACCT 364', 'ACCT 366', 'ACCT 367',
+      'ACCT 395', 'ACCT 402', 'ACCT 405', 'ACCT 410',
+      'ACCT 413', 'ACCT 414', 'ACCT 415', 'ACCT 416',
+      'ACCT 417', 'ACCT 418', 'ACCT 420', 'ACCT 425',
+      'ACCT 433', 'ACCT 450', 'ACCT 457', 'ACCT 466',
+      'ACCT 467', 'ACCT 483', 'ACCT 516', 'ACCT 567',
+      'ACCT 600', 'ACCT 601', 'ACCT 602', 'ACCT 604',
+      'ACCT 605', 'ACCT 606', 'ACCT 610', 'ACCT 611',
+      'ACCT 612', 'ACCT 613', 'ACCT 614', 'ACCT 615',
+      'ACCT 617', 'ACCT 618', 'ACCT 620', 'ACCT 625',
+      'ACCT 633', 'ACCT 636', 'ACCT 653', 'ACCT 657',
+      'ACCT 666', 'ACCT 667', 'ACCT 683', 'ACCT 806',
+      'ACCT 810', 'ACCT 817', 'ACCT 840', 'ACCT 866',
+      'ACCT 867', 'ACCT 868'
+    ]
+
+      at EditCourse (src/EditCourse.tsx:102:13)
+
+  console.log
     plan changed
 
-      at src/plan.tsx:148:17
+      at src/plan.tsx:140:17
 
-FAIL src/App.test.tsx (7.372 s)
-  ✕ renders the course name somewhere (217 ms)
+FAIL src/App.test.tsx (7.003 s)
+  ✕ renders the course name somewhere (221 ms)
 
   ● renders the course name somewhere
 
@@ -46,10 +70,19 @@ FAIL src/App.test.tsx (7.372 s)
                 [0mSemester [0m
                 [0m0[0m
               [36m</h3>[39m
-              [0mCourses: [0m
-              [0m0[0m
-              [0m‏‏‎ Credits: [0m
-              [0m0[0m
+              [36m<p>[39m
+                [0mCourses Taken: [0m
+                [0m0[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mMinimum Credits Remaining: [0m
+                [0m124[0m
+                [0m [0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0m Credits Taken: [0m
+                [0m0[0m
+              [36m</p>[39m
               [36m<div>[39m
                 [36m<label[39m
                   [33mclass[39m=[32m"form-label"[39m
@@ -149,75 +182,65 @@ FAIL src/App.test.tsx (7.372 s)
             [36m</button>[39m
             [36m<h3 />[39m
             [36m<div>[39m
-              [36m<label[39m
-                [33mclass[39m=[32m"form-label"[39m
-                [33mfor[39m=[32m"choiceDropdown"[39m
-              [36m>[39m
-                [36m<b>[39m
-                  [0mChoose a Department[0m
-                [36m</b>[39m
-              [36m</label>[39m
-              [36m<select[39m
-                [33mclass[39m=[32m"form-select"[39m
-                [33mid[39m=[32m"choiceDropdown"[39m
-              [36m>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"ACCT"[39m
+              [36m<h3 />[39m
+              [36m<br />[39m
+              [36m<br />[39m
+              [36m<p>[39m
+                [0mThe core plan requires all of the following courses: ENGL 110, EGGG 101, CISC 101, CISC 108 , MATH 241 , MATH 242 , CISC 181 , CISC 210 , CISC 260 , CISC 355 , MATH 205 , MATH 210 , CISC 275[0m
+              [36m</p>[39m
+              [36m<br />[39m
+              [36m<p>[39m
+                [0mThe plan also requires 4 breadths fulfilling each category, 6 free electives and 4 restricted electives[0m
+              [36m</p>[39m
+              [36m<br />[39m
+              [36m<br />[39m
+              [36m<p>[39m
+                [0mCore Requirements Remaining: [0m
+                [0mENGL 110[0m
+                [0m [0m
+                [0mEGGG 101[0m
+                [0m [0m
+                [0mCISC 108[0m
+                [0m [0m
+                [0mMATH 241[0m
+                [0m [0m
+                [0mMATH 242[0m
+                [0m [0m
+                [0mCISC 181[0m
+                [0m [0m
+                [0mCISC 210[0m
+                [0m [0m
+                [0mCISC 220[0m
+                [0m [0m
+                [0mCISC 260[0m
+                [0m [0m
+                [0mCISC 355[0m
+                [0m [0m
+                [0mMATH 205[0m
+                [0m [0m
+                [0mMATH 210[0m
+                [0m [0m
+                [0mCISC 275[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mBreadths Remaining: [0m
+                [0mCreative Arts and Humanities[0m
+                [0m [0m
+                [0mHistory and Cultural Change[0m
+                [0m [0m
+                [0mSocial and Behavioral Sciences[0m
+                [0m [0m
+                [0mMath, Natural Sci and Tech[0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mRestricted Electives Remaining: 4[0m
+              [36m</p>[39m
+              [36m<div>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"form-label"[39m
+                  [33mfor[39m=[32m"choiceDropdown"[39m
                 [36m>[39m
-                  [0mACCT[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"AGED"[39m
-                [36m>[39m
-                  [0mAGED[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"AGRI"[39m
-                [36m>[39m
-                  [0mAGRI[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"AFSC"[39m
-                [36m>[39m
-                  [0mAFSC[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"AFRA"[39m
-                [36m>[39m
-                  [0mAFRA[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"ANFS"[39m
-                [36m>[39m
-                  [0mANFS[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"ANTH"[39m
-                [36m>[39m
-                  [0mANTH[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"APEC"[39m
-                [36m>[39m
-                  [0mAPEC[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"ARAB"[39m
-                [36m>[39m
-                  [0mARAB[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"ART"[39m
-                [36m>[39m
-                  [0mART[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33mvalue[39m=[32m"ARTC"[39m
-                [36m>[39m
-                  [0mARTC[0m
-                [36m</option>[39m
-                [36m<option[39m
-                  [33m...
+        ...
 
        5 | test("renders the course name somewhere", () => {
        6 |     render(<App />);
@@ -237,25 +260,27 @@ FAIL src/App.test.tsx (7.372 s)
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
-----------------------|---------|----------|---------|---------|-------------------------------------------------------------------
-File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                 
-----------------------|---------|----------|---------|---------|-------------------------------------------------------------------
-All files             |   26.92 |     4.54 |   27.45 |   23.76 |                                                                   
- App.tsx              |     100 |      100 |     100 |     100 |                                                                   
- catalog.ts           |     100 |      100 |     100 |     100 |                                                                   
- course.ts            |       0 |        0 |       0 |       0 |                                                                   
- courseDropdown.tsx   |       0 |        0 |       0 |       0 | 27-247                                                            
- coursePlanEdit.tsx   |       0 |        0 |       0 |       0 | 5-33                                                              
- coursePool.tsx       |       0 |      100 |       0 |       0 | 10-11                                                             
- export.tsx           |       0 |        0 |       0 |       0 |                                                                   
- import.tsx           |       0 |        0 |       0 |       0 |                                                                   
- plan.tsx             |   26.71 |     8.33 |   21.27 |   25.58 | 29,67,116-117,121,141-145,164-167,301-365,419-498,573-640,734-770 
- planInterface.ts     |       0 |        0 |       0 |       0 |                                                                   
- semester.tsx         |       0 |        0 |       0 |       0 | 13-93                                                             
- semesterlnterface.ts |       0 |        0 |       0 |       0 |                                                                   
-----------------------|---------|----------|---------|---------|-------------------------------------------------------------------
+----------------------|---------|----------|---------|---------|-------------------------------
+File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s             
+----------------------|---------|----------|---------|---------|-------------------------------
+All files             |   18.96 |     0.84 |   26.85 |   16.84 |                               
+ App.tsx              |     100 |      100 |     100 |     100 |                               
+ EditCourse.tsx       |    4.76 |        1 |    2.38 |    4.76 | 106-478,511-622               
+ InterfaceProps.ts    |       0 |        0 |       0 |       0 |                               
+ catalog.ts           |     100 |      100 |     100 |     100 |                               
+ course.ts            |       0 |        0 |       0 |       0 |                               
+ courseDropdown.tsx   |      75 |      100 |      60 |      75 | 51-52,86                      
+ coursePlanEdit.tsx   |       0 |        0 |       0 |       0 | 5-33                          
+ coursePool.tsx       |       0 |      100 |       0 |       0 | 10-11                         
+ export.tsx           |       0 |        0 |       0 |       0 |                               
+ import.tsx           |       0 |        0 |       0 |       0 |                               
+ plan.tsx             |   30.23 |        0 |   29.16 |   28.57 | 26,64,133-137,156-159,282-465 
+ planInterface.ts     |       0 |        0 |       0 |       0 |                               
+ semester.tsx         |       0 |        0 |       0 |       0 | 13-93                         
+ semesterlnterface.ts |       0 |        0 |       0 |       0 |                               
+----------------------|---------|----------|---------|---------|-------------------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        8.96 s
+Time:        8.336 s
 Ran all test suites.
