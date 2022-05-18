@@ -2,7 +2,7 @@
 > react-typescript-starter@0.1.0 test
 > react-scripts test "--coverage"
 
-PASS src/plan.test.tsx (6.282 s)
+PASS src/plan.test.tsx (8.1 s)
   ● Console
 
     console.log
@@ -103,5 +103,5 @@ All files             |      20 |      7.4 |   26.12 |   18.22 |
 Test Suites: 2 passed, 2 total
 Tests:       3 passed, 3 total
 Snapshots:   0 total
-Time:        8.272 s
+Time:        10.467 s
 Ran all test suites.
