@@ -2,7 +2,7 @@
 > react-typescript-starter@0.1.0 test
 > react-scripts test "--coverage"
 
-PASS src/plan.test.tsx (8.588 s)
+PASS src/plan.test.tsx (7.566 s)
   ● Console
 
     console.log
@@ -30,9 +30,28 @@ PASS src/plan.test.tsx (8.588 s)
       at EditCourse (src/EditCourse.tsx:121:13)
 
     console.log
-      1
+      [
+        'ACCT 166', 'ACCT 200', 'ACCT 207', 'ACCT 208',
+        'ACCT 266', 'ACCT 267', 'ACCT 302', 'ACCT 305',
+        'ACCT 313', 'ACCT 315', 'ACCT 316', 'ACCT 320',
+        'ACCT 327', 'ACCT 350', 'ACCT 351', 'ACCT 352',
+        'ACCT 363', 'ACCT 364', 'ACCT 366', 'ACCT 367',
+        'ACCT 395', 'ACCT 402', 'ACCT 405', 'ACCT 410',
+        'ACCT 413', 'ACCT 414', 'ACCT 415', 'ACCT 416',
+        'ACCT 417', 'ACCT 418', 'ACCT 420', 'ACCT 425',
+        'ACCT 433', 'ACCT 450', 'ACCT 457', 'ACCT 466',
+        'ACCT 467', 'ACCT 483', 'ACCT 516', 'ACCT 567',
+        'ACCT 600', 'ACCT 601', 'ACCT 602', 'ACCT 604',
+        'ACCT 605', 'ACCT 606', 'ACCT 610', 'ACCT 611',
+        'ACCT 612', 'ACCT 613', 'ACCT 614', 'ACCT 615',
+        'ACCT 617', 'ACCT 618', 'ACCT 620', 'ACCT 625',
+        'ACCT 633', 'ACCT 636', 'ACCT 653', 'ACCT 657',
+        'ACCT 666', 'ACCT 667', 'ACCT 683', 'ACCT 806',
+        'ACCT 810', 'ACCT 817', 'ACCT 840', 'ACCT 866',
+        'ACCT 867', 'ACCT 868'
+      ]
 
-      at Object.<anonymous> (src/plan.test.tsx:15:13)
+      at EditCourse (src/EditCourse.tsx:121:13)
 
 PASS src/App.test.tsx
   ● Console
@@ -82,7 +101,7 @@ All files             |      20 |      7.4 |   26.12 |   18.22 |
 ----------------------|---------|----------|---------|---------|-------------------------------
 
 Test Suites: 2 passed, 2 total
-Tests:       2 passed, 2 total
+Tests:       3 passed, 3 total
 Snapshots:   0 total
-Time:        11.098 s
+Time:        9.94 s
 Ran all test suites.
