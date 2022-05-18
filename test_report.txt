@@ -2,272 +2,69 @@
 > react-typescript-starter@0.1.0 test
 > react-scripts test "--coverage"
 
-  console.log
-    [
-      'ACCT 166', 'ACCT 200', 'ACCT 207', 'ACCT 208',
-      'ACCT 266', 'ACCT 267', 'ACCT 302', 'ACCT 305',
-      'ACCT 313', 'ACCT 315', 'ACCT 316', 'ACCT 320',
-      'ACCT 327', 'ACCT 350', 'ACCT 351', 'ACCT 352',
-      'ACCT 363', 'ACCT 364', 'ACCT 366', 'ACCT 367',
-      'ACCT 395', 'ACCT 402', 'ACCT 405', 'ACCT 410',
-      'ACCT 413', 'ACCT 414', 'ACCT 415', 'ACCT 416',
-      'ACCT 417', 'ACCT 418', 'ACCT 420', 'ACCT 425',
-      'ACCT 433', 'ACCT 450', 'ACCT 457', 'ACCT 466',
-      'ACCT 467', 'ACCT 483', 'ACCT 516', 'ACCT 567',
-      'ACCT 600', 'ACCT 601', 'ACCT 602', 'ACCT 604',
-      'ACCT 605', 'ACCT 606', 'ACCT 610', 'ACCT 611',
-      'ACCT 612', 'ACCT 613', 'ACCT 614', 'ACCT 615',
-      'ACCT 617', 'ACCT 618', 'ACCT 620', 'ACCT 625',
-      'ACCT 633', 'ACCT 636', 'ACCT 653', 'ACCT 657',
-      'ACCT 666', 'ACCT 667', 'ACCT 683', 'ACCT 806',
-      'ACCT 810', 'ACCT 817', 'ACCT 840', 'ACCT 866',
-      'ACCT 867', 'ACCT 868'
-    ]
+PASS src/plan.test.tsx (8.588 s)
+  ● Console
+
+    console.log
+      [
+        'ACCT 166', 'ACCT 200', 'ACCT 207', 'ACCT 208',
+        'ACCT 266', 'ACCT 267', 'ACCT 302', 'ACCT 305',
+        'ACCT 313', 'ACCT 315', 'ACCT 316', 'ACCT 320',
+        'ACCT 327', 'ACCT 350', 'ACCT 351', 'ACCT 352',
+        'ACCT 363', 'ACCT 364', 'ACCT 366', 'ACCT 367',
+        'ACCT 395', 'ACCT 402', 'ACCT 405', 'ACCT 410',
+        'ACCT 413', 'ACCT 414', 'ACCT 415', 'ACCT 416',
+        'ACCT 417', 'ACCT 418', 'ACCT 420', 'ACCT 425',
+        'ACCT 433', 'ACCT 450', 'ACCT 457', 'ACCT 466',
+        'ACCT 467', 'ACCT 483', 'ACCT 516', 'ACCT 567',
+        'ACCT 600', 'ACCT 601', 'ACCT 602', 'ACCT 604',
+        'ACCT 605', 'ACCT 606', 'ACCT 610', 'ACCT 611',
+        'ACCT 612', 'ACCT 613', 'ACCT 614', 'ACCT 615',
+        'ACCT 617', 'ACCT 618', 'ACCT 620', 'ACCT 625',
+        'ACCT 633', 'ACCT 636', 'ACCT 653', 'ACCT 657',
+        'ACCT 666', 'ACCT 667', 'ACCT 683', 'ACCT 806',
+        'ACCT 810', 'ACCT 817', 'ACCT 840', 'ACCT 866',
+        'ACCT 867', 'ACCT 868'
+      ]
 
       at EditCourse (src/EditCourse.tsx:121:13)
 
-  console.log
-    plan changed
+    console.log
+      1
 
-      at src/plan.tsx:140:17
+      at Object.<anonymous> (src/plan.test.tsx:15:13)
 
-FAIL src/App.test.tsx (6.375 s)
-  ✕ renders the course name somewhere (211 ms)
+PASS src/App.test.tsx
+  ● Console
 
-  ● renders the course name somewhere
+    console.log
+      [
+        'ACCT 166', 'ACCT 200', 'ACCT 207', 'ACCT 208',
+        'ACCT 266', 'ACCT 267', 'ACCT 302', 'ACCT 305',
+        'ACCT 313', 'ACCT 315', 'ACCT 316', 'ACCT 320',
+        'ACCT 327', 'ACCT 350', 'ACCT 351', 'ACCT 352',
+        'ACCT 363', 'ACCT 364', 'ACCT 366', 'ACCT 367',
+        'ACCT 395', 'ACCT 402', 'ACCT 405', 'ACCT 410',
+        'ACCT 413', 'ACCT 414', 'ACCT 415', 'ACCT 416',
+        'ACCT 417', 'ACCT 418', 'ACCT 420', 'ACCT 425',
+        'ACCT 433', 'ACCT 450', 'ACCT 457', 'ACCT 466',
+        'ACCT 467', 'ACCT 483', 'ACCT 516', 'ACCT 567',
+        'ACCT 600', 'ACCT 601', 'ACCT 602', 'ACCT 604',
+        'ACCT 605', 'ACCT 606', 'ACCT 610', 'ACCT 611',
+        'ACCT 612', 'ACCT 613', 'ACCT 614', 'ACCT 615',
+        'ACCT 617', 'ACCT 618', 'ACCT 620', 'ACCT 625',
+        'ACCT 633', 'ACCT 636', 'ACCT 653', 'ACCT 657',
+        'ACCT 666', 'ACCT 667', 'ACCT 683', 'ACCT 806',
+        'ACCT 810', 'ACCT 817', 'ACCT 840', 'ACCT 866',
+        'ACCT 867', 'ACCT 868'
+      ]
 
-    TestingLibraryElementError: Unable to find an element with the text: /CISC275/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
-
-    Ignored nodes: comments, <script />, <style />
-    [36m<body>[39m
-      [36m<div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"App"[39m
-        [36m>[39m
-          [36m<header[39m
-            [33mclass[39m=[32m"App-header"[39m
-          [36m>[39m
-            [0mUD CISC Degree Planner[0m
-          [36m</header>[39m
-          [36m<p>[39m
-            [0mWelcome to the UD CISC Degree Planner! This application is for creating potential course outlines for UD CISC Majors. Start by creating a plan below, and then begin filling in the semesters with the appropriate courses.[0m
-          [36m</p>[39m
-          [36m<p>[39m
-            [0mIsaac Lewis - Alexander Trunzo - Yuchen Zhang[0m
-          [36m</p>[39m
-          [36m<hr />[39m
-          [36m<div>[39m
-            [36m<div>[39m
-              [36m<h3>[39m
-                [0mPlan: [0m
-                [0m0[0m
-              [36m</h3>[39m
-            [36m</div>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"App"[39m
-            [36m>[39m
-              [36m<h3>[39m
-                [0mSemester [0m
-                [0m0[0m
-              [36m</h3>[39m
-              [36m<p>[39m
-                [0mCourses Taken: [0m
-                [0m0[0m
-              [36m</p>[39m
-              [36m<p>[39m
-                [0mMinimum Credits Remaining: [0m
-                [0m124[0m
-                [0m [0m
-              [36m</p>[39m
-              [36m<p>[39m
-                [0m Credits Taken: [0m
-                [0m0[0m
-              [36m</p>[39m
-              [36m<div>[39m
-                [36m<label[39m
-                  [33mclass[39m=[32m"form-label"[39m
-                  [33mfor[39m=[32m"choiceDropdown"[39m
-                [36m>[39m
-                  [36m<b>[39m
-                    [0mSelect Plan:[0m
-                  [36m</b>[39m
-                [36m</label>[39m
-                [36m<select[39m
-                  [33mclass[39m=[32m"form-select"[39m
-                  [33mid[39m=[32m"selectList"[39m
-                  [33mname[39m=[32m"selectList"[39m
-                [36m>[39m
-                  [36m<option[39m
-                    [33mvalue[39m=[32m"0"[39m
-                  [36m>[39m
-                    [0m Plan 0 [0m
-                  [36m</option>[39m
-                [36m</select>[39m
-              [36m</div>[39m
-              [36m<b>[39m
-                [0mSelect Semester:[0m
-              [36m</b>[39m
-              [36m<select[39m
-                [33mclass[39m=[32m"form-select"[39m
-                [33mid[39m=[32m"selectList"[39m
-                [33mname[39m=[32m"selectList"[39m
-              [36m/>[39m
-            [36m</div>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"Course-View"[39m
-            [36m>[39m
-              [36m<table>[39m
-                [36m<tbody>[39m
-                  [36m<tr[39m
-                    [33mclass[39m=[32m"Table-Header"[39m
-                  [36m>[39m
-                    [36m<td>[39m
-                      [36m<h4>[39m
-                        [0mCourse ID[0m
-                      [36m</h4>[39m
-                    [36m</td>[39m
-                    [36m<td>[39m
-                      [36m<h4>[39m
-                        [0mCourse Name[0m
-                      [36m</h4>[39m
-                    [36m</td>[39m
-                    [36m<td>[39m
-                      [36m<h4>[39m
-                        [0mDescription[0m
-                      [36m</h4>[39m
-                    [36m</td>[39m
-                    [36m<td>[39m
-                      [36m<h4>[39m
-                        [0mCredits[0m
-                      [36m</h4>[39m
-                    [36m</td>[39m
-                  [36m</tr>[39m
-                [36m</tbody>[39m
-              [36m</table>[39m
-            [36m</div>[39m
-            [36m<button[39m
-              [33mstyle[39m=[32m"background-color: rgb(3, 169, 244); border-radius: 10%; height: 50px; width: 100px;"[39m
-            [36m>[39m
-              [0mAdd Plan[0m
-            [36m</button>[39m
-            [0m‏‏‎ ‎[0m
-            [36m<button[39m
-              [33mstyle[39m=[32m"background-color: rgb(3, 169, 244); border-radius: 10%; height: 50px; width: 100px;"[39m
-            [36m>[39m
-              [0mClear Plans[0m
-            [36m</button>[39m
-            [0m‏‏‎ ‎[0m
-            [36m<button[39m
-              [33mstyle[39m=[32m"background-color: rgb(3, 169, 244); border-radius: 10%; height: 50px; width: 100px;"[39m
-            [36m>[39m
-              [0mDelete Plan[0m
-            [36m</button>[39m
-            [36m<p />[39m
-            [36m<button[39m
-              [33mstyle[39m=[32m"background-color: rgb(3, 169, 244); border-radius: 10%; height: 50px; width: 100px;"[39m
-            [36m>[39m
-              [0mAdd Semester[0m
-            [36m</button>[39m
-            [0m‏‏‎ ‎[0m
-            [36m<button[39m
-              [33mstyle[39m=[32m"background-color: rgb(3, 169, 244); border-radius: 10%; height: 50px; width: 100px;"[39m
-            [36m>[39m
-              [0mClear Semesters[0m
-            [36m</button>[39m
-            [0m‏‏‎ ‎[0m
-            [36m<button[39m
-              [33mstyle[39m=[32m"background-color: rgb(3, 169, 244); border-radius: 10%; height: 50px; width: 100px;"[39m
-            [36m>[39m
-              [0mDelete Semester[0m
-            [36m</button>[39m
-            [36m<h3 />[39m
-            [36m<div>[39m
-              [36m<h3 />[39m
-              [36m<br />[39m
-              [36m<br />[39m
-              [36m<br />[39m
-              [36m<p>[39m
-                [0mCore Requirements Remaining: [0m
-                [0mENGL 110[0m
-                [0m  [0m
-                [0mEGGG 101[0m
-                [0m  [0m
-                [0mCISC 108[0m
-                [0m  [0m
-                [0mMATH 241[0m
-                [0m  [0m
-                [0mMATH 242[0m
-                [0m  [0m
-                [0mCISC 181[0m
-                [0m  [0m
-                [0mCISC 210[0m
-                [0m  [0m
-                [0mCISC 220[0m
-                [0m  [0m
-                [0mCISC 260[0m
-                [0m  [0m
-                [0mCISC 355[0m
-                [0m  [0m
-                [0mMATH 205[0m
-                [0m  [0m
-                [0mMATH 210[0m
-                [0m  [0m
-                [0mCISC 275[0m
-              [36m</p>[39m
-              [36m<p>[39m
-                [0mBreadths Remaining: [0m
-                [0mCreative Arts and Humanities,[0m
-                [0m   [0m
-                [0mHistory and Cultural Change,[0m
-                [0m   [0m
-                [0mSocial and Behavioral Sciences,[0m
-                [0m   [0m
-                [0mMath, Natural Sci and Tech[0m
-              [36m</p>[39m
-              [36m<div>[39m
-                [36m<label[39m
-                  [33mclass[39m=[32m"form-label"[39m
-                  [33mfor[39m=[32m"choiceDropdown"[39m
-                [36m>[39m
-                  [0mChoose a department[0m
-                [36m</label>[39m
-                [36m<select[39m
-                  [33mclass[39m=[32m"form-select"[39m
-                  [33mid[39m=[32m"choiceDropdown"[39m
-                [36m>[39m
-                  [36m<option[39m
-                    [33mvalue[39m=[32m"ACCT"[39m
-                  [36m>[39m
-                    [0mACCT[0m
-                  [36m</option>[39m
-                  [36m<option[39m
-                    [33mvalue[39m=[32m"AGED"[39m
-                  [36m>[39m
-                    [0mAGED[0m
-                  [36m</option>[39...
-
-       5 | test("renders the course name somewhere", () => {
-       6 |     render(<App />);
-    >  7 |     const linkElement = screen.getByText(/CISC275/i);
-         |                                ^
-       8 |     expect(linkElement).toBeInTheDocument();
-       9 | });
-      10 |
-
-      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
-      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
-      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
-      at getByText (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
-      at Object.<anonymous> (src/App.test.tsx:7:32)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+      at EditCourse (src/EditCourse.tsx:121:13)
 
 ----------------------|---------|----------|---------|---------|-------------------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s             
 ----------------------|---------|----------|---------|---------|-------------------------------
-All files             |   18.82 |      7.4 |    26.6 |    16.9 |                               
+All files             |      20 |      7.4 |   26.12 |   18.22 |                               
  App.tsx              |     100 |      100 |     100 |     100 |                               
  EditCourse.tsx       |    6.42 |     5.71 |    2.32 |    6.42 | 125-588,595-727               
  InterfaceProps.ts    |       0 |        0 |       0 |       0 |                               
@@ -278,13 +75,14 @@ All files             |   18.82 |      7.4 |    26.6 |    16.9 |
  coursePool.tsx       |       0 |      100 |       0 |       0 | 10-11                         
  export.tsx           |       0 |        0 |       0 |       0 |                               
  import.tsx           |       0 |        0 |       0 |       0 |                               
- plan.tsx             |   30.23 |        0 |   29.16 |   28.57 | 26,64,133-137,156-159,282-465 
+ plan.tsx             |   35.16 |        0 |   26.92 |   34.48 | 25,63,161-164,171-173,330-504 
  planInterface.ts     |       0 |        0 |       0 |       0 |                               
  semester.tsx         |       0 |        0 |       0 |       0 | 13-93                         
  semesterlnterface.ts |       0 |        0 |       0 |       0 |                               
 ----------------------|---------|----------|---------|---------|-------------------------------
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 1 total
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
 Snapshots:   0 total
-Time:        7.608 s
+Time:        11.098 s
 Ran all test suites.
